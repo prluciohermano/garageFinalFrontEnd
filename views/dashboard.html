@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
+</head>
+<body>
+    
+
+       <div class="flex-dashboard">
+        <sidebar id="sidebar">
+            <div class="sidebar-title">
+                <img src="../images/ninja.png" alt="">
+                <h2>Garage Control</h2>
+                <h3>Dashboard</h3>
+            </div>
+           <div class="menu">
+              <ul>
+                <li class="selected">
+                    <i class="fa-solid fa-house-chimney"></i>
+                    <a href="/views/dashboard.html"> Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-user"></i>
+                    <a href="/views/perfil.html"> Perfil</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-users"></i>
+                    <a href="/views/gerenciarPessoas.html"> Pessoas</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car-side"></i>
+                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car"></i>
+                    <a href="/views/gerenciarGaragem.html">Garagem</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-print"></i>
+                    <a href="/views/relatorios.html">Relatórios</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-gears"></i>
+                    <a href="/views/configuracoes.html">Configurações</a>
+                </li>
+                <li class="sidebar-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="/index.html">Logout</a>
+                </li>
+              </ul>
+           </div>
+        </sidebar>
+        <main id="mainContent">
+            <header>
+                <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+                <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </header>
+            <div class="main-content">
+                <div class="main-content-title">
+                   <h2>DASHBOARD</h2>
+                </div>
+                <div class="dashboard-content">
+                    <div class="dashboard-flex-parent">
+                        <div class="dashboard-box">
+                           <div class="dashboard-box-wrapper">
+                            <div class="box-icon box box-01">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <div class="value">Box 01</div>
+                            <div class="type">Disponível</div>
+                           </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-02">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 02</div>
+                                <div class="type">Ocupado</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-03">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 03</div>
+                                <div class="type">Liberado</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-04">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 04</div>
+                                <div class="type">Autorizado</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+       </div>
+       
+       <script src="../plugins/jquery/jquery.min.js"></script>
+       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
+       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
+       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/localization/messages_pt_BR.min.js"></script>
+       <script src="../plugins/package/dist/sweetalert2.all.min.js"></script>
+       <script src="../plugins/jquery/jquery.min.js"></script>
+       <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+       <script src="../plugins/fontawesome/js/all.min.js"></script>
+       <script src="../js/ajax.js"></script>
+       <script src="../js/menu.js"></script>
+</body>
+</html>

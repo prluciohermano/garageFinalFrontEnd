@@ -1,0 +1,63 @@
+.register-parent {
+    height: 100%;
+    padding: 0 2%;
+    background-color: #f0f3f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 1000px;
+}
+
+.register {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 30px 80px 30px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+    box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+}
+
+.register-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-title img {
+    width: 50px;
+    height: 50%;
+}
+
+.register-title h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.register .form-group label {
+    font-size: 14px;
+}
+
+.register .form-group input {
+    font-size: 14px;
+}
+
+.register button {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    color: #fff;
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+}
+
+.register button:hover {
+    border: none;
+    color: #fff;
+    transform: scale(1.05);
+    transition: .2s;
+    font-size: 16px;
+}

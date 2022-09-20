@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
+</head>
+<body>
+       <div class="flex-dashboard">
+        <sidebar id="sidebar">
+            <div class="sidebar-title">
+                <img src="../images/ninja.png" alt="">
+                <h2>Garage Control</h2>
+                <h3>Perfil Usuário</h3>
+            </div>
+           <div class="menu">
+              <ul>
+                <li>
+                    <i class="fa-solid fa-house-chimney"></i>
+                    <a href="/views/dashboard.html"> Dashboard</a>
+                </li>
+                <li class="selected">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="/views/perfil.html"> Perfil</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-users"></i>
+                    <a href="/views/gerenciarPessoas.html"> Pessoas</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car-side"></i>
+                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car"></i>
+                    <a href="/views/gerenciarGaragem.html">Garagem</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-print"></i>
+                    <a href="/views/relatorios.html">Relatórios</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-gears"></i>
+                    <a href="/views/configuracoes.html">Configurações</a>
+                </li>
+                <li class="sidebar-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="/views/index.html">Logout</a>
+                </li>
+              </ul>
+           </div>
+        </sidebar>
+        <main id="mainContent">
+            <header>
+                <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+                <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </header>
+            <div class="main-content">
+                <div class="main-content-title">
+                    <h2>Perfil do Usuário</h2>
+                </div>
+                <div class="perfil-parent">
+                    <div class="perfil">
+                        <div class="perfil-img">
+                            <div class="img"></div>
+                        </div>
+                        <div class="perfil-form">
+                            <form id="form-perfil">
+                                <div class="form-floating mb-2">
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                                    <label for="nome">Nome Completo</label>        
+                                </div>
+                                
+                                <div class="form-floating mb-2">
+                                    <input type="cpf" class="form-control" name="cpf" id="cpf" placeholder="Nome">
+                                    <label for="cpf">CPF</label>        
+                                </div>
+                                
+                                <div class="form-floating mb-2">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
+                                    <label for="email">E-mail</label>        
+                                </div>
+                       
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="password" placeholder="Senha">
+                                    <label for="password">Senha</label>        
+                                </div>
+                                <div class="mb-2">
+                                    <label for="customFile" class="custom-file-label">Imagem Perfil</label>
+                                    <input class="custom-file-input" type="file" id="customFile">
+                                  </div>
+                                  <button type="submit" class="btn">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+       </div>
+       <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+       <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
+       <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
+       <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
+       <script src="../plugins/jquery/jquery.min.js"></script>
+       <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+       <script src="../plugins/fontawesome/js/all.min.js"></script>
+       <script src="../js/ajax.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/perfil.js"></script>
+</body>
+</html>
