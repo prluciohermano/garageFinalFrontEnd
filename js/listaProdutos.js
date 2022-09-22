@@ -2,29 +2,29 @@ function buscarProduto() {
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8080/api/produtos",
+        url : "http://localhost:8080/api/produtos/",
     
         success : function(response) {
 
-        $('#tabelaprincipal > tbody > tr').remove();
+        $('#tabelaprincipalProd > tbody > tr').remove();
 
         $("#id").val(response.id);
 
         for (var i = 0; i < response.length; i++) {
-            $('#tabelaprincipal > tbody')
+            $('#tabelaprincipalProd > tbody')
             .append(
                 '<tr id="'+response[i].id+'"><td>'
                         + response[i].id
                         + '</td><td>'
-                        + response[i].nome
+                        + response[i].descProduto
                         + '</td><td>'
-                        + response[i].email
+                        + response[i].anoModelo
                         + '</td><td>'
-                        + response[i].cpf	
+                        + response[i].corProduto	
                         + '</td><td>'
-                        + response[i].cidade
+                        + response[i].dataEntrada
                         + '</td><td>'
-                        + response[i].uf							
+                        + response[i].precoEntrada                        						
                         + '</td><td><button type="button" onclick="colocarEmEdicao('
                         + response[i].id
                         + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteUser('
@@ -71,19 +71,19 @@ function pesquisarProduto() {
             data : "nome=" + nome,
             success : function(response) {
 
-            $('#tabelaresultados > tbody > tr').remove();
+            $('#tabelaresultadosProd > tbody > tr').remove();
 
             $("#id").val(response.id);
 
             for (var i = 0; i < response.length; i++) {
-                $('#tabelaresultados > tbody')
+                $('#tabelaresultadosProd > tbody')
                 .append(
                     '<tr id="'+response[i].id+'"><td>'
                             + response[i].id
                             + '</td><td>'
-                            + response[i].nome
+                            + response[i].descProduto
                             + '</td><td>'
-                            + response[i].cpf								
+                            + response[i].anoModelo								
                             + '</td><td><button type="button" onclick="colocarEmEdicao('
                             + response[i].id
                             + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteUser('
@@ -107,18 +107,12 @@ function colocarEmEdicao(id) {
         success : function(response) {
 
             $("#id").val(response.id);
-            $("#nome").val(response.nome);
-            $("#cpf").val(response.cpf);
-            $("#rg").val(response.rg);
-            $("#sexo").val(response.sexo);
-            $("#cep").val(response.cep);
-            $("#rua").val(response.rua);
-            $("#numero").val(response.numero);
-            $("#bairro").val(response.bairro);
-            $("#comp").val(response.comp);
-            $("#cidade").val(response.cidade);
-            $("#uf").val(response.uf);
-            $("#email").val(response.email);
+            $("#descProduto").val(response.descProduto);
+            $("#anoModelo").val(response.anoModelo);
+            $("#corProduto").val(response.corProduto);
+            $("#dataEntrada").val(response.dataEntrada);
+            $("#precoEntrada").val(response.precoEntrada);
+            
 
             $('#modalPesquisarProduct').modal('hide');
             apagaForm();
@@ -132,28 +126,21 @@ function colocarEmEdicao(id) {
 function salvarProduto() {
 
     var id = $("#id").val();
-    var nome = $("#nome").val();
-    var cpf = $("#cpf").val();
-    var rg = $("#rg").val();
-    var sexo = $("#sexo").val();
-    var cep = $("#cep").val();
-    var rua = $("#rua").val();
-    var numero = $("#numero").val();
-    var bairro = $("#bairro").val();
-    var comp = $("#comp").val();
-    var cidade = $("#cidade").val();
-    var uf = $("#uf").val();
-    var email = $("#email").val();
+    var descProduto = $("#descProduto").val();
+    var anoModelo = $("#anoModelo").val();
+    var corProduto = $("#corProduto").val();
+    var dataEntrada = $("#dataEntrada").val();
+    var precoEntrada = $("#precoEntrada").val();
 
     if (nome == null || nome != null && nome.trim() == '') {
-        $("#nome").focus();
-        alert('Informe o nome');
+        $("#descProduto").focus();
+        alert('Informe a descrição do Produto');
         return;
     }
 
     if (cpf == null || cpf != null && cpf.trim() == '') {
-        $("#cpf").focus();
-        alert('Informe o CPF');
+        $("#anoModelo").focus();
+        alert('Informe o ano / modelo do produto');
         return;
     }
 
@@ -162,18 +149,12 @@ function salvarProduto() {
         url : "http://localhost:8080/api/produtos",
         data : JSON.stringify({
             id : id,
-            nome : nome,
-            cpf : cpf,
-            rg : rg,
-            sexo : sexo,
-            cep : cep,
-            rua : rua,
-            numero : numero,
-            bairro : bairro,
-            comp : comp,
-            cidade : cidade,
-            uf : uf,
-            email : email
+            descProduto : descProduto,
+            anoModelo : anoModelo,
+            corProduto : corProduto,
+            dataEntrada : dataEntrada,
+            precoEntrada : precoEntrada
+
         }),
         contentType : "application/json; charset=utf-8",
         success : function(response) {

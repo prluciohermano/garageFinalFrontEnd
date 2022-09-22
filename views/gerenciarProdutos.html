@@ -28,11 +28,11 @@
                     <i class="fa-solid fa-user"></i>
                     <a href="/views/perfil.html"> Perfil</a>
                 </li>
-                <li class="selected">
+                <li>
                     <i class="fa-solid fa-users"></i>
                     <a href="/views/gerenciarPessoas.html"> Pessoas</a>
                 </li>
-                <li>
+                <li class="selected">
                     <i class="fa-solid fa-car-side"></i>
                     <a href="/views/gerenciarProdutos.html"> Produtos</a>
                 </li>
@@ -70,15 +70,15 @@
                 <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
 
                 <div style="height: 340px;overflow: scroll;">
-					<table class="table table-hover table-striped" id="tabelaprincipal">
+					<table class="table table-hover table-striped" id="tabelaprincipalProd">
 						<thead>
 							<tr>
                                 <th scope="col">ID</th>
-								<th scope="col">Nome</th>
-                                <th scope="col">E-mail</th>
-								<th scope="col">CPF</th>
-                                <th scope="col">Cidade</th>
-                                <th scope="col">UF</th>
+								<th scope="col">Descrição</th>
+                                <th scope="col">Ano Modelo</th>
+								<th scope="col">Cor</th>
+                                <th scope="col">Data Entrada</th>
+                                <th scope="col">Preço Custo</th>
 								
 								<th scope="col">Editar</th>
 								<th scope="col">Delete</th>
@@ -98,10 +98,10 @@
                     <button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
                     </div>
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroUser').reset();">Novo</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroProduct').reset();">Novo</button>
                     </div>
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarUser">Pesquisar</button>
+                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarProduct">Pesquisar</button>
                     </div>
                     <div class="col-md-auto">
                     <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
@@ -111,72 +111,41 @@
                 <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
         
              <div class="row">
-                <form action="" id="formCadastroUser" class="form-cadastro">
-                    <div class="row row-col-6">
+                <form action="" id="formCadastroProduct" class="form-cadastro">
+                    
                     <img src="../images/clienteIcon.png" class="rounded-circle" alt="teste">
+                    <div class="row row-col-6">
                       <div class="col-1">
                           <label for="id" class="form-label">ID</label>
                           <input type="text" class="form-control" id="id" readonly="readonly">
                       </div>
                       <div class="col-4">
-                          <label for="nome" class="form-label">Nome</label>
-                          <input type="text" class="form-control" id="nome" placeholder="Informe o nome" required="required">
+                          <label for="descProduto" class="form-label">Descrição</label>
+                          <input type="text" class="form-control" id="descProduto" placeholder="Informe a descrição" required="required">
+                      </div>
+                      <div class="col-1">
+                          <label for="anoModelo" class="form-label">Ano</label>
+                          <input type="text" class="form-control" id="anoModelo" placeholder="" required="required">
                       </div>
                       <div class="col-2">
-                          <label for="cpf" class="form-label">CPF</label>
-                          <input type="text" class="form-control" id="cpf" placeholder="Informe o CPF" required="required">
-                      </div>
-                      <div class="col-1">
-                          <label for="rg" class="form-label">RG</label>
-                          <input type="text" class="form-control" id="rg" placeholder="Informe o RG" required="required">
-                      </div>
-                      <div class="col-1">
-                          <label for="sexo" class="form-label">Sexo</label>
-                          <input type="text" class="form-control" id="sexo" placeholder="Informe o sexo" required="required">
-                      </div>
-                      </div>
-                      <div class="row row-col-6">
-                        <div class="col-2">
-                          <label for="cep" class="form-label">CEP</label>
-                          <input type="text" class="form-control" id="cep" placeholder="Informe o CEP" required="required">
-                      </div>
-                      <div class="col-4">
-                          <label for="rua" class="form-label">Logradouro</label>
-                          <input type="text" class="form-control" id="rua" placeholder="Informe a rua" required="required">
-                      </div>
-                      <div class="col-1">
-                          <label for="numero" class="form-label">Número</label>
-                          <input type="text" class="form-control" id="numero" placeholder="número" required="required">
+                          <label for="corProduto" class="form-label">Cor</label>
+                          <input type="text" class="form-control" id="corProduto" placeholder="" required="required">
                       </div>
                       <div class="col-2">
-                          <label for="bairro" class="form-label">Bairro</label>
-                          <input type="text" class="form-control" id="bairro" placeholder="Informe o bairro" required="required">
+                          <label for="dataEntrada" class="form-label">Data Entrada</label>
+                          <input type="date" class="form-control" id="dataEntrada" placeholder="" required="required">
                       </div>
+                        <div class="col-1">
+                          <label for="cep" class="form-label">Preço custo</label>
+                          <input type="text" class="form-control" id="cep" placeholder="" required="required">                   
                       </div>
-                      <div class="row row-cols-6">
-                        <div class="col-4">
-                          <label for="comp" class="form-label">Complemento</label>
-                          <input type="text" class="form-control" id="comp" placeholder="Informe o complemento" required="required">
-                      </div>
-                      <div class="col-3">
-                          <label for="cidade" class="form-label">Cidade</label>
-                          <input type="text" class="form-control" id="cidade" placeholder="Informe a cidade" required="required">
-                      </div>
-                      <div class="col-1">
-                          <label for="uf" class="form-label">Estado</label>
-                          <input type="text" class="form-control" id="uf" placeholder="Estado" required="required">
-                      </div>
-                      <div class="col-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="E-mail" required="required">
-                      </div>
-                      </div>
+                    </div>
                 </form>
             </div>
             
                 <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
 
-                <div class="modal fade" id="modalPesquisarProdutcts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalPesquisarProdutct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -189,16 +158,16 @@
                               <label for="nameBusca" class="col-form-label">Informe o nome:</label>
                               <input type="text" class="form-control" id="nameBusca" placeholder="nome ou parte do nome">
                             </div>
-                            <button type="button" class="btn btn-success" onclick="pesquisarPessoa()">Buscar</button>
+                            <button type="button" class="btn btn-success" onclick="pesquisarProduto()">Buscar</button>
                           </form>
                   
                                   <div style="height: 300px;overflow: scroll;">
-                                      <table class="table" id="tabelaresultados">
+                                      <table class="table" id="tabelaresultadosProd">
                                           <thead>
                                               <tr>
                                                   <th scope="col">ID</th>
-                                                  <th scope="col">Nome</th>
-                                                  <th scope="col">CPF</th>
+                                                  <th scope="col">descProduto</th>
+                                                  <th scope="col">anoModelo</th>
                                                   
                                                   <th scope="col">Editar</th>
                                                   <th scope="col">Delete</th>
@@ -227,20 +196,9 @@
     <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome/js/all.min.js"></script>
-    <!-- <script src="../js/cadastraPessoa.js"></script>
-    <script src="../js/ajax.js"></script> -->
+
     <script src="../js/menu.js"></script>
     <script src="../js/listaProdutos.js"></script>
-    <!-- <script>
-        let button = document.querySelector('#btn-listar')
-        button.addEventListener("click", () => {
-            location.href = "/ajax/pessoa/listarPessoas.html"
-            })
-    </script> -->
-    <!-- <script type="text/javascript">
-
-     
-	
-    </script> -->
+    
 </body>
 </html>
