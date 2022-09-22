@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
     <title>Gerenciar Pessoas</title>
 </head>
-<body>
+<body onload="buscarPessoa()">
        <div class="flex-dashboard">
         <sidebar>
             <div class="sidebar-title">
@@ -60,16 +60,16 @@
                 <div class="main-content-title">
                     <h2>Gerenciar Pessoas</h2>
                 </div>
-                <div class="panel-row">
+                <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Pessoa</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarPessoa()"> Listar Pesssoas</button>      
-                </div>
+                </div> -->
         <br/>
            
                    
                 <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
 
-                <div style="height: 340px;overflow: scroll;">
+                <div style="height: 480px;overflow: scroll;">
 					<table class="table table-hover table-striped" id="tabelaprincipal">
 						<thead>
 							<tr>
@@ -98,10 +98,10 @@
                     <button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
                     </div>
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroUser').reset();">Novo</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroPessoa').reset();">Novo</button>
                     </div>
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarUser">Pesquisar</button>
+                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarPessoa">Pesquisar</button>
                     </div>
                     <div class="col-md-auto">
                     <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
@@ -111,7 +111,7 @@
                 <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
         
              <div class="row">
-                <form action="" id="formCadastroUser" class="form-cadastro">
+                <form action="" id="formCadastroPessoa" class="form-cadastro">
                     <div class="row row-col-6">
                     <img src="../images/clienteIcon.png" class="rounded-circle" alt="teste">
                       <div class="col-1">
@@ -176,7 +176,7 @@
             
                 <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
 
-                <div class="modal fade" id="modalPesquisarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalPesquisarPessoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">

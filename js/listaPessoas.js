@@ -1,25 +1,3 @@
-// console.log('Lista de Pessoas - Aguarde...');
-
-// let myBtn = document.querySelector("#btn-listar");
-// let list = document.querySelector("#list");
-
-// myBtn.addEventListener("click", function() {
-//     fetch('http://localhost:8080/api/pessoas')
-//     .then((response) => {
-//         // console.log(response);
-//         return response.json();
-//     })
-//     .then((response) => {
-//         response.data.forEach((pessoa) => {
-//             let item = document.createElement("li");
-
-//             item.innerHTML =  '<span>'+ pessoa.nome +'<span> + <span>'+ pessoa.cpf+'</span>';
-
-//             list.appendChild(item);
-//         })
-//     })
-// })
-
 function buscarPessoa() {
 
     $.ajax({
@@ -61,6 +39,26 @@ function buscarPessoa() {
 
 }
 
+function botaoDeletarDaTela(){
+	var id = $('#id').val();
+	
+	if(id != null && id.trim() != ''){
+	 deleteUser(id);
+	 document.getElementById('formCadastroPessoa').reset();
+     buscarPessoa();
+	}
+}
+
+function apagaForm() {
+	document.getElementById("modalPesquisarPessoa").reset();
+}
+
+function apagaFormPessoa() {
+    document.getElementById("formCadastroPessoa").reset();
+    
+}
+
+
 function deleteUser(id){
 	
 	if(confirm('Deseja realmente deletar?')) {
@@ -73,7 +71,11 @@ function deleteUser(id){
 				
 				//$('#'+ id).remove();
 			document.getElementById('formCadastroUser').reset();
-				alert("Registro Excluído com sucesso!");	  
+				alert("Registro Excluído com sucesso!");	
+                
+                apagaFormPessoa();
+                apagaForm();
+                buscarPessoa();
 			}
 		}).fail(function(xhr, status, errorThrown) {
 			alert("Erro ao deletar pessoa por id: " + xhr.responseText);
@@ -151,7 +153,7 @@ function colocarEmEdicao(id) {
 
 }
 
-function salvarUsuario() {
+function salvarUsuario() { // Ultimo Ajax
 
     var id = $("#id").val();
     var nome = $("#nome").val();
@@ -202,7 +204,9 @@ function salvarUsuario() {
             $("#id").val(response.id);
             alert("Gravou com sucesso!");
 
-            // apagaForm();
+            buscarPessoa();
+            apagaFormPessoa();
+            apagaForm();
         }
 
     }).fail(function(xhr, status, errorThrown) {

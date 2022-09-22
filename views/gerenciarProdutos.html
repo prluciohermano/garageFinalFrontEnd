@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
     <title>Gerenciar Produtos</title>
 </head>
-<body>
+<body onload="buscarProduto()">
        <div class="flex-dashboard">
         <sidebar>
             <div class="sidebar-title">
@@ -60,10 +60,10 @@
                 <div class="main-content-title">
                     <h2>Gerenciar Produtos</h2>
                 </div>
-                <div class="panel-row">
+                <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
-                </div>
+                </div> -->
         <br/>
            
                    
@@ -95,7 +95,7 @@
                                       
                     <div class="row">
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
+                    <button type="button" class="btn btn-primary" onclick="salvarProduto()">Salvar</button>
                     </div>
                     <div class="col-md-auto">
                     <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroProduct').reset();">Novo</button>
@@ -113,39 +113,43 @@
              <div class="row">
                 <form action="" id="formCadastroProduct" class="form-cadastro">
                     
-                    <img src="../images/clienteIcon.png" class="rounded-circle" alt="teste">
                     <div class="row row-col-6">
                       <div class="col-1">
                           <label for="id" class="form-label">ID</label>
                           <input type="text" class="form-control" id="id" readonly="readonly">
                       </div>
-                      <div class="col-4">
+                      <div class="col-6">
                           <label for="descProduto" class="form-label">Descrição</label>
                           <input type="text" class="form-control" id="descProduto" placeholder="Informe a descrição" required="required">
                       </div>
-                      <div class="col-1">
+                      <div class="col-2">
                           <label for="anoModelo" class="form-label">Ano</label>
-                          <input type="text" class="form-control" id="anoModelo" placeholder="" required="required">
+                          <input type="text" class="form-control" id="anoModelo" placeholder="ano do produto" required="required">
                       </div>
-                      <div class="col-2">
+                    </div>
+                    <div class="row row-col-6">
+                      <div class="col-3">
                           <label for="corProduto" class="form-label">Cor</label>
-                          <input type="text" class="form-control" id="corProduto" placeholder="" required="required">
+                          <input type="text" class="form-control" id="corProduto" placeholder="Informe a cor" required="required">
                       </div>
-                      <div class="col-2">
+                      <div class="col-3">
                           <label for="dataEntrada" class="form-label">Data Entrada</label>
                           <input type="date" class="form-control" id="dataEntrada" placeholder="" required="required">
                       </div>
-                        <div class="col-1">
-                          <label for="cep" class="form-label">Preço custo</label>
-                          <input type="text" class="form-control" id="cep" placeholder="" required="required">                   
+                        <div class="col-3">
+                          <label for="precoEntrada" class="form-label">Preço custo</label>
+                          <input type="text" class="form-control" id="precoEntrada" placeholder="Preço de custo aqui" required="required">                   
                       </div>
+                    </div>
+                    <div class="row">
+                        <img src="../images/clienteIcon.png" class="rounded-circle" alt="teste">
                     </div>
                 </form>
             </div>
             
                 <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
 
-                <div class="modal fade" id="modalPesquisarProdutct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalPesquisarProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">

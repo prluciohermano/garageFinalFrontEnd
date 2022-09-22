@@ -6,14 +6,15 @@ function buscarProduto() {
     
         success : function(response) {
 
-        $('#tabelaprincipalProd > tbody > tr').remove();
+        $('#tabelaprincipalProd> tbody > tr').remove();
 
         $("#id").val(response.id);
 
         for (var i = 0; i < response.length; i++) {
-            $('#tabelaprincipalProd > tbody')
+            $('#tabelaprincipalProd> tbody')
             .append(
                 '<tr id="'+response[i].id+'"><td>'
+
                         + response[i].id
                         + '</td><td>'
                         + response[i].descProduto
@@ -25,9 +26,9 @@ function buscarProduto() {
                         + response[i].dataEntrada
                         + '</td><td>'
                         + response[i].precoEntrada                        						
-                        + '</td><td><button type="button" onclick="colocarEmEdicao('
+                        + '</td><td><button type="button" onclick="colocarEmEdicaoProd('
                         + response[i].id
-                        + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteUser('
+                        + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduct('
                         + response[i].id
                         + ')">Delete</button></td></tr>');
                 }
@@ -39,19 +40,40 @@ function buscarProduto() {
 
 }
 
+function botaoDeletarDaTela(){
+	var id = $('#id').val();
+	
+	if(id != null && id.trim() != ''){
+	 deleteProduct(id);
+	 document.getElementById('formCadastroProduct').reset();
+	}
+}
+
+function apagaForm() {
+	document.getElementById("modalPesquisarProduct").reset();
+	}
+
+function apagaFormCadastro() {
+    document.getElementById("formCadastroProduct").reset();
+    }
+
+
 function deleteProduct(id){
 	
 	if(confirm('Deseja realmente deletar?')) {
 	
 	 $.ajax({
 			method : "DELETE",
-			url : "http://localhost:8080/api/produtos" + id,
+			url : "http://localhost:8080/api/produtos/" + id,
 			data : "id=" + id ,
 			success : function(response) {
 				
-				//$('#'+ id).remove();
+			//$('#'+ id).remove();
 			document.getElementById('formCadastroProduct').reset();
-				alert("Registro Excluído com sucesso!");	  
+				alert("Registro Excluído com sucesso!");	
+            
+                apagaFormCadastro();
+                buscarProduto();
 			}
 		}).fail(function(xhr, status, errorThrown) {
 			alert("Erro ao deletar produto por id: " + xhr.responseText);
@@ -71,22 +93,23 @@ function pesquisarProduto() {
             data : "nome=" + nome,
             success : function(response) {
 
-            $('#tabelaresultadosProd > tbody > tr').remove();
+            $('#tabelaresultadosProd> tbody > tr').remove();
 
             $("#id").val(response.id);
 
             for (var i = 0; i < response.length; i++) {
-                $('#tabelaresultadosProd > tbody')
+                $('#tabelaresultadosProd> tbody')
                 .append(
                     '<tr id="'+response[i].id+'"><td>'
+
                             + response[i].id
                             + '</td><td>'
                             + response[i].descProduto
                             + '</td><td>'
                             + response[i].anoModelo								
-                            + '</td><td><button type="button" onclick="colocarEmEdicao('
+                            + '</td><td><button type="button" onclick="colocarEmEdicaoProd('
                             + response[i].id
-                            + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteUser('
+                            + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduct('
                             + response[i].id
                             + ')">Delete</button></td></tr>');
                     }
@@ -98,7 +121,7 @@ function pesquisarProduto() {
     }
 }
 
-function colocarEmEdicao(id) {
+function colocarEmEdicaoProd(id) {
 
     $.ajax({
         method : "GET",
@@ -123,7 +146,7 @@ function colocarEmEdicao(id) {
 
 }
 
-function salvarProduto() {
+function salvarProduto() {  // Último Ajax
 
     var id = $("#id").val();
     var descProduto = $("#descProduto").val();
@@ -132,13 +155,13 @@ function salvarProduto() {
     var dataEntrada = $("#dataEntrada").val();
     var precoEntrada = $("#precoEntrada").val();
 
-    if (nome == null || nome != null && nome.trim() == '') {
+    if (descProduto == null || descProduto != null && descProduto.trim() == '') {
         $("#descProduto").focus();
         alert('Informe a descrição do Produto');
         return;
     }
 
-    if (cpf == null || cpf != null && cpf.trim() == '') {
+    if (anoModelo == null || anoModelo != null && anoModelo.trim() == '') {
         $("#anoModelo").focus();
         alert('Informe o ano / modelo do produto');
         return;
@@ -161,7 +184,9 @@ function salvarProduto() {
             $("#id").val(response.id);
             alert("Gravou com sucesso!");
 
-            // apagaForm();
+            buscarProduto();
+            apagaFormCadastro();
+            
         }
 
     }).fail(function(xhr, status, errorThrown) {
