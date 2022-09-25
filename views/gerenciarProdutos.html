@@ -46,7 +46,7 @@
                 </li>
                 <li>
                     <i class="fa-solid fa-gears"></i>
-                    <a href="/views/configuracoes.html">Configurações</a>
+                    <a href="/views/manutencao.html">Manutenção</a>
                 </li>
               </ul>
            </div>
@@ -119,8 +119,8 @@
                           <input type="text" class="form-control" id="id" readonly="readonly">
                       </div>
                       <div class="col-6">
-                          <label for="descProduto" class="form-label">Descrição</label>
-                          <input type="text" class="form-control" id="descProduto" placeholder="Informe a descrição" required="required">
+                          <label for="descricao" class="form-label">Descrição</label>
+                          <input type="text" class="form-control" id="descricao" placeholder="Informe a descrição" required="required">
                       </div>
                       <div class="col-2">
                           <label for="anoModelo" class="form-label">Ano</label>
@@ -134,11 +134,11 @@
                       </div>
                       <div class="col-3">
                           <label for="dataEntrada" class="form-label">Data Entrada</label>
-                          <input type="date" class="form-control" id="dataEntrada" placeholder="" required="required">
+                          <input type="date" value="dataEntrada" class="form-control" id="dataEntrada" name="dataEntrada" readonly="true">
                       </div>
                         <div class="col-3">
                           <label for="precoEntrada" class="form-label">Preço custo</label>
-                          <input type="text" class="form-control" id="precoEntrada" placeholder="Preço de custo aqui" required="required">                   
+                          <input type="number"  class="form-control" id="precoEntrada" placeholder="Preço de custo aqui" required="required">                   
                       </div>
                     </div>
                     <div class="row">
@@ -170,7 +170,7 @@
                                           <thead>
                                               <tr>
                                                   <th scope="col">ID</th>
-                                                  <th scope="col">descProduto</th>
+                                                  <th scope="col">Descrição</th>
                                                   <th scope="col">anoModelo</th>
                                                   
                                                   <th scope="col">Editar</th>

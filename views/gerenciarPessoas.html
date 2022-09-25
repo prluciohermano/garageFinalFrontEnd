@@ -1,3 +1,4 @@
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
     <title>Gerenciar Pessoas</title>
 </head>
-<body onload="buscarPessoa()">
+ <body onload="buscarPessoa()">  <!-- onload="buscarTipo()" -->
        <div class="flex-dashboard">
         <sidebar>
             <div class="sidebar-title">
@@ -46,7 +47,7 @@
                 </li>
                 <li>
                     <i class="fa-solid fa-gears"></i>
-                    <a href="/views/configuracoes.html">Configurações</a>
+                    <a href="/views/manutencao.html">Manutenção</a>
                 </li>
               </ul>
            </div>
@@ -95,7 +96,7 @@
                                       
                     <div class="row">
                     <div class="col-md-auto">
-                    <button type="button" class="btn btn-primary" onclick="salvarUsuario()">Salvar</button>
+                    <button type="button" class="btn btn-primary" onclick="salvarPessoa()">Salvar</button>
                     </div>
                     <div class="col-md-auto">
                     <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroPessoa').reset();">Novo</button>
@@ -134,6 +135,12 @@
                           <label for="sexo" class="form-label">Sexo</label>
                           <input type="text" class="form-control" id="sexo" placeholder="Informe o sexo" required="required">
                       </div>
+
+                      <div class="col-2"> <!-- TIPO -->
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo de pessoa" required="required">
+                      </div>
+
                       </div>
                       <div class="row row-col-6">
                         <div class="col-2">
@@ -152,6 +159,11 @@
                           <label for="bairro" class="form-label">Bairro</label>
                           <input type="text" class="form-control" id="bairro" placeholder="Informe o bairro" required="required">
                       </div>
+                      <div class="col-2"> <!-- cargo -->
+                        <label for="cargo" class="form-label">Cargo</label>
+                        <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa" required="required">
+                      </div>
+
                       </div>
                       <div class="row row-cols-6">
                         <div class="col-4">

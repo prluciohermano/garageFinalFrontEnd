@@ -17,7 +17,7 @@ function buscarProduto() {
 
                         + response[i].id
                         + '</td><td>'
-                        + response[i].descProduto
+                        + response[i].descricao
                         + '</td><td>'
                         + response[i].anoModelo
                         + '</td><td>'
@@ -104,7 +104,7 @@ function pesquisarProduto() {
 
                             + response[i].id
                             + '</td><td>'
-                            + response[i].descProduto
+                            + response[i].descricao
                             + '</td><td>'
                             + response[i].anoModelo								
                             + '</td><td><button type="button" onclick="colocarEmEdicaoProd('
@@ -130,7 +130,7 @@ function colocarEmEdicaoProd(id) {
         success : function(response) {
 
             $("#id").val(response.id);
-            $("#descProduto").val(response.descProduto);
+            $("#descricao").val(response.descricao);
             $("#anoModelo").val(response.anoModelo);
             $("#corProduto").val(response.corProduto);
             $("#dataEntrada").val(response.dataEntrada);
@@ -149,13 +149,13 @@ function colocarEmEdicaoProd(id) {
 function salvarProduto() {  // Último Ajax
 
     var id = $("#id").val();
-    var descProduto = $("#descProduto").val();
+    var descricao = $("#descricao").val();
     var anoModelo = $("#anoModelo").val();
     var corProduto = $("#corProduto").val();
     var dataEntrada = $("#dataEntrada").val();
     var precoEntrada = $("#precoEntrada").val();
 
-    if (descProduto == null || descProduto != null && descProduto.trim() == '') {
+    if (descricao == null || descricao != null && descricao.trim() == '') {
         $("#descProduto").focus();
         alert('Informe a descrição do Produto');
         return;
@@ -172,7 +172,7 @@ function salvarProduto() {  // Último Ajax
         url : "http://localhost:8080/api/produtos",
         data : JSON.stringify({
             id : id,
-            descProduto : descProduto,
+            descricao : descricao,
             anoModelo : anoModelo,
             corProduto : corProduto,
             dataEntrada : dataEntrada,
@@ -187,6 +187,15 @@ function salvarProduto() {  // Último Ajax
             buscarProduto();
             apagaFormCadastro();
             
+        }, 
+        submitHandler: function (form) {
+            Swal.fire({
+                position: 'center',
+                type: 'success',
+                title: 'Os dados foram salvos com sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+            })           
         }
 
     }).fail(function(xhr, status, errorThrown) {
