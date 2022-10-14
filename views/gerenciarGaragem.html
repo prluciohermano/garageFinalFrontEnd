@@ -60,6 +60,7 @@
                 <div class="main-content-title">
                     <h2>Gerenciar Garagem</h2>
                 </div>
+                
                 <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
@@ -76,11 +77,13 @@
                                 <th scope="col">ID</th>
 								<th scope="col">Box</th>
                                 <th scope="col">Placa</th>
-								<th scope="col">Modelo</th>
+								<th scope="col">Carro</th>
+                                <th scope="col">Cor</th>
+                                <th scope="col">Proprietário</th>
                                 <th scope="col">Defeito</th>
                                 <th scope="col">Mecânico</th>
 								
-								<th scope="col">Editar</th>
+								<!-- <th scope="col">Editar</th> -->
 								<th scope="col">Delete</th>
 							</tr>
 						</thead>
@@ -94,76 +97,111 @@
                     <br>
                                       
                     <div class="row">
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-primary" onclick="salvarGaragem()">Salvar</button>
+                    
+                    
+                    <!-- <div class="col-md-auto">
+                        <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarGaragem">Pesquisar</button>
+                    </div> -->
+                    
                     </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroGaragem').reset();">Novo</button>
+                    <div class="row">
+                        
+                            <div class="shadow-sm p-3 mb-3 bg-body rounded">
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <button type="button" class="btn btn-info"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarCarro">Buscar Carro</button>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <button type="button" onblur="apagaFormGaragem()" class="btn btn-success" onclick="salvarCarroNaGaragem()">Colocar no Box</button>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <button type="button" class="btn btn-secondary" onclick="apagaFormGaragem();">Recomeçar</button>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
+                                    </div>
+                                </div>
+                            </div>
+                                <div id="title-div" onclick="pesquisarBox('box-01')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>01</div>
+                                <div id="title-div" onclick="pesquisarBox('box-02')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>02</div>
+                                <div id="title-div" onclick="pesquisarBox('box-03')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>03</div>
+                                <div id="title-div" onclick="pesquisarBox('box-04')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>04</div>
+                                <div id="title-div" onclick="pesquisarBox('box-05')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>05</div>
+                                <div id="title-div" onclick="pesquisarBox('box-06')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>06</div>
+                                <div id="title-div" onclick="pesquisarBox('box-07')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>07</div>
+                                <div id="title-div" onclick="pesquisarBox('box-08')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>08</div>
+                                <div id="title-div" onclick="pesquisarBox('box-09')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>09</div>
+                                <div id="title-div" onclick="pesquisarBox('box-10')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>10</div>
+                                <div id="title-div" onclick="pesquisarBox('box-11')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>11</div>
+                                <div id="title-div" onclick="pesquisarBox('box-12')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>12</div>
+                            
                     </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarGaragem">Pesquisar</button>
-                    </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
-                    </div>
-                    </div>
-                  
+                    
                 <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
         
              <div class="row">
-                <form action="" id="formCadastroGaragem" class="form-cadastro">
+                <div action="" id="formCadastroGaragem" class="formCadastroGaragem">
                     
                     <div class="row row-col-6">
                       <div class="col-1">
                           <label for="id" class="form-label">ID</label>
                           <input type="text" class="form-control" id="id" readonly="readonly">
                       </div>
-                      <div class="col-6">
+                      
+                      <div class="col-3">
                           <label for="numeroBox" class="form-label">Número Box</label>
-                          <input type="text" class="form-control" id="numeroBox" placeholder="Informe número do Box" required="required">
+                          <input type="text" class="form-control" id="numeroBox" readonly="readonly" placeholder="" required="required">
                       </div>
+
+                    
                       <div class="col-2">
                           <label for="placaCar" class="form-label">Placa Carro</label>
-                          <input type="text" class="form-control" id="placaCar" placeholder="Número da Placa" required="required">
+                          <input type="text" class="form-control" id="placaCar" readonly="readonly" placeholder="" required="required">
                       </div>
-                    </div>
-                    <div class="row row-col-6">
-                      <div class="col-3">
-                          <label for="marcaCar" class="form-label">Marca</label>
-                          <input type="text" class="form-control" id="marcaCar" placeholder="Marca do veículo" required="required">
-                      </div>
-                      <div class="col-3">
-                          <label for="entradaCar" class="form-label">Entrada Carro</label>
-                          <input type="date" name="entradaCar" class="form-control" id="entradaCar" readonly="true">
-                      </div>
+                      <!-- <div class="col-3">
+                        <label for="dataEntrada" class="form-label">Entrada Carro</label>
+                        <input type="text" name="dataEntrada" class="form-control" id="dataEntrada" readonly="true">
+                      </div> -->
+                      <!-- <img src="../images/proj2.jpg" class="rounded-circle2" alt="teste"> -->
+                        
+                        
                         <div class="col-3">
+                            <label for="descricao" class="form-label">Carro</label>
+                            <input type="text" class="form-control" id="descricao" readonly="readonly" placeholder="" required="required">
+                        </div>
+                      
+                      
+                                           
+                        <!-- <div class="col-3">
                           <label for="modeloCar" class="form-label">Modelo</label>
                           <input type="text" class="form-control" id="modeloCar" name="modeloCar" placeholder="Modelo do veículo" required="required">                   
-                       </div>
-                       <div class="col-3">
-                            <label for="corCar" class="form-label">Cor</label>
-                            <input type="text" class="form-control" id="corCar" placeholder="Cor do veículo" required="required">                   
-                        </div>
+                       </div> -->
+                       <div class="col-2">
+                            <label for="corProduto" class="form-label">Cor</label>
+                            <input type="text" class="form-control" id="corProduto" readonly="readonly" placeholder="" required="required">                   
+                        </div> 
+                    </div>
+                    <div class="row row-col-6">
                         <div class="col-3">
                             <label for="nomeResp" class="form-label">Responsável</label>
-                            <input type="text" class="form-control" id="nomeResp" placeholder="Responsável pelo veículo" required="required">                   
+                            <input type="text" class="form-control" id="nomeResp" readonly="readonly" placeholder="" required="required">                   
                         </div>
+                    
                         <div class="col-3">
                             <label for="defeitoCar" class="form-label">Defeito</label>
-                            <input type="text" class="form-control" id="defeitoCar" placeholder="Defeito encontrado" required="required">                   
+                            <input type="text" class="form-control" id="defeitoCar" placeholder="" required="required">                   
                         </div>
                          <div class="col-3">
                                 <label for="mecanicoCar" class="form-label">Mecânico</label>
-                                <input type="text" class="form-control" id="mecanicoCar" placeholder="Nome do mecânico" required="required">                   
+                                <input type="text" class="form-control" id="mecanicoCar" placeholder="" required="required">                   
                          </div>
                     </div>
-                    <div class="row">
-                        <img src="../images/clienteIcon.png" class="rounded-circle" alt="teste">
-                    </div>
+                    
+                     
                 </form>
             </div>
             
-                <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
+                <!-- hhhhhhhhhhhhhh    Modal Pesquisar   hhhhhhhhhhhhhhh -->
 
                 <div class="modal fade" id="modalPesquisarGaragem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -196,7 +234,7 @@
                                           <tbody>
                                           </tbody>
                                       </table>
-                                  </div>
+                                    </div>
                                   </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -204,7 +242,52 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+    <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+     <!-- hhhhhhhhhhhhhh    Modal busca Carro   hhhhhhhhhhhhhhh -->
+
+     <div class="modal fade" id="modalPesquisarCarro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Pesquisa de Carro</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="placaCarro" class="col-form-label">Informe a placa:</label>
+                  <input type="text" class="form-control" id="placaCarro" placeholder="placa ou parte dela">
+                </div>
+                
+                <button type="button" class="btn btn-success" onclick="pesquisarCarro()">Buscar Placa</button>
+                
+              </form>
+      
+                      <div style="height: 300px;overflow: scroll;">
+                          <table class="table" id="tabelaresultadosCarro">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Descrição</th>
+                                      <th scope="col">Placa Carro</th>
+                                      
+                                      <th scope="col">Editar</th>
+                                      <th scope="col">Delete</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
                 </div>
             </div>
         </main>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
     <title>Gerenciar Pessoas</title>
 </head>
- <body onload="buscarPessoa()">  <!-- onload="buscarTipo()" -->
+ <body onload="buscarPessoa()"> 
        <div class="flex-dashboard">
         <sidebar>
             <div class="sidebar-title">
@@ -65,9 +65,7 @@
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Pessoa</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarPessoa()"> Listar Pesssoas</button>      
                 </div> -->
-        <br/>
-           
-                   
+        <br/>     
                 <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
 
                 <div style="height: 480px;overflow: scroll;">
@@ -91,8 +89,6 @@
 				</div>
                
                 <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
-
-                    <br>
                                       
                     <div class="row">
                     <div class="col-md-auto">
@@ -110,7 +106,7 @@
                     </div>
                   
                 <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
-        
+        <tbody >
              <div class="row">
                 <form action="" id="formCadastroPessoa" class="form-cadastro">
                     <div class="row row-col-6">
@@ -127,19 +123,25 @@
                           <label for="cpf" class="form-label">CPF</label>
                           <input type="text" class="form-control" id="cpf" placeholder="Informe o CPF" required="required">
                       </div>
-                      <div class="col-1">
+                      <div class="col-2">
                           <label for="rg" class="form-label">RG</label>
                           <input type="text" class="form-control" id="rg" placeholder="Informe o RG" required="required">
                       </div>
-                      <div class="col-1">
+                      <div class="col-2">
                           <label for="sexo" class="form-label">Sexo</label>
                           <input type="text" class="form-control" id="sexo" placeholder="Informe o sexo" required="required">
                       </div>
 
-                      <div class="col-2"> <!-- TIPO -->
+                      <!-- <div class="col-2">
                         <label for="tipo" class="form-label">Tipo</label>
-                        <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo de pessoa" required="required">
-                      </div>
+                        <input type="text" class="form-control" id="sexo" placeholder="Informe o sexo" required="required">
+                      </div> -->
+
+                      <!--<div class="col-2">  tipo  
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <select autofocus value="tipo" class="form-control" id="tipo" name="tipo" form="formCadastroPessoa" required="true">
+                        </select>
+                      </div> -->
 
                       </div>
                       <div class="row row-col-6">
@@ -147,7 +149,7 @@
                           <label for="cep" class="form-label">CEP</label>
                           <input type="text" class="form-control" id="cep" placeholder="Informe o CEP" required="required">
                       </div>
-                      <div class="col-4">
+                      <div class="col-6">
                           <label for="rua" class="form-label">Logradouro</label>
                           <input type="text" class="form-control" id="rua" placeholder="Informe a rua" required="required">
                       </div>
@@ -159,10 +161,16 @@
                           <label for="bairro" class="form-label">Bairro</label>
                           <input type="text" class="form-control" id="bairro" placeholder="Informe o bairro" required="required">
                       </div>
-                      <div class="col-2"> <!-- cargo -->
+                      <!-- <div class="col-2"> 
                         <label for="cargo" class="form-label">Cargo</label>
                         <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa" required="required">
-                      </div>
+                      </div> -->
+
+                      <!-- <div class="col-2">  cargo  
+                        <select class="form-control" id="cargo" name="cargo">      
+                            <option selected="true" value="">Escolha o Cargo</option>
+                        </select>
+                      </div> -->
 
                       </div>
                       <div class="row row-cols-6">
@@ -185,7 +193,7 @@
                       </div>
                 </form>
             </div>
-            
+        </tbody>
                 <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
 
                 <div class="modal fade" id="modalPesquisarPessoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,6 +240,15 @@
             </div>
         </main>
        </div>
+
+      <script type="text/javascript">
+
+
+
+
+     </script>  
+
+
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
@@ -243,16 +260,12 @@
     <script src="../js/ajax.js"></script> -->
     <script src="../js/menu.js"></script>
     <script src="../js/listaPessoas.js"></script>
-    <!-- <script>
-        let button = document.querySelector('#btn-listar')
-        button.addEventListener("click", () => {
-            location.href = "/ajax/pessoa/listarPessoas.html"
-            })
-    </script> -->
-    <!-- <script type="text/javascript">
+
+
+    <!-- <script type="text/javascript"> -->
 
      
 	
-    </script> -->
+    </script>
 </body>
 </html>

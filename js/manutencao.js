@@ -67,7 +67,7 @@ function deletePessoa(id){
 	 $.ajax({
 			method : "DELETE",
 			url : "http://localhost:8080/api/pessoas/" + id,
-			data : "id=" + id,
+			data : "id=" + id ,
             async: true,
             crossDomain : true,
 			success : function(response) {
@@ -128,7 +128,6 @@ function pesquisarPessoa() {
 
 function colocarEmEdicao(id) {
 
-    // alert(cargo.nome); 
     $.ajax({
         method : "GET",
         url : "http://localhost:8080/api/pessoas/" + id,
@@ -137,7 +136,6 @@ function colocarEmEdicao(id) {
         crossDomain : true,
         success : function(response) {
 
-            
             $("#id").val(response.id);
             $("#nome").val(response.nome);
             $("#cpf").val(response.cpf);
@@ -151,10 +149,6 @@ function colocarEmEdicao(id) {
             $("#cidade").val(response.cidade);
             $("#uf").val(response.uf);
             $("#email").val(response.email);
-            $("#tipo").val(response.tipospessoa.nome);
-            $("#cargo").val(response.cargo);
-
-            // alert(response.cargo)
 
             $('#modalPesquisarPessoa').modal('hide');
             // apagaForm();
@@ -162,6 +156,7 @@ function colocarEmEdicao(id) {
     }).fail(function(xhr, status, errorThrown) {
         alert("Erro ao buscar pessoa por id: " + xhr.responseText);
     });
+
 }
 
 function salvarPessoa() { // Ultimo Ajax
@@ -179,8 +174,6 @@ function salvarPessoa() { // Ultimo Ajax
     var cidade = $("#cidade").val();
     var uf = $("#uf").val();
     var email = $("#email").val();
-    var tipo = "Vendedor";
-    var cargo = $("#cargo").val();
 
     if (nome == null || nome != null && nome.trim() == '') {
         $("#nome").focus();
@@ -213,9 +206,7 @@ function salvarPessoa() { // Ultimo Ajax
             comp : comp,
             cidade : cidade,
             uf : uf,
-            email : email,
-            tipospessoa : tipo.id,
-            cargo : cargo
+            email : email
         }),
         contentType : "application/json; charset=utf-8",
         success : function(response) {
@@ -231,30 +222,3 @@ function salvarPessoa() { // Ultimo Ajax
     });
 
 }
-
-$(document).ready(function() {
-
-    carregar_json("tipo");
-
-    function carregar_json(idt) {
-
-        var html = "";
-
-        $.getJSON('http://localhost:8080/api/tipopessoas', function(data) {
-            html += '<option value="">Selecionar Tipo</option>';
-            console.log(data);
-            
-            if(idt == 'tipo') {
-                for(var i = 0; i < data.length; i++) {
-                    html += '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
-                    
-                }
-            }
-            console.log(html);
-            $("#" + idt).html(html);
-            
-        });
-    }
-});
-
-

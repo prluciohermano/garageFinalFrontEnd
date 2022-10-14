@@ -9,114 +9,307 @@
     <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
 </head>
 <body>
-    
-
-       <div class="flex-dashboard">
-        <sidebar id="sidebar">
-            <div class="sidebar-title">
-                <img src="../images/ninja.png" alt="">
-                <h2>Garage Control</h2>
-                <h3>Dashboard</h3>
+    <div class="flex-dashboard">
+    <sidebar id="sidebar">
+        <div class="sidebar-title">
+            <img src="../images/ninja.png" alt="">
+            <h2>Garage Control</h2>
+            <h3>Dashboard</h3>
+        </div>
+        <div class="menu">
+            <ul>
+            <li class="selected">
+                <i class="fa-solid fa-house-chimney"></i>
+                <a href="/views/dashboard.html"> Dashboard</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-user"></i>
+                <a href="/views/perfil.html"> Perfil</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-users"></i>
+                <a href="/views/gerenciarPessoas.html"> Pessoas</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-car-side"></i>
+                <a href="/views/gerenciarProdutos.html"> Produtos</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-car"></i>
+                <a href="/views/gerenciarGaragem.html">Garagem</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-print"></i>
+                <a href="/views/relatorios.html">Relatórios</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-gears"></i>
+                <a href="/views/manutencao.html">Manutenção</a>
+            </li>
+            <li class="sidebar-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <a href="/index.html">Logout</a>
+            </li>
+            </ul>
+        </div>
+    </sidebar>
+    <main id="mainContent">
+        <header>
+            <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+            <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </header>
+        <div class="main-content">
+            <div class="main-content-title">
+                <h2>DASHBOARD</h2>
             </div>
-           <div class="menu">
-              <ul>
-                <li class="selected">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    <a href="/views/dashboard.html"> Dashboard</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-user"></i>
-                    <a href="/views/perfil.html"> Perfil</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-users"></i>
-                    <a href="/views/gerenciarPessoas.html"> Pessoas</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-car-side"></i>
-                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-car"></i>
-                    <a href="/views/gerenciarGaragem.html">Garagem</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-print"></i>
-                    <a href="/views/relatorios.html">Relatórios</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-gears"></i>
-                    <a href="/views/manutencao.html">Manutenção</a>
-                </li>
-                <li class="sidebar-logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <a href="/index.html">Logout</a>
-                </li>
-              </ul>
-           </div>
-        </sidebar>
-        <main id="mainContent">
-            <header>
-                <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
-                <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-            </header>
-            <div class="main-content">
-                <div class="main-content-title">
-                   <h2>DASHBOARD</h2>
-                </div>
-                <div class="dashboard-content">
-                    <div class="dashboard-flex-parent">
-                        <div class="dashboard-box">
-                           <div class="dashboard-box-wrapper">
-                            <div class="box-icon box box-01">
+            <div class="dashboard-content">  
+                <div class="dashboard-flex-parent">
+                    <div class="dashboard-box">
+                        <div class="dashboard-box-wrapper">
+                        <div class="box-icon box box-02">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <div class="value">Box 01</div>
+                        <div class="type">Disponível</div>
+
+                        <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                    data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-01')">Consultar Box</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-box">
+                        <div class="dashboard-box-wrapper">
+                            <div class="box-icon box box-02">
                                 <i class="fa-solid fa-car"></i>
                             </div>
-                            <div class="value">Box 01</div>
+                            <div class="value">Box 02</div>
+                            <div class="type">Ocupado</div>
+
+                            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                    data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-02')">Consultar Box</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-box">
+                        <div class="dashboard-box-wrapper">
+                            <div class="box-icon box box-02">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <div class="value">Box 03</div>
                             <div class="type">Disponível</div>
-                           </div>
+
+                            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                    data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-03')">Consultar Box</button>
                         </div>
-                        <div class="dashboard-box">
-                            <div class="dashboard-box-wrapper">
-                                <div class="box-icon box box-02">
-                                    <i class="fa-solid fa-car"></i>
-                                </div>
-                                <div class="value">Box 02</div>
-                                <div class="type">Ocupado</div>
+                    </div>
+                    <div class="dashboard-box">
+                        <div class="dashboard-box-wrapper">
+                            <div class="box-icon box box-02">
+                                <i class="fa-solid fa-car"></i>
                             </div>
-                        </div>
-                        <div class="dashboard-box">
-                            <div class="dashboard-box-wrapper">
-                                <div class="box-icon box box-03">
-                                    <i class="fa-solid fa-car"></i>
-                                </div>
-                                <div class="value">Box 03</div>
-                                <div class="type">Liberado</div>
-                            </div>
-                        </div>
-                        <div class="dashboard-box">
-                            <div class="dashboard-box-wrapper">
-                                <div class="box-icon box box-04">
-                                    <i class="fa-solid fa-car"></i>
-                                </div>
-                                <div class="value">Box 04</div>
-                                <div class="type">Autorizado</div>
-                            </div>
+                            <div id="4" class="value">Box 04</div>
+                            <div class="type">Autorizado</div>
+
+                            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                    data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-04')">Consultar Box</button>
                         </div>
                     </div>
                 </div>
+
+                <div class="dashboard-content">  
+                    <div class="dashboard-flex-parent">
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                            <div class="box-icon box box-01">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <div class="value">Box 05</div>
+                            <div class="type">Disponível</div>
+    
+                            <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                        data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-05')">Consultar Box</button>
+                            </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-01">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 06</div>
+                                <div class="type">Ocupado</div>
+    
+                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                        data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-06')">Consultar Box</button>
+                            </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-01">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 07</div>
+                                <div class="type">Disponível</div>
+    
+                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                        data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-07')">Consultar Box</button>
+                            </div>
+                        </div>
+                        <div class="dashboard-box">
+                            <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-01">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div id="4" class="value">Box 08</div>
+                                <div class="type">Autorizado</div>
+    
+                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                        data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-08')">Consultar Box</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content">  
+                        <div class="dashboard-flex-parent">
+                            <div class="dashboard-box">
+                                <div class="dashboard-box-wrapper">
+                                <div class="box-icon box box-01">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <div class="value">Box 09</div>
+                                <div class="type">Disponível</div>
+        
+                                <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                            data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-09')">Consultar Box</button>
+                                </div>
+                            </div>
+                            <div class="dashboard-box">
+                                <div class="dashboard-box-wrapper">
+                                    <div class="box-icon box box-01">
+                                        <i class="fa-solid fa-car"></i>
+                                    </div>
+                                    <div class="value">Box 10</div>
+                                    <div class="type">Ocupado</div>
+        
+                                    <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                            data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-10')">Consultar Box</button>
+                                </div>
+                            </div>
+                            <div class="dashboard-box">
+                                <div class="dashboard-box-wrapper">
+                                    <div class="box-icon box box-01">
+                                        <i class="fa-solid fa-car"></i>
+                                    </div>
+                                    <div class="value">Box 11</div>
+                                    <div class="type">Disponível</div>
+        
+                                    <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                            data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-11')">Consultar Box</button>
+                                </div>
+                            </div>
+                            <div class="dashboard-box">
+                                <div class="dashboard-box-wrapper">
+                                    <div class="box-icon box box-01">
+                                        <i class="fa-solid fa-car"></i>
+                                    </div>
+                                    <div id="4" class="value">Box 12</div>
+                                    <div class="type">Autorizado</div>
+        
+                                    <button type="button" class="btn btn-secondary"  data-bs-toggle="modal"  
+                                            data-bs-target="#modalDashboard" onclick="pesquisarGaragem('box-12')">Consultar Box</button>
+                                </div>
+                            </div>
+                        </div>
             </div>
-        </main>
-       </div>
+        </div>
+    <div class="modal fade" id="modalDashboard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consultar Box</h5>
+                <button form="form-box" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form action="get" id="form-box" class="form-box">
+                        <div class="box">
+
+                        </div>
+
+                    </form>
+                     <!-- <form action="get" id="formCadastroDashboard" class="formCadastroDashboard">
+                        <div class="row mb-2 row-col-12">
+                                <div class="col-6">
+                                    <label for="id" class="form-label">ID</label>
+                                    <input type="text" class="form-control" id="id" readonly="readonly">
+                                </div> 
+                                <div class="mb-2 col-6">
+                                    <label for="numeroBox" class="form-label">Box</label>
+                                    <input type="text" class="form-control" id="numeroBox" placeholder="Informe número do Box"  readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="row mb-2 row-col-12">
+                                <div class="mb-2 col-6">
+                                    <label for="placaCar" class="form-label">Placa</label>
+                                    <input type="text" class="form-control" id="placaCar" placeholder="Número da Placa"  readonly="readonly">
+                                </div>
+                                
+                                <div class="mb-2 col-6">
+                                    <label for="marcaCar" class="form-label">Marca</label>
+                                    <input type="text" class="form-control" id="marcaCar" placeholder="Marca do veículo"  readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="row row-col-12"> 
+                                <div class="mb-2 col-6">
+                                    <label for="entradaCar" class="form-label">Entrada</label>
+                                    <input type="text" name="entradaCar" class="form-control" id="entradaCar"  readonly="readonly">
+                                </div>
+                                    <div class="mb-2 col-6">
+                                    <label for="modeloCar" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" id="modeloCar" name="modeloCar" placeholder="Modelo do veículo"  readonly="readonly">                   
+                                </div>
+                            </div>
+                            <div class="row row-col-12">
+                                <div class="mb-2 col-6">
+                                    <label for="corCar" class="form-label">Cor</label>
+                                    <input type="text" class="form-control" id="corCar" placeholder="Cor do veículo"  readonly="readonly">                   
+                                </div>
+                                
+                                <div class="mb-2 col-6">
+                                    <label for="nomeResp" class="form-label">Responsável</label>
+                                    <input type="text" class="form-control" id="nomeResp" placeholder="Responsável pelo veículo"  readonly="readonly">                   
+                                </div>
+                            </div>
+                            <div class="row row-col-12">
+                                <div class="mb-2 col-6">
+                                    <label for="defeitoCar" class="form-label">Defeito</label>
+                                    <input type="text" class="form-control" id="defeitoCar" placeholder="Defeito encontrado"  readonly="readonly">                   
+                                </div>
+                            <div class="mb-2 col-6">
+                                    <label for="mecanicoCar" class="form-label">Mecânico</label>
+                                    <input type="text" class="form-control" id="mecanicoCar" placeholder="Nome do mecânico"  readonly="readonly">                   
+                            </div>
+                            </div>
+                    </form>  -->
+                </div>       
+            </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </main>
+    </div>
        
-       <script src="../plugins/jquery/jquery.min.js"></script>
-       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
-       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
-       <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/localization/messages_pt_BR.min.js"></script>
-       <script src="../plugins/package/dist/sweetalert2.all.min.js"></script>
-       <script src="../plugins/jquery/jquery.min.js"></script>
-       <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-       <script src="../plugins/fontawesome/js/all.min.js"></script>
-       <script src="../js/ajax.js"></script>
-       <script src="../js/menu.js"></script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
+    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/localization/messages_pt_BR.min.js"></script>
+    <script src="../plugins/package/dist/sweetalert2.all.min.js"></script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/fontawesome/js/all.min.js"></script>
+    <script src="../js/ajax.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>

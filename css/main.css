@@ -166,8 +166,23 @@ div .box-icon {
     margin-top: 30px;
 }
 
+div .box-icons {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
 div .box-icon svg {
     font-size: 25px;
+}
+
+div .box-icons svg {
+    font-size: 20px;
 }
 
 div .value {
