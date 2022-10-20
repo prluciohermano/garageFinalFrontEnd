@@ -167,9 +167,9 @@ div .box-icon {
 }
 
 div .box-icons {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
     display: flex;
     flex-direction: center;
     align-items: center;

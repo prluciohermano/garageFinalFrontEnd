@@ -1,206 +1,286 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../css/all.css">
-    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
-    <title>Gerenciar Produtos</title>
-</head>
-<body onload="buscarProduto()">
-       <div class="flex-dashboard">
-        <sidebar>
-            <div class="sidebar-title">
-                <img src="../images/ninja.png" alt="">
-                <h2>Garage Control</h2>
-                <h3>Gerenciar Produtos</h3>
-            </div>
-           <div class="menu">
-            <ul>
-                <li>
-                    <i class="fa-solid fa-house-chimney"></i>
-                    <a href="/views/dashboard.html"> Dashboard</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-user"></i>
-                    <a href="/views/perfil.html"> Perfil</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-users"></i>
-                    <a href="/views/gerenciarPessoas.html"> Pessoas</a>
-                </li>
-                <li class="selected">
-                    <i class="fa-solid fa-car-side"></i>
-                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-car"></i>
-                    <a href="/views/gerenciarGaragem.html">Garagem</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-print"></i>
-                    <a href="/views/relatorios.html">Relatórios</a>
-                </li>
-                <li>
-                    <i class="fa-solid fa-gears"></i>
-                    <a href="/views/manutencao.html">Manutenção</a>
-                </li>
-              </ul>
-           </div>
-        </sidebar>
-        <main>
-            <header>
-                <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>
-                <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-            </header>
-            <div class="main-content">
-                <div class="main-content-title">
-                    <h2>Gerenciar Produtos</h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="../css/all.css">
+        <link rel="stylesheet"
+            href="../plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
+        <link rel="stylesheet"
+            href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+        <title>Gerenciar Produtos</title>
+    </head>
+    <body onload="buscarProduto()">
+        <div class="flex-dashboard">
+            <sidebar>
+                <div class="sidebar-title">
+                    <img src="../images/ninja.png" alt="">
+                    <h2>Garage Control</h2>
+                    <h3>Gerenciar Produtos</h3>
                 </div>
-                <!-- <div class="panel-row">
+                <div class="menu">
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-house-chimney"></i>
+                            <a href="/views/dashboard.html"> Dashboard</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user"></i>
+                            <a href="/views/perfil.html"> Perfil</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-users"></i>
+                            <a href="/views/gerenciarPessoas.html"> Pessoas</a>
+                        </li>
+                        <li class="selected">
+                            <i class="fa-solid fa-car-side"></i>
+                            <a href="/views/gerenciarProdutos.html"> Produtos</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-car"></i>
+                            <a href="/views/gerenciarGaragem.html">Garagem</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-print"></i>
+                            <a href="/views/relatorios.html">Relatórios</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-gears"></i>
+                            <a href="/views/manutencao.html">Manutenção</a>
+                        </li>
+                    </ul>
+                </div>
+            </sidebar>
+            <main>
+                <header>
+                    <a href="/views/dashboard.html"><i class="fa-solid
+                            fa-house-chimney"></i> Dashboard</a>
+                    <a href="../index.html"><i class="fa-solid
+                            fa-right-from-bracket"></i> Logout</a>
+                </header>
+                <div class="main-content">
+                    <div class="main-content-title">
+                        <h2>Gerenciar Produtos</h2>
+                    </div>
+                    <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
                 </div> -->
-        <br/>
-           
-                   
-                <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
+                    <br/>
 
-                <div style="height: 340px;overflow: scroll;">
-					<table class="table table-hover table-striped" id="tabelaprincipalProd">
-						<thead>
-							<tr>
-                                <th scope="col">ID</th>
-								<th scope="col">Descrição</th>
-                                <th scope="col">Ano Modelo</th>
-								<th scope="col">Cor</th>
-                                <th scope="col">Data Entrada</th>
-                                <th scope="col">Preço Custo</th>
-								
-								<th scope="col">Editar</th>
-								<th scope="col">Delete</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-               
-                <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
 
-                    <br>
-                                      
-                    <div class="row">
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-primary" onclick="salvarProduto()">Salvar</button>
-                    </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('formCadastroProduct').reset();">Novo</button>
-                    </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarProduct">Pesquisar</button>
-                    </div>
-                    <div class="col-md-auto">
-                    <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
-                    </div>
-                    </div>
-                  
-                <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
-        
-             <div class="row">
-                <form action="" id="formCadastroProduct" class="form-cadastro">
-                    
-                    <div class="row row-col-6">
-                      <div class="col-1">
-                          <label for="id" class="form-label">ID</label>
-                          <input type="text" class="form-control" id="id" readonly="readonly">
-                      </div>
-                      <div class="col-6">
-                          <label for="descricao" class="form-label">Descrição</label>
-                          <input type="text" class="form-control" id="descricao" placeholder="Informe a descrição" required="required">
-                      </div>
-                      <div class="col-2">
-                          <label for="anoModelo" class="form-label">Ano</label>
-                          <input type="text" class="form-control" id="anoModelo" placeholder="ano do produto" required="required">
-                      </div>
-                      <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste">
-                    </div>
-                    <div class="row row-col-6">
-                      <div class="col-3">
-                          <label for="corProduto" class="form-label">Cor</label>
-                          <input type="text" class="form-control" id="corProduto" placeholder="Informe a cor" required="required">
-                      </div>
-                      <div class="col-3">
-                          <label for="dataEntrada" class="form-label">Data Entrada</label>
-                          <input type="text/date" value="" class="form-control" id="dataEntrada" name="dataEntrada" readonly="true">
-                      </div>
-                        <div class="col-3">
-                          <label for="precoEntrada" class="form-label">Preço custo</label>
-                          <input type="number"  class="form-control" id="precoEntrada" placeholder="Preço de custo aqui" required="required">                   
-                      </div>
-                    </div>
-                </form>
-            </div>
-            
-                <!-- hhhhhhhhhhhhhh    Modal Pessoa   hhhhhhhhhhhhhhh -->
+                        <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div style="height: 360px;overflow: scroll;">
+                            <table class="table table-hover table-striped"
+                                id="tabelaprincipalProd">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descrição</th>
+                                        <th scope="col">Ano Modelo</th>
+                                        <th scope="col">Cor</th>
+                                        <th scope="col">Data Entrada</th>
+                                        <th scope="col">Preço Custo</th>
+                                        <th scope="col">Proprietário</th>
 
-                <div class="modal fade" id="modalPesquisarProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Pesquisa de Produtos</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="modal-body">
-                          <form>
-                            <div class="mb-3">
-                              <label for="nameBusca" class="col-form-label">Informe o nome:</label>
-                              <input type="text" class="form-control" id="nameBusca" placeholder="nome ou parte do nome">
+
+                        <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-primary"
+                                    onclick="salvarProduto()">Salvar</button>
                             </div>
-                            <button type="button" class="btn btn-success" onclick="pesquisarProduto()">Buscar</button>
-                          </form>
-                  
-                                  <div style="height: 300px;overflow: scroll;">
-                                      <table class="table" id="tabelaresultadosProd">
-                                          <thead>
-                                              <tr>
-                                                  <th scope="col">ID</th>
-                                                  <th scope="col">Descrição</th>
-                                                  <th scope="col">anoModelo</th>
-                                                  
-                                                  <th scope="col">Editar</th>
-                                                  <th scope="col">Delete</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody>
-                                          </tbody>
-                                      </table>
-                                  </div>
-                                  </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-secondary"
+                                    onclick="document.getElementById('formCadastroProduct').reset();">Novo</button>
+                            </div>
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-danger"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalPesquisarProduct">Pesquisar</button>
+                            </div>
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-warning"
+                                    onclick="botaoDeletarDaTela();">Deletar</button>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-                </div>
-            </div>
-        </main>
-       </div>
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
-    <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
-    <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../plugins/fontawesome/js/all.min.js"></script>
 
-    <script src="../js/menu.js"></script>
-    <script src="../js/listaProdutos.js"></script>
-    
-</body>
+                        <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
+                        <tbody>
+                            <div class="row">
+                                <form action="" id="formCadastroProduct"
+                                    class="form-cadastro">
+
+                                    <div class="row row-col-6">
+                                        <div class="col-1">
+                                            <label for="id" class="form-label">ID</label>
+                                            <input type="text"
+                                                class="form-control" id="id"
+                                                readonly="readonly">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="descricao"
+                                                class="form-label">Descrição</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="descricao"
+                                                placeholder="Informe a descrição" required="required">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="anoModelo"
+                                                class="form-label">Ano</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="anoModelo" placeholder="ano do produto" required="required">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="placaCar"
+                                                class="form-label">Placa</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="placaCar" placeholder="Placa do carro" required="required">
+                                        </div>
+                                        <!-- <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste"> -->
+                                    </div>
+                                    <div class="row row-col-6">
+                                        <div class="col-2">
+                                            <label for="corProduto"
+                                                class="form-label">Cor</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="corProduto"
+                                                placeholder="Informe a cor"
+                                                required="required">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="dataEntrada"
+                                                class="form-label">Data Entrada</label>
+                                            <input type="text/date" value=""
+                                                class="form-control"
+                                                id="dataEntrada"
+                                                name="dataEntrada"
+                                                readonly="true">
+                                        </div>
+                                        <div class="col-2">
+                                            <label for="precoEntrada"
+                                                class="form-label">Preço custo</label>
+                                            <input type="number"
+                                                class="form-control"
+                                                id="precoEntrada"
+                                                placeholder="Preço de custo aqui" required="required">
+                                        </div>
+
+                                        <div class="col-2"> <!-- SELECT -->
+                                            <label for="categoria"
+                                                class="form-label">Categoria</label>
+                                            <select class="form-control"
+                                                id="categoria" nome="categoria">
+                                                <option value="">-- Escolha --</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-2"> <!-- SELECT -->
+                                            <label for="pessoa"
+                                                class="form-label">Proprietário</label>
+                                            <select class="form-control"
+                                                id="pessoa" nome="pessoa">
+                                                <option value="">-- Escolha --</option>
+                                            </select>
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </tbody>
+                        <!-- hhhhhhhhhhhhhh    Modal Produto   hhhhhhhhhhhhhhh -->
+                        <div class="modal fade" id="modalPesquisarProduct"
+                            tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"
+                                            id="exampleModalLabel">Pesquisa de
+                                            Produtos</h5>
+                                        <button type="button" class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="nameBusca"
+                                                    class="col-form-label">Informe
+                                                    a descrição:</label>
+                                                <input type="text"
+                                                    class="form-control"
+                                                    id="nameBusca"
+                                                    placeholder="Ex: Audi">
+                                            </div>
+                                            <button type="button" class="btn
+                                                btn-success"
+                                                onclick="pesquisarProduto()">Buscar</button>
+                                        </form>
+
+                                        <div style="height: 320px;overflow:
+                                            scroll;">
+                                            <table class="table"
+                                                id="tabelaresultadosProd">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Descrição</th>
+                                                        <th scope="col">anoModelo</th>
+                                                        <th scope="col">Editar</th>
+                                                        <th scope="col">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn
+                                            btn-secondary"
+                                            data-bs-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="../plugins/jquery/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="../plugins/jquery/jquery.mask.min.js"></script>
+        <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
+        <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
+        <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../plugins/fontawesome/js/all.min.js"></script>
+
+        <script src="../js/menu.js"></script>
+        <script src="../js/listaProdutos.js"></script>
+        <script>
+        // $(document).ready(function () {
+        
+        // })
+        </script>
+    </body>
 </html>

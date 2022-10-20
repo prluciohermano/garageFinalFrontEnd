@@ -93,49 +93,28 @@
 				</div>
                
                 <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
-
-                    <br>
                                       
                     <div class="row">
                     
-                    
-                    <!-- <div class="col-md-auto">
-                        <button type="button" class="btn btn-danger"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarGaragem">Pesquisar</button>
-                    </div> -->
-                    
-                    </div>
-                    <div class="row">
+                        <!-- <div class="shadow-sm p-3 mb-3 bg-body rounded"></div> -->
                         
-                            <div class="shadow-sm p-3 mb-3 bg-body rounded">
-                                <div class="row">
-                                    <div class="col-md-auto">
-                                        <button type="button" class="btn btn-info"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarCarro">Buscar Carro</button>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <button type="button" onblur="apagaFormGaragem()" class="btn btn-success" onclick="salvarCarroNaGaragem()">Colocar no Box</button>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <button type="button" class="btn btn-secondary" onclick="apagaFormGaragem();">Recomeçar</button>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
-                                    </div>
-                                </div>
-                            </div>
-                                <div id="title-div" onclick="pesquisarBox('box-01')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>01</div>
-                                <div id="title-div" onclick="pesquisarBox('box-02')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>02</div>
-                                <div id="title-div" onclick="pesquisarBox('box-03')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>03</div>
-                                <div id="title-div" onclick="pesquisarBox('box-04')" style="cursor: pointer" class="box-icons box box-02"><i class="fa-solid fa-car"></i>04</div>
-                                <div id="title-div" onclick="pesquisarBox('box-05')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>05</div>
-                                <div id="title-div" onclick="pesquisarBox('box-06')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>06</div>
-                                <div id="title-div" onclick="pesquisarBox('box-07')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>07</div>
-                                <div id="title-div" onclick="pesquisarBox('box-08')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>08</div>
-                                <div id="title-div" onclick="pesquisarBox('box-09')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>09</div>
-                                <div id="title-div" onclick="pesquisarBox('box-10')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>10</div>
-                                <div id="title-div" onclick="pesquisarBox('box-11')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>11</div>
-                                <div id="title-div" onclick="pesquisarBox('box-12')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>12</div>
-                            
-                    </div>
+                        <div id="preencheBoxes" class="row preencheBoxes">
+                            <h4>Boxes: </h4>
+                            <div id="title-div box-01" onclick="pesquisarBox('box-01')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-01</div>
+                            <div id="title-div box-02" onclick="pesquisarBox('box-02')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-02</div>
+                            <div id="title-div box-03" onclick="pesquisarBox('box-03')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-03</div>
+                            <div id="title-div box-04" onclick="pesquisarBox('box-04')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-04</div>
+                            <div id="title-div box-05" onclick="pesquisarBox('box-05')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-05</div>
+                            <div id="title-div box-06" onclick="pesquisarBox('box-06')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-06</div>
+                            <div id="title-div box-07" onclick="pesquisarBox('box-07')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-07</div>
+                            <div id="title-div box-08" onclick="pesquisarBox('box-08')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-08</div>
+                            <div id="title-div box-09" onclick="pesquisarBox('box-09')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-09</div>
+                            <div id="title-div box-10" onclick="pesquisarBox('box-10')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-10</div>
+                            <div id="title-div box-11" onclick="pesquisarBox('box-11')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-11</div>
+                            <div id="title-div box-12" onclick="pesquisarBox('box-12')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-12</div>
+                        </div>
+                        
+                    
                     
                 <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
         
@@ -158,24 +137,12 @@
                           <label for="placaCar" class="form-label">Placa Carro</label>
                           <input type="text" class="form-control" id="placaCar" readonly="readonly" placeholder="" required="required">
                       </div>
-                      <!-- <div class="col-3">
-                        <label for="dataEntrada" class="form-label">Entrada Carro</label>
-                        <input type="text" name="dataEntrada" class="form-control" id="dataEntrada" readonly="true">
-                      </div> -->
-                      <!-- <img src="../images/proj2.jpg" class="rounded-circle2" alt="teste"> -->
-                        
-                        
-                        <div class="col-3">
-                            <label for="descricao" class="form-label">Carro</label>
-                            <input type="text" class="form-control" id="descricao" readonly="readonly" placeholder="" required="required">
-                        </div>
-                      
-                      
-                                           
-                        <!-- <div class="col-3">
-                          <label for="modeloCar" class="form-label">Modelo</label>
-                          <input type="text" class="form-control" id="modeloCar" name="modeloCar" placeholder="Modelo do veículo" required="required">                   
-                       </div> -->
+                              
+                      <div class="col-3">
+                          <label for="descricao" class="form-label">Carro</label>
+                          <input type="text" class="form-control" id="descricao" readonly="readonly" placeholder="" required="required">
+                      </div>
+ 
                        <div class="col-2">
                             <label for="corProduto" class="form-label">Cor</label>
                             <input type="text" class="form-control" id="corProduto" readonly="readonly" placeholder="" required="required">                   
@@ -195,9 +162,21 @@
                                 <label for="mecanicoCar" class="form-label">Mecânico</label>
                                 <input type="text" class="form-control" id="mecanicoCar" placeholder="" required="required">                   
                          </div>
-                    </div>
-                    
-                     
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <button type="button" class="btn btn-info"  data-bs-toggle="modal"  data-bs-target="#modalPesquisarCarro">Buscar Carro</button>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="button" onblur="apagaFormGaragem()" class="btn btn-success" onclick="salvarCarroNaGaragem()">Colocar no Box</button>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="button" class="btn btn-secondary" onclick="apagaFormGaragem();">Recomeçar</button>
+                        </div>
+                        <!-- <div class="col-md-auto">
+                            <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
+                        </div> -->
+                    </div> 
                 </form>
             </div>
             
@@ -262,7 +241,6 @@
                 <button type="button" class="btn btn-success" onclick="pesquisarCarro()">Buscar Placa</button>
                 
               </form>
-      
                       <div style="height: 300px;overflow: scroll;">
                           <table class="table" id="tabelaresultadosCarro">
                               <thead>
@@ -296,7 +274,7 @@
     <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
-    <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <script src="../plugins/sweetalert/dist/sweetalert2.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome/js/all.min.js"></script>
 

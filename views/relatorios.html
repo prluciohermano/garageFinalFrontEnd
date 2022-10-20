@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
+    <title>Gerenciar Garagem</title>
+</head>
+<body onload="buscarGaragem()">
+       <div class="flex-dashboard">
+        <sidebar>
+            <div class="sidebar-title">
+                <img src="../images/ninja.png" alt="">
+                <h2>Garage Control</h2>
+                <h3>Gerenciar Garagem</h3>
+            </div>
+           <div class="menu">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-house-chimney"></i>
+                    <a href="/views/dashboard.html"> Dashboard</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-user"></i>
+                    <a href="/views/perfil.html"> Perfil</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-users"></i>
+                    <a href="/views/gerenciarPessoas.html"> Pessoas</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car-side"></i>
+                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-car"></i>
+                    <a href="/views/gerenciarGaragem.html">Garagem</a>
+                </li>
+                <li class="selected">
+                    <i class="fa-solid fa-print"></i>
+                    <a href="/views/relatorios.html">Relatórios</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-gears"></i>
+                    <a href="/views/manutencao.html">Manutenção</a>
+                </li>
+              </ul>
+           </div>
+        </sidebar>
+        <main>
+            <header>
+                <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>
+                <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </header>
+            <div class="main-content">
+                <div class="main-content-title">
+                    <h2>Relatórios</h2>
+                </div>
+                
+                <!-- <div class="panel-row">
+                    <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
+                    <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
+                </div> -->
+        <br/>
+           
+
+
+
+
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
+    <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/fontawesome/js/all.min.js"></script>
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/relatorios.js"></script>
+    
+</body>
+</html>
