@@ -7,6 +7,8 @@
 @import 'main.css';
 @import 'perfil.css';
 @import 'gerenciarPessoa.css';
-@import 'gerenciarProduto.css';
+@import 'gerenciarVeiculo.css';
 @import 'gerenciarGaragem.css';
+@import 'gerenciarProduto.css';
+@import 'gerenciarServico.css';
 @import 'manutencao.css';

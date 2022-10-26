@@ -231,7 +231,7 @@ function pesquisarCarro() {
        
         $.ajax({
             method : "GET",
-            url : "http://localhost:8080/api/produtos/placaCarro",
+            url : "http://localhost:8080/api/veiculos/placaCarro",
             data : "placaCar=" + placaCar,
             success : function(response) {
                 console.log(" Número da placa" + response[0].placaCar);
@@ -270,7 +270,7 @@ function colocarEmEdicaoCarro(id) {
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8080/api/produtos/" + id,
+        url : "http://localhost:8080/api/veiculos/" + id,
         data : "id=" + id,
         success : function(response) {
 
@@ -328,7 +328,7 @@ function salvarCarroNaGaragem() {  // Último Ajax
 
     $.ajax({ // Esse ques salva
         method : "POST",
-        url : "http://localhost:8080/api/produtos/"+ id +"/garage",
+        url : "http://localhost:8080/api/veiculos/"+ id +"/garage",
         data : JSON.stringify({
             
             id : id,
@@ -402,3 +402,25 @@ function carregaBox() { // Carrega Boxes
     });
 
 } carregaBox();
+
+
+function carregaProprietario() { // usado para preencher o combobox do cliente
+
+    $.ajax({
+        method : "GET",
+        url : "http://localhost:8080/api/pessoas",
+        success : function(response) {
+            
+        for (var i = 0; i < response.length; i++) {
+            var idPes = response[i].id;
+            var value = response[i].nome;
+            $("#pessoa").append("<option value='" + idPes + "'>" + value + "</option>");
+        }
+
+     }
+
+    }).fail(function(xhr, status, errorThrown) {
+        Swal.fire("Erro ao carregar Proprietário " + xhr.responseText, "", "error");
+    });
+
+} carregaProprietario();

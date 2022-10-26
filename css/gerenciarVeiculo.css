@@ -29,6 +29,13 @@ div .rounded-circle {
     padding: 10px;
 }
 
+div .rounded-circle2 {
+    width: 150px;
+    height: auto;
+    padding: 10px;
+    border-radius: 30%;
+}
+
 .form-cadastro {
     display: flex;
     flex-direction: column;
@@ -37,4 +44,3 @@ div .rounded-circle {
     /* background-color: #c3c3c3; */
     color: gray;
 }
-

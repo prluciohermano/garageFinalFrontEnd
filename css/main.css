@@ -266,13 +266,13 @@ div .type {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) { /* Celular*/
     main {
         display: block;
         height: 100%;
         background-color: #f0f0f0;
-        width: calc(100%);
-        z-index: 1;
+        width: calc(90%);
+        z-index: 10;
         position: relative;
     }
 
@@ -336,6 +336,7 @@ div .type {
         height: 70px;
         background: linear-gradient(135deg, #6e8efb, #a777e3);
         font-size: 20px;
+        margin: 15px;
         color: #fff;
     }
 
@@ -350,5 +351,132 @@ div .type {
 
     .dynamic-content {
         padding: 20px;
+    }
+
+    div .row {
+        float: left;
+        width: 90%;
+        box-sizing: inherit;
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+
+    div .col-sm{
+        
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+
+    div .row button{
+        width: 80%;
+        margin: 5px;
+    }
+
+    
+    @media screen and (max-width: 400px) {
+        main {
+            display: block;
+            height: 100%;
+            background-color: #f0f0f0;
+            width: calc(100%);
+            z-index: 1500;
+            position: relative;
+        }
+    
+        main .main-content {
+            padding: 10px;
+        }
+    
+        div .main-content-title h2 {
+            text-align: center;
+        }
+    
+        div .form-floating {
+            width: 100%
+        }
+    
+        table {
+            
+            flex-wrap: wrap;
+            display: flex;
+            max-width: 100%;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+    
+        table th {
+            margin: 10px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: left;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 10px;
+        }
+    
+        table td {
+            margin: 10px;
+            flex-wrap: wrap;
+            display: flex;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 300;
+            padding: 10px;
+        }
+    
+        .panel-row {
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            padding: 10px;
+        }
+        
+        .panel-50 {
+            width: 100%;
+        }
+        
+        .panel-row button {
+            padding: 10px;
+            height: 70px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            font-size: 20px;
+            margin: 15px;
+            color: #fff;
+        }
+    
+        div .form-floating {
+            width: 100%
+        }
+    
+        .panel-row button:hover{
+            transform: unset;
+            transition: 0.2s;
+        }
+    
+        .dynamic-content {
+            padding: 20px;
+        }
+    
+        div .row {
+            float: left;
+            width: 90%;
+            box-sizing: inherit;
+            padding: 0px;
+            margin-bottom: 10px;
+        }
+    
+        div .col-sm{
+            
+            padding: 0px;
+            margin-bottom: 20px;
+        }
+    
+        div .row button{
+            width: 80%;
+            margin: 5px;
+        }
     }
 }

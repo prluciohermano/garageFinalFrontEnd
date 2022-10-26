@@ -19,52 +19,35 @@ function buscarGaragem() {
                         + '</td><td>'
                         + response[i].numeroBox
                         + '</td><td>'
-                        + response[i].produtoModel.placaCar
+                        + response[i].veiculo.placaCar
                         + '</td><td>'
-                        + response[i].produtoModel.descricao	
+                        + response[i].veiculo.descricao	
                         + '</td><td>'
-                        + response[i].produtoModel.corProduto
+                        + response[i].veiculo.corVeiculo
                         + '</td><td>'
-                        + response[i].produtoModel.pessoaModel.nome
+                        + response[i].veiculo.pessoa.nome
                         + '</td><td>'
                         + response[i].defeitoCar
                         + '</td><td>'
                         + response[i].mecanicoCar                        						
                         + '</td><td><button type="button" class="btn btn-danger" onclick="deleteGaragem('
                         + response[i].id
-                        + ')">Liberar Box</button></td></tr>');
-                        // <button type="button" onclick="colocarEmEdicaoGar('
-                        // + response[i].id
-                        // + ')" class="btn btn-primary">Ver</button></td><td>
-                        
+                        + ')">Liberar Box</button></td></tr>');       
                 }
 
                     }
                 }).fail(function(xhr, status, errorThrown) {
-            alert("Erro ao buscar garagem: " + xhr.responseText);
+            Swal.fire("Opss ", "Erro ao buscar garagem! " + xhr.responseText, "error");
         });
     carregaBox();
 } 
-
-
-// function botaoDeletarDaTela(){
-// 	var id = $('#id').val();
-	
-// 	if(id != null && id.trim() != ''){
-// 	 deleteGaragem(id);
-// 	 document.getElementById('formCadastroGaragem').value = "";
-// 	}
-
-//     buscarGaragem();
-// }
-
 
 function apagaFormGaragem() {
     document.getElementById('id').value = "";
     document.getElementById('numeroBox').value = "";
     document.getElementById('placaCar').value = "";
     document.getElementById('descricao').value = "";
-    document.getElementById('corProduto').value = "";
+    document.getElementById('corVeiculo').value = "";
     document.getElementById('nomeResp').value = "";
     document.getElementById('defeitoCar').value = "";
     document.getElementById('mecanicoCar').value = "";
@@ -73,111 +56,44 @@ function apagaFormGaragem() {
 
 function deleteGaragem(id){ // Botão de Liberar Box
 	
-	if(confirm('Deseja realmente liberar o Box?')) {
+	Swal.fire({
+        title: 'Você tem certeza?',
+        text: "Essa ação não poderá ser revertida!",
+        icon: 'warning',
+        confirmButtonColor: '#a777e3',
+        confirmButtonText: 'Sim, pode deletar!',
+        showCancelButton: true,
+        cancelButtonColor: 'gray'
+
+    }).then((result) => {
+        if (result.isConfirmed) {
 	
-	 $.ajax({
-			method : "DELETE",
-			url : "http://localhost:8080/api/garage-box/" + id,
-			data : "id=" + id ,
-			success : function(response) {
-				
-			$('#'+ id).remove();
-			// document.getElementById('formCadastroGaragem').reset();
-				alert("Box desocupado com sucesso!");	
-            
-                apagaFormGaragem();
-                buscarGaragem();
-                
-			 }
-		}).fail(function(xhr, status, errorThrown) {
-			alert("Erro ao desocupar Garagem: " + xhr.responseText);
-		});
-	}	
-}
-
-// function pesquisarGaragem() {
-			
-//     var nome = $('#nameBusca').val();
-//     if (nome != null && nome.trim() != '') {
-       
-//         $.ajax({
-//             method : "GET",
-//             url : "http://localhost:8080/api/garage-box/nameBusca",
-//             data : "nome=" + nome,
-//             success : function(response) {
-
-//             $('#tabelaresultadosGar> tbody > tr').remove();
-
-//             $("#id").val(response.id);
-
-//             for (var i = 0; i < response.length; i++) {
-//                 $('#tabelaresultadosGar> tbody')
-//                 .append(
-//                     '<tr id="'+response[i].id +'"><td>'
+        $.ajax({
+                method : "DELETE",
+                url : "http://localhost:8080/api/garage-box/" + id,
+                data : "id=" + id ,
+                success : function(response) {
                     
-//                             + response[i].id
-//                             + '</td><td>'
-//                             + response[i].numeroBox
-//                             + '</td><td>'
-//                             + response[i].produtoModel.placaCar
-//                             + '</td><td>'
-//                             + response[i].produtoModel.descricao	
-//                             + '</td><td>'
-//                             + response[i].produtoModel.corProduto
-//                             + '</td><td>'
-//                             + response[i].produtoModel.pessoaModel.nome
-//                             + '</td><td>'
-//                             + response[i].defeitoCar
-//                             + '</td><td>'
-//                             + response[i].mecanicoCar								
-//                             + '</td><td><button type="button" class="btn btn-danger" onclick="deleteGaragem('
-//                             + response[i].id
-//                             + ')">Delete</button></td></tr>');
-//                             // <button type="button" onclick="colocarEmEdicaoGar('
-//                             // + response[i].id
-//                             // + ')" class="btn btn-primary">Ver</button></td><td>
-                            
-//                     }
-
-//                         }
-//                     }).fail(function(xhr, status, errorThrown) {
-//                 alert("Erro ao pesquisar um Produto: " + xhr.responseText);
-//             });
-//     }
-// }
-
-// function colocarEmEdicaoGar(id) {
-
-//     $.ajax({
-//         method : "GET",
-//         url : "http://localhost:8080/api/garage-box/" + id,
-//         data : "id=" + id,
-//         success : function(response) {
-
-//             $("#id").val(response.id);
-//             $("#numeroBox").val(response.numeroBox);
-//             $("#placaCar").val(response.produtoModel.placaCar);
-//             $("#dataEntrada").val(response.produtoModel.dataEntrada);
-//             $("#descricao").val(response.produtoModel.descricao);
-//             $("#corProduto").val(response.produtoModel.corProduto);
-//             $("#nomeResp").val(response.pessoaModel.nome);
-//             $("#defeitoCar").val(response.defeitoCar);
-//             $("#mecanicoCar").val(response.mecanicoCar);            
-
-//             $('#modalPesquisarGaragem').modal('hide');
-//             apagaFormGaragem();
-//         }
-//     }).fail(function(xhr, status, errorThrown) {
-//         alert("Erro ao buscar garagem por id: " + xhr.responseText);
-//     });
-
-// }
+                $('#'+ id).remove();
+                // document.getElementById('formCadastroGaragem').reset();
+                Swal.fire("Pronto!", "Box desocupado com sucesso!", "success");	
+                
+                    apagaFormGaragem();
+                    buscarGaragem();
+                    
+                }
+            }).fail(function(xhr, status, errorThrown) {
+                Swal.fire("Opss ", "Erro ao desocupar a garagem: " + xhr.responseText, "error");
+            });
+	    }	
+    })
+}
 
 function salvarGaragem() {  // Último Ajax
 
     var id = $("#id").val();
     var numeroBox = $("#numeroBox").val();
-    var placaCar = $("#placaCar").val();
+    // var placaCar = $("#placaCar").val();
     var defeitoCar = $("#defeitoCar").val();
     var mecanicoCar = $("#mecanicoCar").val();
 
@@ -210,12 +126,12 @@ function salvarGaragem() {  // Último Ajax
         contentType : "application/json; charset=utf-8",
         success : function(response) {
             $("#id").val(response.id);
-            alert("Gravou com sucesso!");
+            Swal.fire("Pronto!", "Gravado com sucesso!", "success");
             apagaFormGaragem();
         } 
 
     }).fail(function(xhr, status, errorThrown) {
-        alert("Erro ao salvar Garagem: " + xhr.responseText);
+        Swal.fire("Opss ", "Erro ao salvar garagem por id: " + xhr.responseText, "error");
     });
     
     buscarGaragem();
@@ -231,15 +147,14 @@ function pesquisarCarro() { // Botão Buscar Carro
        
         $.ajax({
             method : "GET",
-            url : "http://localhost:8080/api/produtos/placaCarro",
+            url : "http://localhost:8080/api/veiculos/placaCarro",
             data : "placaCar=" + placaCar,
             success : function(response) {
-                console.log(" Número da placa" + response[0].placaCar);
             
                 $('#tabelaresultadosCarro> tbody > tr').remove();
 
-            $("#id").val(response.id);
-            $("#nomeResp").val(response[0].pessoaModel.id);
+            // $("#id").val(response.id);
+            $("#nomeResp").val(response[0].pessoa.id);
             for (var i = 0; i < response.length; i++) {
 
                 $('#tabelaresultadosCarro> tbody')
@@ -259,7 +174,7 @@ function pesquisarCarro() { // Botão Buscar Carro
                 }
                         }
                     }).fail(function(xhr, status, errorThrown) {
-                alert("Erro ao pesquisar um Produto: " + xhr.responseText);
+                Swal.fire("Opss ", "Erro ao pesquisar um produto! " + xhr.responseText, "error");
             });
     }
 }
@@ -268,7 +183,7 @@ function colocarEmEdicaoCarro(id) { // Puxar garagem do Modal
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8080/api/produtos/" + id,
+        url : "http://localhost:8080/api/veiculos/" + id,
         data : "id=" + id,
         success : function(response) {
 
@@ -276,14 +191,14 @@ function colocarEmEdicaoCarro(id) { // Puxar garagem do Modal
             $("#descricao").val(response.descricao);
             $("#placaCar").val(response.placaCar);
             $("#corProduto").val(response.corProduto);
-            $("#nomeResp").val(response.pessoaModel.nome);
-            $("#nomeRespId").val(response.pessoaModel.id);
+            $("#nomeResp").val(response.pessoa.nome);
+            $("#nomeRespId").val(response.pessoa.id);
             
             $('#modalPesquisarCarro').modal('hide');
             apagaForm();
         }
     }).fail(function(xhr, status, errorThrown) {
-        alert("Erro ao buscar garagem por id: " + xhr.responseText);
+        Swal.fire("Opss ", "Erro ao buscar garagem por id: " + xhr.responseText, "error");
     });
 
 }
@@ -310,23 +225,23 @@ function salvarCarroNaGaragem() {  // Colocar carro no Box
 
     if (numeroBox == null || numeroBox != null && numeroBox.trim() == '') {
         $("#numeroBox").focus();
-        alert('Informe o número do box');
+        Swal.fire('Atenção!', "Informe o número do box", "info");
         return;
     }
     if (defeitoCar == null || defeitoCar != null && defeitoCar.trim() == '') {
         $("#defeitoCar").focus();
-        alert('Informe o defeito encontrado');
+        Swal.fire('Atenção!', "Informe o defeito encontrado.", "info");
         return;
     }
     if (mecanicoCar == null || mecanicoCar != null && mecanicoCar.trim() == '') {
         $("#mecanicoCar").focus();
-        alert('Informe o nome do mecânico');
+        Swal.fire('Atenção!', "Informe o nome do mecânico", "info");
         return;
     }
 
     $.ajax({ //  Salva o carro na vaga
         method : "POST",
-        url : "http://localhost:8080/api/produtos/"+ id +"/garage",
+        url : "http://localhost:8080/api/veiculos/"+ id +"/garage",
         data : JSON.stringify({
             
             id : id,
@@ -340,36 +255,15 @@ function salvarCarroNaGaragem() {  // Colocar carro no Box
             $("#id").val(response.id);
             
             alert("Gravou com sucesso!");
+            Swal.fire('Pronto!', "Gravado com sucesso.", "success");
             buscarGaragem();                 
         }
 
     }).fail(function(xhr, status, errorThrown) {
-        alert("Erro ao salvar Garagem: Garagem Ocupada");
+        Swal.fire("Opss ", "Erro ao salvar Garagem: Garagem Ocupada " + xhr.responseText, "error");
     });
     apagaFormGaragem();
 }
-
-// function carregaCategoria() { // Preenche combobox de categoria
-
-//     $.ajax({
-//         method : "GET",
-//         url : "http://localhost:8080/api/categorias",
-//         success : function(response) {
-            
-//         for (var i = 0; i < response.length; i++) {
-//             var idCat = response[i].id;
-//             var value = response[i].nome;
-//             $("#categoria").append("<option value='" + idCat + "'>" + value + "</option>");
-//         }
-
-//      }
-
-//     }).fail(function(xhr, status, errorThrown) {
-//         alert("Erro ao carregar Categoria " + xhr.responseText);
-//     });
-
-// } carregaCategoria();
-
 
 function carregaBox() { // Carrega Boxes
 
@@ -392,7 +286,7 @@ function carregaBox() { // Carrega Boxes
      }
 
     }).fail(function(xhr, status, errorThrown) {
-        alert("Erro ao carregar Boxes " + xhr.responseText);
+        Swal.fire("Opss ", "Erro ao carregar boxes: " + xhr.responseText, "error");
     });
 
 } carregaBox();

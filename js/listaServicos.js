@@ -1,13 +1,13 @@
-function buscarProduto() {
+function buscarServico() {
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8080/api/produtos",
+        url : "http://localhost:8080/api/servicos",
         async: true,
         crossDomain : true,
         success : function(response) {
     
-        $('#tabelaprincipalProduto> tbody > tr').remove();
+        $('#tabelaprincipalServico> tbody > tr').remove();
 
         $("#id").val(response.id);
 
@@ -16,7 +16,7 @@ function buscarProduto() {
             const precoPuro = (response[i].preco);
             const precoFormatado = precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2});
 
-            $('#tabelaprincipalProduto> tbody')
+            $('#tabelaprincipalServico> tbody')
             .append(
                 '<tr id="'+response[i].id+'"><td>'
                         + response[i].id
@@ -24,16 +24,16 @@ function buscarProduto() {
                         + response[i].descricao
                         + '</td><td>'
                         + precoFormatado                                             						
-                        + '</td><td><button type="button" onclick="colocarEmEdicaoProduto('
+                        + '</td><td><button type="button" onclick="colocarEmEdicaoServico('
                         + response[i].id
-                        + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduto('
+                        + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteServico('
                         + response[i].id
                         + ')">Delete</button></td></tr>');
                 }
 
                     }
                 }).fail(function(xhr, status, errorThrown) {
-                    Swal.fire("Opss ", "Erro ao buscar produtos! " + xhr.responseText, "error");
+                    Swal.fire("Opss ", "Erro ao buscar Serviços! " + xhr.responseText, "error");
         });
 
 }
@@ -42,21 +42,21 @@ function botaoDeletarDaTela(){
 	var id = $('#id').val();
 	
 	if(id != null && id.trim() != ''){
-	 deleteProduto(id);
-	 document.getElementById('formCadastroProduto').reset();
+	 deleteServico(id);
+	 document.getElementById('formCadastroServico').reset();
 	}
 }
 
 function apagaForm() {
-	document.getElementById("modalPesquisarProduto").reset();
+	document.getElementById("modalPesquisarServico").reset();
 	}
 
 function apagaFormCadastro() {
-    document.getElementById("formCadastroProduto").reset();
+    document.getElementById("formCadastroServico").reset();
     }
 
 
-function deleteProduto(id){
+function deleteServico(id){
 	
 	Swal.fire({
         title: 'Você tem certeza?',
@@ -72,16 +72,16 @@ function deleteProduto(id){
 
             $.ajax({
                 method : "DELETE",
-                url : "http://localhost:8080/api/produtos/" + id,
+                url : "http://localhost:8080/api/servicos/" + id,
                 data : "id=" + id ,
                 success : function(response) {
                     
                 $('#'+ id).remove();
-                document.getElementById('formCadastroProduto').reset();
+                document.getElementById('formCadastroServico').reset();
                 Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");	
                 
                     apagaFormCadastro();
-                    buscarProduto();
+                    buscarServico();
                 }
             }), Swal.fire(
             'Deletado!',
@@ -92,7 +92,7 @@ function deleteProduto(id){
     })	
 }
 
-function pesquisarProduto() {
+function pesquisarServico() {
 			
     var nome = $('#nameBusca').val();
 
@@ -100,13 +100,13 @@ function pesquisarProduto() {
        
         $.ajax({
             method : "GET",
-            url : "http://localhost:8080/api/produtos/nameBusca",
+            url : "http://localhost:8080/api/servicos/nameBusca",
             data : "nome=" + nome,
             async: true,
             crossDomain : true,
             success : function(response) {
 
-            $('#tabelaresultadosProduto> tbody > tr').remove();
+            $('#tabelaresultadosServico> tbody > tr').remove();
 
             $("#id").val(response.id);
 
@@ -115,7 +115,7 @@ function pesquisarProduto() {
             const precoPuro = (response[i].preco);
             const precoFormatado = precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2});
 
-                $('#tabelaresultadosProduto> tbody')
+                $('#tabelaresultadosServico> tbody')
                 .append(
                     '<tr id="'+response[i].id+'"><td>'
 
@@ -124,16 +124,16 @@ function pesquisarProduto() {
                             + response[i].descricao
                             + '</td><td>'
                             + precoFormatado								
-                            + '</td><td><button type="button" onclick="colocarEmEdicaoProduto('
+                            + '</td><td><button type="button" onclick="colocarEmEdicaoServico('
                             + response[i].id
-                            + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduto('
+                            + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteServico('
                             + response[i].id
                             + ')">Delete</button></td></tr>');
                     }
 
                         }
                     }).fail(function(xhr, status, errorThrown) {
-                        Swal.fire("Opss ", "Erro ao pesquisar um produto! ", "error");
+                        Swal.fire("Opss ", "Erro ao pesquisar um serviço! ", "error");
             });
     }
 }
@@ -142,7 +142,7 @@ function colocarEmEdicaoProduto(id) {
 
     $.ajax({
         method : "GET",
-        url : "http://localhost:8080/api/produtos/" + id,
+        url : "http://localhost:8080/api/servicos/" + id,
         data : "id=" + id,
         success : function(response) {
 
@@ -155,15 +155,15 @@ function colocarEmEdicaoProduto(id) {
 
             
 
-            $('#modalPesquisarProduto').modal('hide');
+            $('#modalPesquisarServico').modal('hide');
         }
         
         }).fail(function(xhr, status, errorThrown) {
-            Swal.fire("Erro ao buscar produto por Id! " + xhr.responseText, "", "error");
+            Swal.fire("Erro ao buscar serviços por Id! " + xhr.responseText, "", "error");
     });
 }
 
-function salvarProduto() {  // Último Ajax
+function salvarServico() {  // Último Ajax
 
     var id = $("#id").val();
     var descricao = $("#descricao").val();
@@ -174,20 +174,20 @@ function salvarProduto() {  // Último Ajax
 
     if (descricao == null || descricao != null && descricao.trim() == '') {
         $("#descProduto").focus();
-        Swal.fire("Opss!", "Informe a descrição do produto", "info");
+        Swal.fire("Opss!", "Informe a descrição do serviço", "info");
         return;
     }
 
 
     if (preco == null || preco != null && preco.trim() == '') {
         $("#preco").focus();
-        Swal.fire("Opss!", "Informe o preço do produto", "info");
+        Swal.fire("Opss!", "Informe o preço do serviço", "info");
         return;
     }
 
     $.ajax({
         method : "POST",
-        url : "http://localhost:8080/api/produtos",
+        url : "http://localhost:8080/api/servicos",
 
         data : JSON.stringify({
             id: id,
@@ -199,15 +199,15 @@ function salvarProduto() {  // Último Ajax
         success : function(response) {
             $("#id").val(response.id);
             // console.log(response);
-            Swal.fire("Pronto!", "Produto salvo com sucesso!", "success");
+            Swal.fire("Pronto!", "Serviço salvo com sucesso!", "success");
 
-            buscarProduto();
+            buscarServico();
             apagaFormCadastro();
             
         }
     
         }).fail(function(xhr, status, errorThrown) {
-            Swal.fire("Opss ", "Erro ao salvar produto! " + xhr.responseText, "error");
+            Swal.fire("Opss ", "Erro ao salvar serviço! " + xhr.responseText, "error");
     });
 
 }

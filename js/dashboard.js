@@ -12,6 +12,14 @@ $.ajax({
     success : function(response) {
 
         if (!response[0] == "") {
+            const dataInput = (response[0].veiculo.dataEntrada);
+            const data = new Date(dataInput);
+            dataFormatada = data.toLocaleDateString('pt-BR', {timeZone: 'UTC'}) 
+                    + " " + data.toLocaleTimeString('pt-BR', {timeZone: 'UTC'});
+            
+            const precoPuro = (response[0].veiculo.precoEntrada);
+            const precoTop = (precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2}));
+            
             
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Box:</span>'
@@ -20,12 +28,12 @@ $.ajax({
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Placa:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].placaCar +'" value="' + response[0].produtoModel.placaCar + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].placaCar +'" value="' + response[0].veiculo.placaCar + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Proprietário:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].nomeResp +'" value="' + response[0].produtoModel.pessoaModel.nome + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].nomeResp +'" value="' + response[0].veiculo.pessoa.nome + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
@@ -40,27 +48,27 @@ $.ajax({
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Carro:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].produtoModel.descricao +'" value="' + response[0].produtoModel.descricao + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].veiculo.descricao +'" value="' + response[0].veiculo.descricao + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Ano:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].produtoModel.anoModelo +'" value="' + response[0].produtoModel.anoModelo + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].veiculo.anoModelo +'" value="' + response[0].veiculo.anoModelo + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Cor:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].produtoModel.corProduto +'" value="' + response[0].produtoModel.corProduto + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].veiculo.corVeiculo +'" value="' + response[0].veiculo.corVeiculo + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Data:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].produtoModel.dataEntrada +'" value="' + response[0].produtoModel.dataEntrada + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ dataFormatada +'" value="' + dataFormatada + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
 
             html += '<div class="input-group mb-3">'
             html += '<span class="input-group-text" id="inputGroup-sizing-default">Valor:</span>'
-            html += '<input type="text" class="form-control" readonly="readonly" id="'+ response[0].produtoModel.precoEntrada +'" value="' + response[0].produtoModel.precoEntrada + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+            html += '<input type="text" class="form-control" readonly="readonly" id="'+ precoTop +'" value="' + precoTop + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
             html += '</div>'
         } else {
                 html += '<div class="input-group mb-3">'

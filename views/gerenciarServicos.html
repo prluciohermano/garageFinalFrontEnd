@@ -9,15 +9,15 @@
         <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
-        <title>Gerenciar Produtos</title>
+        <title>Gerenciar Serviços</title>
     </head>
-    <body onload="buscarProduto()">
+    <body onload="buscarServicos()">
         <div class="flex-dashboard">
             <sidebar>
                 <div class="sidebar-title">
                     <img src="../images/ninja.png" alt="">
                     <h2>Garage Control</h2>
-                    <h3>Gerenciar Produtos</h3>
+                    <h3>Gerenciar Serviços</h3>
                 </div>
                 <div class="menu">
                     <ul>
@@ -41,11 +41,11 @@
                             <i class="fa-solid fa-car"></i>
                             <a href="/views/gerenciarGaragem.html">Garagem</a>
                         </li>
-                        <li class="selected">
+                        <li>
                             <i class="fa-solid fa-microchip"></i>
                             <a href="/views/gerenciarProdutos.html">Produtos</a>
                         </li>
-                        <li>
+                        <li class="selected">
                             <i class="fa-solid fa-microchip"></i>
                             <a href="/views/gerenciarServicos.html">Serviços</a>
                         </li>
@@ -73,7 +73,7 @@
                 </header>
                 <div class="main-content">
                     <div class="main-content-title">
-                        <h2>Gerenciar Produtos</h2>
+                        <h2>Gerenciar Serviços</h2>
                     </div>
                     <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
@@ -85,7 +85,7 @@
                         <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de produtos   aaaaaaaaaaaaaaaaaaaaaaaa -->
                         <div style="height: 440px;overflow: scroll;">
                             <table class="table table-hover table-striped"
-                                id="tabelaprincipalProduto">
+                                id="tabelaprincipalServico">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -107,16 +107,16 @@
                         <div class="row">
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-primary"
-                                    onclick="salvarProduto()">Salvar</button>
+                                    onclick="salvarServico()">Salvar</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-secondary"
-                                    onclick="document.getElementById('formCadastroProduto').reset();">Novo</button>
+                                    onclick="document.getElementById('formCadastroServico').reset();">Novo</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-danger"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#modalPesquisarProduto">Pesquisar</button>
+                                    data-bs-target="#modalPesquisarServico">Pesquisar</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-warning"
@@ -126,7 +126,7 @@
 
                         <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
                         <tbody>
-                            <form action="" id="formCadastroProduto" class="form-cadastro">
+                            <form action="" id="formCadastroServico" class="form-cadastro">
                                 <div class="">
                                     <div class="row">
                                         <!-- <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste"> -->
@@ -157,14 +157,14 @@
                             </form>
                         </tbody>
                         <!-- hhhhhhhhhhhhhh    Modal Produto   hhhhhhhhhhhhhhh -->
-                        <div class="modal fade" id="modalPesquisarProduto"
+                        <div class="modal fade" id="modalPesquisarServico"
                             tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"
-                                            id="exampleModalLabel">Pesquisa de Produtos</h5>
+                                            id="exampleModalLabel">Pesquisa de Serviços</h5>
                                         <button type="button" class="btn-close"
                                             data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -180,12 +180,12 @@
                                                     placeholder="Ex: Pneu">
                                             </div>
                                             <button type="button" class="btn btn-success"
-                                                    onclick="pesquisarProduto()">Buscar</button>
+                                                    onclick="pesquisarServico()">Buscar</button>
                                         </form>
 
                                         <div style="height: 320px;overflow:scroll;">
                                             <table class="table"
-                                                id="tabelaresultadosProduto">
+                                                id="tabelaresultadosServico">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ID</th>
@@ -224,7 +224,7 @@
         <script src="../plugins/fontawesome/js/all.min.js"></script>
 
         <script src="../js/menu.js"></script>
-        <script src="../js/listaProdutos.js"></script>
+        <script src="../js/listaServicos.js"></script>
 
         <script type="text/javascript">
 

@@ -34,19 +34,31 @@
                 </li>
                 <li>
                     <i class="fa-solid fa-car-side"></i>
-                    <a href="/views/gerenciarProdutos.html"> Produtos</a>
+                    <a href="/views/gerenciarVeiculos.html"> Veículos</a>
                 </li>
                 <li>
                     <i class="fa-solid fa-car"></i>
                     <a href="/views/gerenciarGaragem.html">Garagem</a>
                 </li>
                 <li>
+                    <i class="fa-solid fa-microchip"></i>
+                    <a href="/views/gerenciarProdutos.html">Produtos</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-microchip"></i>
+                    <a href="/views/gerenciarServicos.html">Serviços</a>
+                </li>
+                <li>
                     <i class="fa-solid fa-print"></i>
-                    <a href="/views/relatorios.html">Relatórios</a>
+                    <a href="/views/gerenciarRelatorios.html">Relatórios</a>
                 </li>
                 <li class="selected">
                     <i class="fa-solid fa-gears"></i>
                     <a href="/views/manutencao.html">Manutenção</a>
+                </li>
+                <li class="sidebar-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="/index.html">Logout</a>
                 </li>
               </ul>
            </div>
@@ -61,13 +73,77 @@
                     <h2>Manutenção da Garagem</h2>
                 </div>
                 
-                <!-- <div class="panel-row">
-                    <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
-                    <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
-                </div> -->
-        <br/>
-           
+                <div class="register register-title">
+                    <img src="../images/carro1.jpg" alt=""><br>
+                    <h2 class="ordem"><i class="fa-solid fa-user-nurse"></i> Ordem de Serviço</h2>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-auto">
+                                <label for="id" class="form-label">Id OS</label>
+                                <input type="text" class="form-control" id="id" placeholder="" disabled> 
+                            </div>
+<!-- 
+                            <div class="col-sm">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome completo">
+                               
+                            </div> -->
+                        <div class="col-sm">
+                            <label for="pessoa"
+                            class="form-label">Proprietário</label>
+                            <select class="form-control"
+                                id="pessoa" nome="pessoa">
+                                <option value="">-- Escolha --</option>
+                            </select>
+                        </div>
+                        </div>
+                            <div class="col-md-auto"> <!-- TABLE -->
 
+                                <!-- <div style="height: 340px;overflow: scroll;">
+                                    <table class="table table-hover table-striped"
+                                        id="tabelaprincipal">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Descrição</th>
+                                                <th scope="col">Quantidade</th>
+                                                <th scope="col">Total</th>
+    
+                                                <th scope="col">Editar</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                             
+                            </div>
+                        <div class="row">
+                        
+            
+                            <div class="col-sm">
+                                <label for="comp" class="form-label">Complemento</label>
+                                <input type="text" class="form-control" id="comp" placeholder="Complemento do Endereço">
+                                
+                                
+                            </div>
+            
+                            <div class="col-sm">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" placeholder="Nome da Cidade">
+                                
+                                
+                            </div>
+                        </div>
+                          <div class="container">
+                            <button type="submit" class="btn btn-success">Salvar Orçamento</button>
+                            <button type="submit" class="btn btn-secondary">Limpar</button>
+                            <!-- <br> <br>
+                            <a href="/index.html">Voltar</a> -->
+                          </div>
+                    </form>
+                    
+                </div>  
 
 
 

@@ -28,7 +28,7 @@ function buscarPessoa() {
                         + response[i].uf							
                         + '</td><td><button type="button" onclick="colocarEmEdicao('
                         + response[i].id
-                        + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
+                        + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
                         + response[i].id
                         + ')">Delete</button></td></tr>');
                 }
@@ -48,7 +48,6 @@ function botaoDeletarDaTela(){
 	 document.getElementById("formCadastroPessoa").reset();
 	}
 
-    
 }
 
 function apagaForm() {
@@ -62,27 +61,38 @@ function apagaFormPessoa() {
 
 function deletePessoa(id){
 	
-	if(confirm('Deseja realmente deletar?')) {
+	Swal.fire({
+        title: 'Você tem certeza?',
+        text: "Essa ação não poderá ser revertida!",
+        icon: 'warning',
+        confirmButtonColor: '#a777e3',
+        confirmButtonText: 'Sim, pode deletar!',
+        showCancelButton: true,
+        cancelButtonColor: 'gray'
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
 	
-	 $.ajax({
-			method : "DELETE",
-			url : "http://localhost:8080/api/pessoas/" + id,
-			data : "id=" + id,
-            async: true,
-            crossDomain : true,
-			success : function(response) {
-				
-				//$('#'+ id).remove();
-			document.getElementById('formCadastroPessoa').reset();
-            Swal.fire("Pronto", "Registro Excluído com sucesso!", "success");	
-                
-                apagaFormPessoa();
-                buscarPessoa();
-			}
-		}).fail(function(xhr, status, errorThrown) {
-			Swal.fire("Opss ", "Erro ao deletar pessoa por id: ", "error");
-		});
-	}	
+        $.ajax({
+                method : "DELETE",
+                url : "http://localhost:8080/api/pessoas/" + id,
+                data : "id=" + id,
+                async: true,
+                crossDomain : true,
+                success : function(response) {
+                    
+                    //$('#'+ id).remove();
+                document.getElementById('formCadastroPessoa').reset();
+                Swal.fire("Pronto", "Registro Excluído com sucesso!", "success");	
+                    
+                    apagaFormPessoa();
+                    buscarPessoa();
+                }
+            }).fail(function(xhr, status, errorThrown) {
+                Swal.fire("Opss ", "Erro ao deletar pessoa por id: ", "error");
+            });
+        }	
+    })
 }
 
 function pesquisarPessoa() {
@@ -114,7 +124,7 @@ function pesquisarPessoa() {
                             + response[i].cpf								
                             + '</td><td><button type="button" onclick="colocarEmEdicao('
                             + response[i].id
-                            + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
+                            + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
                             + response[i].id
                             + ')">Delete</button></td></tr>');
                     }
@@ -184,8 +194,8 @@ function salvarPessoa() { // Ultimo Ajax
 
     var rg = $("#rg").val();
     var sexo = $("#sexo").val();
-    var data = $("#dataNasci").val();
 
+    var data = $("#dataNasci").val();
     var dataNasci = moment(data, "DD/MM/YYYY");
     dataNasci.format("YYYY-MM-DD")
 
@@ -222,19 +232,19 @@ function salvarPessoa() { // Ultimo Ajax
         return;
     }
 
-    if (sexo == null || sexo != null && sexo.trim() == '') {
+    if (sexo == "Selecione" || sexo != null && sexo.trim() == '') {
         $("#sexo").focus();
         Swal.fire("Opss!", 'Informe o Sexo', "info");
         return;
     }
 
-    if (tipo == null || tipo != null && tipo.trim() == '') {
+    if (tipo == "Selecione" || tipo != null && tipo.trim() == '') {
         $("#tipo").focus();
         Swal.fire("Opss!", 'Informe o Tipo', "info");
         return;
     }
 
-    if (cargo == null || cargo != null && cargo.trim() == '') {
+    if (cargo == "Selecione" || cargo != null && cargo.trim() == '') {
         $("#cargo").focus();
         Swal.fire("Opss!", 'Informe o Cargo', "info");
         return;
@@ -340,27 +350,27 @@ $(document).ready(function() {
     }
 });
 
-$(document).ready(function() {
-    carregarSelect("cargo");
+// $(document).ready(function() {
+//     carregarSelect("cargo");
 
-    function carregarSelect(idt) {
-        var html = "";
+//     function carregarSelect(idt) {
+//         var html = "";
 
-        $.getJSON('http://localhost:8080/api/pessoas', function(data) {
-            html += '<option value="">Selecione</option>';
+//         $.getJSON('http://localhost:8080/api/pessoas', function(data) {
+//             html += '<option value="">Selecione</option>';
              
-            if(idt == 'cargo') {
-                for(var i = 0; i < data.length; i++) {
-                    html += '<option value="' + data[i].cargo + '">' + data[i].cargo + '</option>';       
-                }
-            }
-            $("#" + idt).html(html);  
+//             if(idt == 'cargo') {
+//                 for(var i = 0; i < data.length; i++) {
+//                     html += '<option value="' + data[i].cargo + '">' + data[i].cargo + '</option>';       
+//                 }
+//             }
+//             $("#" + idt).html(html);  
 
-        }).fail(function(xhr, status, errorThrown) {
-            Swal.fire("Opss ", "Erro ao salvar pessoa: ", "error");
-        });
-    }
-});
+//         }).fail(function(xhr, status, errorThrown) {
+//             Swal.fire("Opss ", "Erro ao salvar pessoa: ", "error");
+//         });
+//     }
+// });
 
 
 

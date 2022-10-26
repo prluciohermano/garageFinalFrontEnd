@@ -11,13 +11,13 @@
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
         <title>Gerenciar Produtos</title>
     </head>
-    <body onload="buscarProduto()">
+    <body onload="buscarVeiculo()">
         <div class="flex-dashboard">
             <sidebar>
                 <div class="sidebar-title">
                     <img src="../images/ninja.png" alt="">
                     <h2>Garage Control</h2>
-                    <h3>Gerenciar Produtos</h3>
+                    <h3>Gerenciar Veículos</h3>
                 </div>
                 <div class="menu">
                     <ul>
@@ -33,7 +33,7 @@
                             <i class="fa-solid fa-users"></i>
                             <a href="/views/gerenciarPessoas.html"> Pessoas</a>
                         </li>
-                        <li>
+                        <li class="selected">
                             <i class="fa-solid fa-car-side"></i>
                             <a href="/views/gerenciarVeiculos.html"> Veículos</a>
                         </li>
@@ -41,7 +41,7 @@
                             <i class="fa-solid fa-car"></i>
                             <a href="/views/gerenciarGaragem.html">Garagem</a>
                         </li>
-                        <li class="selected">
+                        <li>
                             <i class="fa-solid fa-microchip"></i>
                             <a href="/views/gerenciarProdutos.html">Produtos</a>
                         </li>
@@ -73,7 +73,7 @@
                 </header>
                 <div class="main-content">
                     <div class="main-content-title">
-                        <h2>Gerenciar Produtos</h2>
+                        <h2>Gerenciar Veículos</h2>
                     </div>
                     <!-- <div class="panel-row">
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
@@ -82,15 +82,19 @@
                     <br/>
 
 
-                        <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de produtos   aaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
                         <div style="height: 440px;overflow: scroll;">
                             <table class="table table-hover table-striped"
-                                id="tabelaprincipalProduto">
+                                id="tabelaprincipalVeiculo">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Descrição</th>
-                                        <th scope="col">Preço</th>
+                                        <th scope="col">Ano Modelo</th>
+                                        <th scope="col">Cor Veículo</th>
+                                        <th scope="col">Data Entrada</th>
+                                        <th scope="col">Preço Custo</th>
+                                        <th scope="col">Proprietário</th>
 
                                         <th scope="col">Editar</th>
                                         <th scope="col">Delete</th>
@@ -107,16 +111,16 @@
                         <div class="row">
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-primary"
-                                    onclick="salvarProduto()">Salvar</button>
+                                    onclick="salvarVeiculo()">Salvar</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-secondary"
-                                    onclick="document.getElementById('formCadastroProduto').reset();">Novo</button>
+                                    onclick="document.getElementById('formCadastroVeiculo').reset();">Novo</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-danger"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#modalPesquisarProduto">Pesquisar</button>
+                                    data-bs-target="#modalPesquisarVeiculo">Pesquisar</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-warning"
@@ -126,10 +130,10 @@
 
                         <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
                         <tbody>
-                            <form action="" id="formCadastroProduto" class="form-cadastro">
+                            <form action="" id="formCadastroVeiculo" class="form-cadastro">
                                 <div class="">
                                     <div class="row">
-                                        <!-- <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste"> -->
+                                        <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste">
                                         <div class="col-md-auto">
                                             <label for="id" class="form-label">ID</label>
                                             <input type="text"
@@ -145,26 +149,80 @@
                                                 placeholder="Informe a descrição" required="required">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="preco"
-                                                class="form-label">Preço</label>
+                                            <label for="anoModelo"
+                                                class="form-label">Ano</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="preco" placeholder="preço do produto" required="required">
+                                                id="anoModelo" placeholder="ano do veículo" required="required">
                                         </div>
+                                        <div class="col-sm">
+                                            <label for="placaCar"
+                                                class="form-label">Placa</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="placaCar" placeholder="Placa do carro" required="required">
+                                        </div>
+                                        
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="corVeiculo"
+                                                class="form-label">Cor</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="corVeiculo"
+                                                placeholder="Informe a cor"
+                                                required="required">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="dataEntrada"
+                                                class="form-label">Data Entrada</label>
+                                            <input type="text" value=""
+                                                class="form-control"
+                                                id="dataEntrada"
+                                                name="dataEntrada"
+                                                readonly="true">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="precoEntrada"
+                                                class="form-label">Preço custo</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="precoEntrada"
+                                                placeholder="Preço de custo aqui" required="required">
+                                        </div>
+
+                                        <div class="col-sm"> <!-- SELECT -->
+                                            <label for="categoria"
+                                                class="form-label">Categoria</label>
+                                            <select class="form-control"
+                                                id="categoria" nome="categoria">
+                                                <option value="">-- Escolha --</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-sm"> <!-- SELECT -->
+                                            <label for="pessoa"
+                                                class="form-label">Proprietário</label>
+                                            <select class="form-control"
+                                                id="pessoa" nome="pessoa">
+                                                <option value="">-- Escolha --</option>
+                                            </select>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </form>
                         </tbody>
                         <!-- hhhhhhhhhhhhhh    Modal Produto   hhhhhhhhhhhhhhh -->
-                        <div class="modal fade" id="modalPesquisarProduto"
+                        <div class="modal fade" id="modalPesquisarVeiculo"
                             tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"
-                                            id="exampleModalLabel">Pesquisa de Produtos</h5>
+                                            id="exampleModalLabel">Pesquisa de Veículos</h5>
                                         <button type="button" class="btn-close"
                                             data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -177,20 +235,22 @@
                                                 <input type="text"
                                                     class="form-control"
                                                     id="nameBusca"
-                                                    placeholder="Ex: Pneu">
+                                                    placeholder="Ex: Audi">
                                             </div>
-                                            <button type="button" class="btn btn-success"
-                                                    onclick="pesquisarProduto()">Buscar</button>
+                                            <button type="button" class="btn
+                                                btn-success"
+                                                onclick="pesquisarVeiculo()">Buscar</button>
                                         </form>
 
-                                        <div style="height: 320px;overflow:scroll;">
+                                        <div style="height: 320px;overflow:
+                                            scroll;">
                                             <table class="table"
-                                                id="tabelaresultadosProduto">
+                                                id="tabelaresultadosVeiculo">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Descrição</th>
-                                                        <th scope="col">Preço</th>
+                                                        <th scope="col">anoModelo</th>
                                                         <th scope="col">Editar</th>
                                                         <th scope="col">Delete</th>
                                                     </tr>
@@ -224,14 +284,15 @@
         <script src="../plugins/fontawesome/js/all.min.js"></script>
 
         <script src="../js/menu.js"></script>
-        <script src="../js/listaProdutos.js"></script>
+        <script src="../js/listaVeiculos.js"></script>
 
         <script type="text/javascript">
 
             $(document).ready(function () {
-       
-                $("#preco").mask('#.##0,00', {reverse: true})
-                
+        
+                $("#dataEntrada").mask('dd/MM/yyyy HH:mm:ss')
+                $("#precoEntrada").mask('#.##0,00', {reverse: true})
+                $("#placaCar").mask('AAA-0000')
             })
 
         </script>

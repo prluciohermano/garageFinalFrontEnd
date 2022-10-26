@@ -1,3 +1,31 @@
+.register {
+    margin:  auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px 30px 80px 30px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+    box-shadow: 0px 0px 5px 0px rgba(147, 147, 147, 1);
+}
+
+.register-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-title img {
+    width: 50px;
+    height: 50%;
+}
+
+.register-title h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
 sidebar .sidebar-title h2 {
     font-size: 18px;
     margin-top: 8px;
