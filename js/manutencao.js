@@ -326,7 +326,7 @@ function salvarCarroNaGaragem() {  // Último Ajax
         return;
     }
 
-    $.ajax({ // Esse ques salva
+    $.ajax({ // Esse que salva
         method : "POST",
         url : "http://localhost:8080/api/veiculos/"+ id +"/garage",
         data : JSON.stringify({

@@ -190,7 +190,7 @@ function colocarEmEdicaoCarro(id) { // Puxar garagem do Modal
             $("#id").val(response.id);
             $("#descricao").val(response.descricao);
             $("#placaCar").val(response.placaCar);
-            $("#corProduto").val(response.corProduto);
+            $("#corVeiculo").val(response.corVeiculo);
             $("#nomeResp").val(response.pessoa.nome);
             $("#nomeRespId").val(response.pessoa.id);
             
@@ -254,7 +254,6 @@ function salvarCarroNaGaragem() {  // Colocar carro no Box
         success : function(response) {
             $("#id").val(response.id);
             
-            alert("Gravou com sucesso!");
             Swal.fire('Pronto!', "Gravado com sucesso.", "success");
             buscarGaragem();                 
         }
@@ -282,7 +281,6 @@ function carregaBox() { // Carrega Boxes
                 heading.style.color = "#ef5350";
             }
         }
-
      }
 
     }).fail(function(xhr, status, errorThrown) {

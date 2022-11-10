@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
         <title>Gerenciar Serviços</title>
     </head>
-    <body onload="buscarServicos()">
+    <body onload="buscarServico()">
         <div class="flex-dashboard">
             <sidebar>
                 <div class="sidebar-title">
@@ -46,7 +46,7 @@
                             <a href="/views/gerenciarProdutos.html">Produtos</a>
                         </li>
                         <li class="selected">
-                            <i class="fa-solid fa-microchip"></i>
+                            <i class="fa-solid fa-hands-holding-circle"></i>
                             <a href="/views/gerenciarServicos.html">Serviços</a>
                         </li>
                         <li>
@@ -64,13 +64,13 @@
                     </ul>
                 </div>
             </sidebar>
-            <main>
-                <header>
-                    <a href="/views/dashboard.html"><i class="fa-solid
-                            fa-house-chimney"></i> Dashboard</a>
-                    <a href="../index.html"><i class="fa-solid
-                            fa-right-from-bracket"></i> Logout</a>
-                </header>
+        <main>
+            <header>
+                <a href="/views/dashboard.html"><i class="fa-solid
+                        fa-house-chimney"></i> Dashboard</a>
+                <a href="../index.html"><i class="fa-solid
+                        fa-right-from-bracket"></i> Logout</a>
+            </header>
                 <div class="main-content">
                     <div class="main-content-title">
                         <h2>Gerenciar Serviços</h2>
@@ -80,10 +80,8 @@
                     <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
                 </div> -->
                     <br/>
-
-
-                        <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de produtos   aaaaaaaaaaaaaaaaaaaaaaaa -->
-                        <div style="height: 440px;overflow: scroll;">
+                    <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de serviços   aaaaaaaaaaaaaaaaaaaaaaaa -->
+                        <div style="height: 280px;overflow: scroll;">
                             <table class="table table-hover table-striped"
                                 id="tabelaprincipalServico">
                                 <thead>
@@ -91,6 +89,7 @@
                                         <th scope="col">ID</th>
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Preço</th>
+                                        <th scope="col">Responsável</th>
 
                                         <th scope="col">Editar</th>
                                         <th scope="col">Delete</th>
@@ -100,35 +99,39 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
+                    <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
                         <br>
-
                         <div class="row">
-                            <div class="col-md-auto">
-                                <button type="button" class="btn btn-primary"
+                            <!-- <div class="col-md-auto">
+                                <button type="button" class="btn btn-lg btn-primary"
                                     onclick="salvarServico()">Salvar</button>
-                            </div>
+                            </div> -->
                             <div class="col-md-auto">
-                                <button type="button" class="btn btn-secondary"
+                                <button type="button" class="btn btn-lg btn-secondary"
                                     onclick="document.getElementById('formCadastroServico').reset();">Novo</button>
                             </div>
                             <div class="col-md-auto">
-                                <button type="button" class="btn btn-danger"
+                                <button type="button" class="btn btn-lg btn-danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalPesquisarServico">Pesquisar</button>
                             </div>
                             <div class="col-md-auto">
-                                <button type="button" class="btn btn-warning"
-                                    onclick="botaoDeletarDaTela();">Deletar</button>
+                                <button type="button" class="btn btn-lg btn-warning"
+                                    onclick="botaoDeletarDaTela();">Deletar</button> 
+                                    
+                            </div>
+                            <div class="col align-self-center">
+                                <div id="msg"></div>
                             </div>
                         </div>
-
+                        
                         <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
+                        
                         <tbody>
                             <form action="" id="formCadastroServico" class="form-cadastro">
                                 <div class="">
                                     <div class="row">
+                                        <!-- <div id="msg"></div> -->
                                         <!-- <img src="../images/carro1.jpg" class="rounded-circle2" alt="teste"> -->
                                         <div class="col-md-auto">
                                             <label for="id" class="form-label">ID</label>
@@ -136,31 +139,182 @@
                                                 class="form-control" id="id"
                                                 readonly="readonly" disabled>
                                         </div>
+                                        <div class="col-sm"> <!-- SELECT -->
+                                            <label for="pessoa"
+                                                class="form-label">Proprietário</label>
+                                            <select class="form-control"
+                                                id="pessoa" nome="pessoa">
+                                                <option value="">Selecione</option>
+                                            </select>
+                                        </div>
                                         <div class="col-sm">
                                             <label for="descricao"
-                                                class="form-label">Descrição</label>
+                                                class="form-label">Descrição Serviço</label>
                                             <input type="text"
                                                 class="form-control"
                                                 id="descricao"
                                                 placeholder="Informe a descrição" required="required">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="preco"
+                                            <label for="defeito"
+                                                class="form-label">Defeito apresentado</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="defeito"
+                                                placeholder="Informe o defeito" required="required">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="garantia"
+                                                class="form-label">Garantia</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="garantia" placeholder="informar garantia" required="required">
+                                        </div>
+                                    </div>
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <label for="dataInicialServico"
+                                            class="form-label">Data início do Serviço</label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="dataInicialServico"
+                                            placeholder="Informe a data inicial" required="required">
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <label for="dataFinalServico"
+                                            class="form-label">Data de Entrega</label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="dataFinalServico"
+                                            placeholder="Informe a data final" required="required">
+                                    </div>
+                                    
+                                        <div class="col-sm">
+                                            <label for="observacoes"
+                                                class="form-label">Descrição da mão de obra</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="observacoes"
+                                                placeholder="Inclua observações" required="required">
+                                        </div>
+                                       
+                                        
+                                        <div class="col-md-auto">
+                                            <label for="precoServico"
                                                 class="form-label">Preço</label>
                                             <input type="text"
                                                 class="form-control"
-                                                id="preco" placeholder="preço do produto" required="required">
+                                                id="precoServico"
+                                                placeholder="Valor do serviço" required="required">
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                            </form>
-                        </tbody>
-                        <!-- hhhhhhhhhhhhhh    Modal Produto   hhhhhhhhhhhhhhh -->
+                                <div class="col align-self-center">
+                                    <button type="button" class="btn btn-lg btn-success"
+                                        onclick="validarProduto()">Salvar Ordem de Serviço</button>
+                                        
+                                </div>
+                                <div class="row col align-self-end">
+                                    <button type="button" class="btn btn-lg btn-info"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalPesquisarProdutoServico">Acrescentar Produto</button> 
+                                        
+                                </div>
+<!-- hhhhhhhhhhhhhhhhhh Aqui estão os produtos no pedido e precisam ser salvos hhhhhhhhhhhhhhhhhhhhhhh -->
+                        <div style="height: 300px;overflow:scroll;">
+                            <table class="table"
+                                id="form-produto">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Descrição</th>
+                                        <th scope="col">Preço</th>
+                                        <th scope="col">Quantidade</th>
+                                        
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                       
+                                <!-- <div id="form-produtos" tabindex="-1"></div> -->
+
+                                
+
+                                <div class="row col align-self-center">
+                                    <button type="button" class="btn btn-lg btn-dark"
+                                        onclick="acrescentarProduto()">Fechar Ordem de Serviço</button> 
+                                        
+                                </div>
+                            </div>
+                            
+                        </form>
+                       
+                    </tbody>
+
+                    <!-- ================== Modal colocar produto no serviço ================== -->
+
+                    <div class="modal fade" id="modalPesquisarProdutoServico"
+                    tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"
+                                    id="exampleModalLabel">Pesquisa de Produtos</h5>
+                                <button type="button" class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="nameBusca"
+                                            class="col-form-label">Informe a descrição:</label>
+                                        <input type="text"
+                                            class="form-control"
+                                            id="nameBusca"
+                                            placeholder="Ex: Pneu">
+                                    </div>
+                                    <button type="button" class="btn btn-success"
+                                            onclick="pesquisarProdutoServico()">Buscar</button>
+                                </form>
+
+                                <div style="height: 300px;overflow:scroll;">
+                                    <table class="table"
+                                        id="tabelaresultadosProdutoServico">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Nome</th>
+                                                <th scope="col">Descrição</th>
+                                                <th scope="col">Preço</th>
+                                                <th scope="col">Editar</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn
+                                    btn-secondary"
+                                    data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                        <!-- hhhhhhhhhhhhhh    Modal Serviço de cima   hhhhhhhhhhhhhhh -->
                         <div class="modal fade" id="modalPesquisarServico"
                             tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title"
@@ -172,11 +326,11 @@
                                     <div class="modal-body">
                                         <form>
                                             <div class="mb-3">
-                                                <label for="nameBusca"
+                                                <label for="nomeBusca"
                                                     class="col-form-label">Informe a descrição:</label>
                                                 <input type="text"
                                                     class="form-control"
-                                                    id="nameBusca"
+                                                    id="nomeBusca"
                                                     placeholder="Ex: Pneu">
                                             </div>
                                             <button type="button" class="btn btn-success"
@@ -213,6 +367,7 @@
                 </div>
             </main>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -225,15 +380,15 @@
 
         <script src="../js/menu.js"></script>
         <script src="../js/listaServicos.js"></script>
-
         <script type="text/javascript">
 
             $(document).ready(function () {
        
-                $("#preco").mask('#.##0,00', {reverse: true})
+                $("#dataInicialServico").mask("00/00/0000")
+                $("#dataFinalServico").mask("00/00/0000")
+                $("#precoServico").mask('#.##0,00', {reverse: true})
                 
             })
-
         </script>
     </body>
 </html>

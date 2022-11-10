@@ -46,7 +46,7 @@
                             <a href="/views/gerenciarProdutos.html">Produtos</a>
                         </li>
                         <li>
-                            <i class="fa-solid fa-microchip"></i>
+                            <i class="fa-solid fa-hands-holding-circle"></i>
                             <a href="/views/gerenciarServicos.html">Serviços</a>
                         </li>
                         <li>
@@ -89,6 +89,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
+                                        <th scope="col">Nome</th>
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Preço</th>
 
@@ -137,6 +138,14 @@
                                                 readonly="readonly" disabled>
                                         </div>
                                         <div class="col-sm">
+                                            <label for="nomeProduto"
+                                                class="form-label">Nome</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="nomeProduto"
+                                                placeholder="Informe o nome do produto" required="required">
+                                        </div>
+                                        <div class="col-sm">
                                             <label for="descricao"
                                                 class="form-label">Descrição</label>
                                             <input type="text"
@@ -173,7 +182,7 @@
                                         <form>
                                             <div class="mb-3">
                                                 <label for="nameBusca"
-                                                    class="col-form-label">Informe a descrição:</label>
+                                                    class="col-form-label">Informe o nome do Produto:</label>
                                                 <input type="text"
                                                     class="form-control"
                                                     id="nameBusca"
@@ -189,8 +198,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ID</th>
+                                                        <th scope="col">Nome</th>
                                                         <th scope="col">Descrição</th>
                                                         <th scope="col">Preço</th>
+                                                        
                                                         <th scope="col">Editar</th>
                                                         <th scope="col">Delete</th>
                                                     </tr>

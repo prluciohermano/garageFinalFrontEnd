@@ -47,7 +47,7 @@
                                 <a href="/views/gerenciarProdutos.html">Produtos</a>
                             </li>
                             <li>
-                                <i class="fa-solid fa-microchip"></i>
+                                <i class="fa-solid fa-hands-holding-circle"></i>
                                 <a href="/views/gerenciarServicos.html">Serviços</a>
                             </li>
                             <li>
@@ -80,30 +80,29 @@
                     <button id="btn-cadastrar" class="panel panel-50">Cadastrar Pessoa</button>  
                     <button id="btn-listar" class="panel panel-50" onclick="buscarPessoa()"> Listar Pesssoas</button>      
                 </div> -->
-                        <br/>
-                            <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
-                            <div style="height: 280px;overflow: scroll;">
-                                <table class="table table-hover table-striped"
-                                    id="tabelaprincipal">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">E-mail</th>
-                                            <th scope="col">CPF</th>
-                                            <th scope="col">Cidade</th>
-                                            <th scope="col">UF</th>
+                <br/>
+                <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
+                    <div style="height: 320px;overflow: scroll;">
+                        <table class="table table-hover table-striped"
+                            id="tabelaprincipal">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">CPF</th>
+                                    <th scope="col">Cidade</th>
+                                    <th scope="col">UF</th>
 
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
                             <div class="row">
                                 <div class="col-md-auto">
                                     <button type="button" class="btn
@@ -410,7 +409,7 @@
                 $("#dataNasci").mask("00/00/0000")
                 $("#cep").mask("00.000-000")
 
-                
+                 
                 })
 
             </script>

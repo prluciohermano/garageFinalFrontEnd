@@ -21,6 +21,8 @@ function buscarProduto() {
                 '<tr id="'+response[i].id+'"><td>'
                         + response[i].id
                         + '</td><td>'
+                        + response[i].nomeProduto
+                        + '</td><td>'
                         + response[i].descricao
                         + '</td><td>'
                         + precoFormatado                                             						
@@ -121,6 +123,8 @@ function pesquisarProduto() {
 
                             + response[i].id
                             + '</td><td>'
+                            + response[i].nomeProduto
+                            + '</td><td>'
                             + response[i].descricao
                             + '</td><td>'
                             + precoFormatado								
@@ -147,6 +151,7 @@ function colocarEmEdicaoProduto(id) {
         success : function(response) {
 
             $("#id").val(response.id);
+            $("#nomeProduto").val(response.nomeProduto);
             $("#descricao").val(response.descricao);
 
             const precoPuro = (response.preco);
@@ -166,18 +171,24 @@ function colocarEmEdicaoProduto(id) {
 function salvarProduto() {  // Último Ajax
 
     var id = $("#id").val();
+    var nomeProduto = $("#nomeProduto").val();
     var descricao = $("#descricao").val();
 
     var preco = $("#preco").val();
     preco = preco.replace(/[.]/g, "").replace(/[,]/g, ".");
 
 
+    if (nomeProduto == null || nomeProduto != null && nomeProduto.trim() == '') {
+        $("#descProduto").focus();
+        Swal.fire("Opss!", "Informe o nome do produto", "info");
+        return;
+    }
+
     if (descricao == null || descricao != null && descricao.trim() == '') {
         $("#descProduto").focus();
         Swal.fire("Opss!", "Informe a descrição do produto", "info");
         return;
     }
-
 
     if (preco == null || preco != null && preco.trim() == '') {
         $("#preco").focus();
@@ -191,6 +202,7 @@ function salvarProduto() {  // Último Ajax
 
         data : JSON.stringify({
             id: id,
+            nomeProduto: nomeProduto,
             descricao: descricao,
             preco: preco
 
