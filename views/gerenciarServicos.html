@@ -88,7 +88,7 @@
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">Descrição</th>
-                                        <th scope="col">Preço</th>
+                                        <th scope="col">Total</th>
                                         <th scope="col">Responsável</th>
 
                                         <th scope="col">Editar</th>
@@ -108,7 +108,7 @@
                             </div> -->
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-lg btn-secondary"
-                                    onclick="document.getElementById('formCadastroServico').reset();">Novo</button>
+                                    onclick="apagaFormCadastro();">Novo</button>
                             </div>
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-lg btn-danger"
@@ -175,7 +175,7 @@
                                     <div class="col-md-auto">
                                         <label for="dataInicialServico"
                                             class="form-label">Data início do Serviço</label>
-                                        <input type="text"
+                                        <input type="text" disabled
                                             class="form-control"
                                             id="dataInicialServico"
                                             placeholder="Informe a data inicial" required="required">
@@ -201,17 +201,25 @@
                                         
                                         <div class="col-md-auto">
                                             <label for="precoServico"
-                                                class="form-label">Preço</label>
+                                                class="form-label">Valor Serviço</label>
                                             <input type="text"
                                                 class="form-control"
                                                 id="precoServico"
                                                 placeholder="Valor do serviço" required="required">
                                         </div>
+                                        <div class="col-md-auto">
+                                            <label for="total"
+                                                class="form-label">Total</label>
+                                            <input type="text" disabled
+                                                class="form-control"
+                                                id="total"
+                                                placeholder="Valor Total" required="required">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col align-self-center">
-                                    <button type="button" class="btn btn-lg btn-success"
-                                        onclick="validarProduto()">Salvar Ordem de Serviço</button>
+                                    <button id="btnValidarProduto" type="button" class="btn btn-lg btn-success"
+                                        onclick="abrirOrdemServico()">Abrir Ordem de Serviço</button>
                                         
                                 </div>
                                 <div class="row col align-self-end">
@@ -231,6 +239,7 @@
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Preço</th>
                                         <th scope="col">Quantidade</th>
+                                        <th scope="col">Sub-Total</th>
                                         
                                         <th scope="col">Delete</th>
                                     </tr>
@@ -245,8 +254,8 @@
                                 
 
                                 <div class="row col align-self-center">
-                                    <button type="button" class="btn btn-lg btn-dark"
-                                        onclick="acrescentarProduto()">Fechar Ordem de Serviço</button> 
+                                    <button  type="button" class="btn btn-lg btn-dark"
+                                        onclick="validarProduto()">Fechar e Salvar Ordem de Serviço</button> 
                                         
                                 </div>
                             </div>

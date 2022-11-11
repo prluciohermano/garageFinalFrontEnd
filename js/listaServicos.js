@@ -1,5 +1,5 @@
 function buscarServico() {
-
+ 
     $.ajax({
         method : "GET",
         url : "http://localhost:8080/api/servicos",
@@ -13,8 +13,8 @@ function buscarServico() {
 
         for (var i = 0; i < response.length; i++) {
 
-            const precoPuro = (response[i].precoServico);
-            const precoFormatado = precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2});
+            const precoPuro = (response[i].total);
+            precoTotal = precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2});
 
             $('#tabelaprincipalServico> tbody')
             .append(
@@ -23,7 +23,7 @@ function buscarServico() {
                         + '</td><td>'
                         + response[i].descricao
                         + '</td><td>'
-                        + precoFormatado  
+                        + precoTotal  
                         + '</td><td>'
                         + response[i].pessoa.nome                                           						
                         + '</td><td><button type="button" onclick="colocarEmEdicaoServico('
@@ -47,15 +47,20 @@ function botaoDeletarDaTela(){ // Botão amarelo
 	 deleteServico(id);
 	 document.getElementById('formCadastroServico').reset();
 	}
+    apagaFormServico();
+    $("#form-produto td").remove();
+    buscarServico();
 }
 
 // function apagaForm() {
 // 	document.getElementById("modalPesquisarServico").reset();
 // 	}
 
-// function apagaFormCadastro() {
-//     document.getElementById("formCadastroServico").reset();
-//     }
+function apagaFormCadastro() {
+    document.getElementById("formCadastroServico").reset();
+    document.getElementById('btnValidarProduto').disabled = false;
+    $("#form-produto td").remove();
+    }
 
 
 
@@ -84,8 +89,10 @@ function deleteServico(id){
                 document.getElementById('formCadastroServico').reset();
                 Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");	
                 
-                    apagaFormCadastro();
-                    buscarServico();
+                apagaFormServico();
+                $("#form-produto td").remove();
+
+                buscarServico();
                 }
             }), Swal.fire(
             'Deletado!',
@@ -126,7 +133,7 @@ function pesquisarServico() { // pesquisar Serviço de cima
                             + response[i].id
                             + '</td><td>'
                             + response[i].descricao
-                            + '</td><td>'
+                            + '</td><td id="preco">'
                             + precoFormatado								
                             + '</td><td><button type="button" onclick="colocarEmEdicaoServico('
                             + response[i].id
@@ -142,9 +149,26 @@ function pesquisarServico() { // pesquisar Serviço de cima
     }
 }
 
+function apagaFormServico() {
+    document.getElementById('id').value = "";
+    document.getElementById('descricao').value = "";
+    document.getElementById('garantia').value = "";
+    document.getElementById('defeito').value = "";
+    document.getElementById('observacoes').value = "";
+    document.getElementById('total').value = "";
+    document.getElementById('precoServico').value = "";
+    document.getElementById('pessoa').value = "";
+    document.getElementById('dataInicialServico').value = "";
+    document.getElementById('dataFinalServico').value = "";
+ }
+
 
 function colocarEmEdicaoServico(id) { // Aqui coloca em edição da primeira vez e DELETA ÍTEM
+    
+    document.getElementById('btnValidarProduto').disabled = "disabled";
+    apagaFormServico();
     $("#form-produto td").remove();
+        
     $.ajax({
         method : "GET",
         url : "http://localhost:8080/api/servicos/" + id,
@@ -157,12 +181,17 @@ function colocarEmEdicaoServico(id) { // Aqui coloca em edição da primeira vez
             $("#defeito").val(response.defeito);
             $("#observacoes").val(response.observacoes);
 
+            var totalService = 0;
+            var total = 0;
+            var subtotal = 0;
+
             for (var i = 0; i < response.itens.length; i++) {
+               
+                var precoPuro = response.itens[i].produto.preco;
+                subtotal = (response.itens[i].subtotal.toLocaleString('pt-br', {minimumFractionDigits: 2}));
 
-                const precoPuro = (response.itens[i].produto.preco).toLocaleString('pt-br',
-                                  {minimumFractionDigits: 2});
                 $('#form-produto> tbody').append('<tr id="tr-'+response.itens[i].produto.id+'"><td>'
-
+                                
                                 + response.itens[i].produto.id
                                 + '</td><td>'
                                 + response.itens[i].produto.nomeProduto
@@ -172,11 +201,21 @@ function colocarEmEdicaoServico(id) { // Aqui coloca em edição da primeira vez
                                 + precoPuro							
                                 + '</td><td>'
                                 + response.itens[i].quantidade
+                                + '</td><td>'
+                                + subtotal
                                 + '</td><td><button type="button" class="btn btn-danger" onclick="removeItemProduto('
                                 + response.itens[i].id
                                 + ')">Del</button></td></tr>');
-                                
+                            
+                totalService += response.itens[i].produto.preco * response.itens[i].quantidade;
+              
             }
+
+            var precoServico = (response.precoServico);
+                $("#precoServico").val(precoServico.toLocaleString('pt-br', {minimumFractionDigits: 2}));
+
+                total += parseFloat(totalService) + parseFloat(precoServico);
+                $("#total").val(total.toLocaleString('pt-br', {minimumFractionDigits: 2}));
 
             var html = "";
 
@@ -192,27 +231,20 @@ function colocarEmEdicaoServico(id) { // Aqui coloca em edição da primeira vez
                 const dataF = new Date(dataFinal);
                 dataFormatadaFinal = dataF.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
                 $("#dataFinalServico").val(dataFormatadaFinal);
-                //$("#msg").html(html).reset();
+                $("#msg").html(html);
 
-                } else if (dataFinal == null) {        
-                    
-                    $("#dataFinalServico").val(dataFinal);
-                    html += '<div class="alert alert-primary" role="alert"><strong>Atenção!</strong> Esse Pedido ainda está em aberto!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
-                    $("#msg").html(html);
-                    
-                } 
+            } else if (dataFinal == null) {        
+                
+                $("#dataFinalServico").val(dataFinal);
+                html += '<div class="alert alert-primary" role="alert"><strong>Atenção!</strong> Esse Pedido ainda está em aberto!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                $("#msg").html(html);
+                
+            } 
                 
                 $("#pessoa").val(response.pessoa.nome);
                 $("#pessoa").val(response.pessoa.id);
 
-                const precoServico = (response.precoServico);
-                $("#precoServico").val(precoServico.toLocaleString('pt-br',
-                                    {minimumFractionDigits: 2}));
-
-                $("#produtos").val(response.produtos);
-
-                $('#msg').html(html).reset();
-                
+                $("#produtos").val(response.produtos);        
                 
             $('#modalPesquisarServico').modal('hide');
         }
@@ -241,6 +273,9 @@ function salvarServico() {  // Último Ajax
 
     var precoServico = $("#precoServico").val();
     precoServico = precoServico.replace(/[.]/g, "").replace(/[,]/g, ".");
+
+    var total = $("#total").val();
+    total = parseFloat(total);
 
     var pessoa = $("#pessoa").val();
     var produto = $("#produto").val();
@@ -272,6 +307,7 @@ function salvarServico() {  // Último Ajax
             dataInicialServico: dataInicialServico,
             dataFinalServico: dataFinalServico,
             precoServico: precoServico,
+            total: total,
             pessoa: pessoa,
             produto: produto
 
@@ -392,7 +428,7 @@ function colocarEmEdicaoProdutoServico(id) { // aqui coloca os itens no pedido
                             + response.nomeProduto
                             + '</td><td>'
                             + response.descricao
-                            + '</td><td>'
+                            + '</td><td class="preco">'
                             + precoPuro	
                             + '</td><td><div class="col-6 col-sm-4"><input type="number" class="form-control" id="quantidade">'							
                             + '</td><td><button type="button" class="btn btn-danger" onclick="removeItemProduto('
@@ -415,7 +451,7 @@ function addProduto(idProd) { // ===============================================
 
     var id = $("#id").val();
     var quantidade = $("#quantidade").val();
-
+   
     if (quantidade <= 0 || quantidade != null && quantidade == '') {
         $("#pessoa").focus();
         Swal.fire("Opss!", "Adicione uma quantidade válida", "info");
@@ -428,8 +464,8 @@ function addProduto(idProd) { // ===============================================
         return;
     }
 
-    // alert("vamos adicionar no serviço: " + id + " id do Produto: " + idProd
-    //     + " Quantidade: " + quantidade);
+    var itensLista = document.querySelector("#form-produto .preco").innerHTML;
+    var subtotal = quantidade * itensLista;
 
         $.ajax({
             method : "POST",
@@ -441,6 +477,7 @@ function addProduto(idProd) { // ===============================================
             data : JSON.stringify({
                 
                 quantidade: quantidade, 
+                subtotal: subtotal,
                 produto: {
                     id: idProd
                 },
@@ -463,7 +500,6 @@ function addProduto(idProd) { // ===============================================
         });
 
 }
-
 
 function removeItemProduto(id){
 	var idSer = $("#id").val();
@@ -501,35 +537,13 @@ function removeItemProduto(id){
     })	
 }
 
-
-// function removeProduto(id) {
-//     var linha = document.querySelector('#form-produtos');
-//     var tr = document.getElementById('tr-'+id);
-//     let resposta = confirm('Deseja remover mesmo?');
-//     if (resposta) {
-//         console.log(linha);
-//         console.log(tr);
-//         tr.remove();
-        
-//     }
-    
-// }
-
-// function salvarProdutoServico() {
-//     var forma = document.querySelector('#form-produtos');
-//     for (var i = 0; i < forma.childNodes.length; i++) {
-//      var trilhas = document.getElementById('tr-'+i);
-//      var dados = document.querySelector('td');
-//     console.log(trilhas);
-//     console.log(dados);
-//     }
-// }
-
-function validarProduto() { // Salvar Ordem de Serviço
+function abrirOrdemServico() { // Salvar Ordem de Serviço (Botão verde)
 
     var id = $("#id").val();
     var pessoa = $("#pessoa").val();
     var garantia = $("#garantia").val();
+    var total = $("#total").val();
+    total = parseFloat(total.replace(/[.]/g, "").replace(/[,]/g, "."));
 
     if (pessoa == null || pessoa != null && pessoa.trim() == '') {
         $("#pessoa").focus();
@@ -543,15 +557,11 @@ function validarProduto() { // Salvar Ordem de Serviço
         return;
     }
     
-    // var dados = document.getElementById('td').value;
-    // var produtos = document.getElementById('form-produto').value;
     var pessoa = document.getElementById('pessoa').value;
     var descricao = document.getElementById('descricao').value;
     var garantia = document.getElementById('garantia').value;
     var observacoes = document.getElementById('observacoes').value;
     var defeito = document.getElementById('defeito').value;
-    // var dataInicialServico = document.getElementById('dataInicialServico').value;
-    // var dataFinalServico = document.getElementById('dataFinalServico').value;
 
     var precoServico = document.getElementById('precoServico').value;
     precoServico = precoServico.replace(/[.]/g, "").replace(/[,]/g, ".")
@@ -564,10 +574,10 @@ function validarProduto() { // Salvar Ordem de Serviço
     var dataFinalServico = moment(dataFinal, "DD/MM/YYYY");
     dataFinalServico.format("YYYY-MM-DD HH:mm:ss")
     
-    let itens = "";
-    var forma = document.querySelector('#form-produto'); // coloca os serviços na table de cima
-    for (var i = 0; i < forma.childNodes.length; i++) {
-     var trilhas = document.getElementById('tr-'+i);
+    // let itens = "";
+    // var forma = document.querySelector('#form-produto'); // coloca os serviços na table de cima
+    // for (var i = 0; i < forma.childNodes.length; i++) {
+    //  var trilhas = document.getElementById('tr-'+i);
      
         $.ajax({
             method : "POST",
@@ -585,6 +595,96 @@ function validarProduto() { // Salvar Ordem de Serviço
                 dataInicialServico: dataInicialServico, 
                 dataFinalServico: dataFinalServico, 
                 precoServico: precoServico,
+                total: precoServico,
+                pessoa: {
+                    id: pessoa,
+                }
+    
+            }),
+            contentType : "application/json; charset=utf-8",
+            success : function(response) {
+                $("#id").val(response.id);
+                
+
+                Swal.fire("Pronto!", "Serviço salvo com sucesso!", "success");
+                document.getElementById('btnValidarProduto').disabled = "disabled";
+
+                buscarServico();
+
+                colocarEmEdicaoServico(id);
+                
+            },
+            
+            }).fail(function(xhr, status, errorThrown) {
+                Swal.fire("Opss ", "Erro ao salvar serviço! " + xhr.responseText, "error");
+        });
+
+        
+        
+    // }
+}
+
+function validarProduto() { // Salvar Ordem de Serviço
+
+    var id = $("#id").val();
+    var pessoa = $("#pessoa").val();
+    var garantia = $("#garantia").val();
+    
+
+    if (pessoa == null || pessoa != null && pessoa.trim() == '') {
+        $("#pessoa").focus();
+        Swal.fire("Opss!", "Escolha uma pessoa", "info");
+        return;
+    }
+
+    if (garantia == null || garantia != null && garantia.trim() == '') {
+        $("#garantia").focus();
+        Swal.fire("Opss!", "Preencha a garantia", "info");
+        return;
+    }
+    
+    var pessoa = document.getElementById('pessoa').value;
+    var descricao = document.getElementById('descricao').value;
+    var garantia = document.getElementById('garantia').value;
+    var observacoes = document.getElementById('observacoes').value;
+    var defeito = document.getElementById('defeito').value;
+
+    var precoServico = document.getElementById('precoServico').value;
+    precoServico = precoServico.replace(/[.]/g, "").replace(/[,]/g, ".")
+
+    var dataInicial = document.getElementById('dataInicialServico').value;
+    var dataInicialServico = moment(dataInicial, "DD/MM/YYYY");
+    dataInicialServico.format("YYYY-MM-DD HH:mm:ss")
+
+    var dataFinal = document.getElementById('dataFinalServico').value;
+    var dataFinalServico = moment(dataFinal, "DD/MM/YYYY");
+    dataFinalServico.format("YYYY-MM-DD HH:mm:ss")
+
+    var total = $("#total").val();
+    total = parseFloat(total.replace(/[.]/g, "").replace(/[,]/g, "."));
+    
+    // let itens = "";
+    // var forma = document.querySelector('#form-produto'); // coloca os serviços na table de cima
+    // for (var i = 0; i < forma.childNodes.length; i++) {
+    //  var trilhas = document.getElementById('tr-'+i);
+     
+        $.ajax({
+            method : "POST",
+            url : "http://localhost:8080/api/servicos",
+            
+            async: true,
+            crossDomain : true,
+    
+            data : JSON.stringify({
+                id: id,
+                descricao: descricao, 
+                garantia:garantia, 
+                observacoes: observacoes, 
+                defeito: defeito, 
+                dataInicialServico: dataInicialServico, 
+                dataFinalServico: dataFinalServico, 
+                precoServico: precoServico,
+                total: total,
                 pessoa: {
                     id: pessoa,
                 }
@@ -596,13 +696,18 @@ function validarProduto() { // Salvar Ordem de Serviço
     
                 Swal.fire("Pronto!", "Serviço salvo com sucesso!", "success");
     
-                // apagaFormCadastro();
                 buscarServico();
+
+                $("#form-produto td").remove();
+                apagaFormCadastro();
+
+                
                 
             },
             
             }).fail(function(xhr, status, errorThrown) {
                 Swal.fire("Opss ", "Erro ao salvar serviço! " + xhr.responseText, "error");
         });
-    }
+    // }
+    
 }
