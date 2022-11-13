@@ -28,7 +28,7 @@ function buscarProduto() {
                         + precoFormatado                                             						
                         + '</td><td><button type="button" onclick="colocarEmEdicaoProduto('
                         + response[i].id
-                        + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduto('
+                        + ')" class="btn btn-primary">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteProduto('
                         + response[i].id
                         + ')">Delete</button></td></tr>');
                 }
@@ -224,3 +224,111 @@ function salvarProduto() {  // Último Ajax
 
 }
 
+function buscarProdutoPDF(){
+    
+    $.ajax({
+        method : "GET",
+        url : "http://localhost:8080/api/produtos",
+        async: true,
+        crossDomain : true,
+        success : function(response) {
+
+        $('#tabelaprincipalProduto-hidden > tbody > tr').remove();
+
+        $("#id").val(response.id);
+
+        for (var i = 0; i < response.length; i++) {
+
+        const precoPuro = (response[i].preco);
+        const precoFormatado = precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+            $('#tabelaprincipalProduto-hidden > tbody')
+            .append(
+                '<tr id="'+response[i].id+'"><td>'
+                        + response[i].id
+                        + '</td><td>'
+                        + response[i].nomeProduto
+                        + '</td><td>'
+                        + response[i].descricao
+                        + '</td><td>'
+                        + precoFormatado								
+                        + '</td></tr>');
+                }
+
+                    }
+    }).fail(function(xhr, status, errorThrown) {
+            Swal.fire("Opss ", "Erro ao buscar Produto: ", "error");
+        });
+
+} buscarProdutoPDF();
+
+
+function gerarPdf() {
+
+    var pegarDados = document.getElementById('tabelaprincipalProduto-hidden').innerHTML;
+
+    var janela = window.open('','','width=792,height=760');
+            janela.document.write('<html><head>');
+            janela.document.write('<link rel="stylesheet" href="../css/all.css"></link>');
+            janela.document.write('<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>');
+            janela.document.write('<title>Lista de Produtos PDF</title></head>');  
+            
+            janela.document.write('<body>'); 
+            janela.document.write('<body><img src="../images/cabecalho2.png" alt="">');
+            janela.document.write('<div style="height: 500px;margin: 20px">');
+            janela.document.write('<h2>Cadastro de Produtos</h2>');
+            janela.document.write('<br>');
+            janela.document.write('<table class="table table-hover table-striped"');
+            janela.document.write(pegarDados); 
+            
+            janela.document.write('</table>');
+            
+            janela.document.write('</div>');
+            janela.document.write('</body></html>');
+            janela.document.close();
+            janela.print();
+}
+
+function gerarUmPdf() {
+    var id = $("#id").val();
+    
+    if (id > 0 || id != "") {
+
+        //var id = $("#id").val();
+        var nome = $("#nomeProduto").val();    
+        var descricao = $("#descricao").val();
+        var preco = $("#preco").val();
+  
+        
+        var jan = window.open('','','width=792,height=760');
+        
+       
+
+        jan.document.write('<link rel="stylesheet" href="../css/all.css"></link>');
+        jan.document.write('<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>');
+
+        jan.document.write('<title>Registro da Produto</title></head>');  
+        
+        jan.document.write('<body><img src="../images/cabecalho2.png" alt="">'); 
+
+        jan.document.write('<div style="height: 600px;margin: 20px">');
+        jan.document.write('<h2>Registro do Produto </h2>');
+
+        // <div style="height: 600px;overflow: scroll;" hidden>
+        // <table class="table table-hover table-striped"
+
+        jan.document.write('<br><strong> ID: </strong>' + id + '<br>');
+        jan.document.write('<strong> NOME: </strong>' + nome + '<br>');
+        jan.document.write('<strong> DESCRIÇÃO: </strong>' + descricao + '<br>');
+        jan.document.write('<strong> PREÇO: </strong>' + preco + '<br>');
+                   
+        jan.document.write('_______________________________________________');
+        jan.document.write('</div>');
+        jan.document.write('</div></html>');
+        jan.document.close();
+        jan.print()
+
+    } else {
+        Swal.fire("Opss ", "Selecione um produto! ", "error");
+    }
+} 

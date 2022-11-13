@@ -102,6 +102,24 @@
                             </table>
                         </div>
 
+                <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de produtos hidden  aaaaaaaaaaaaaaaaaaaaaaaa -->
+                <div style="height: 440px;overflow: scroll;" hidden>
+                    <table class="table table-hover table-striped"
+                        id="tabelaprincipalProduto-hidden">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Preço</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
                         <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
                         <br>
 
@@ -122,6 +140,10 @@
                             <div class="col-md-auto">
                                 <button type="button" class="btn btn-warning"
                                     onclick="botaoDeletarDaTela();">Deletar</button>
+                            </div>
+                            <div class="col-md-auto">
+                                <button type="button" value="IMPRIMIR" class="btn btn-success"
+                                    onclick="gerarPdf()">Gerar PDF Produtos</button>
                             </div>
                         </div>
 
@@ -159,6 +181,11 @@
                                             <input type="text"
                                                 class="form-control"
                                                 id="preco" placeholder="preço do produto" required="required">
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button type="button" class="btn btn-secondary"
+                                            value="IMPRIMIR" onclick="gerarUmPdf()">
+                                            PDF do produto</button>
                                         </div>
                                     </div>
                                     </div>
@@ -229,6 +256,7 @@
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="../plugins/jquery/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
         <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
         <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
         <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>

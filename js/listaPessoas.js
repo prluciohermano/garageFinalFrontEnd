@@ -28,7 +28,7 @@ function buscarPessoa() {
                         + response[i].uf							
                         + '</td><td><button type="button" onclick="colocarEmEdicao('
                         + response[i].id
-                        + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
+                        + ')" class="btn btn-primary" >Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deletePessoa('
                         + response[i].id
                         + ')">Delete</button></td></tr>');
                 }
@@ -175,7 +175,7 @@ function colocarEmEdicao(id) {
             $("#tipo").val(response.tipospessoa.id);
             $("#cargo").val(response.cargo);
 
-            console.log(response.cargo);
+            
             $('#modalPesquisarPessoa').modal('hide');
             
         }
@@ -350,28 +350,158 @@ $(document).ready(function() {
     }
 });
 
-// $(document).ready(function() {
-//     carregarSelect("cargo");
+function buscarPessoaPDF(){
+    
+    $.ajax({
+        method : "GET",
+        url : "http://localhost:8080/api/pessoas",
+        async: true,
+        crossDomain : true,
+        success : function(response) {
 
-//     function carregarSelect(idt) {
-//         var html = "";
+        $('#tabelaprincipal-hidden > tbody > tr').remove();
 
-//         $.getJSON('http://localhost:8080/api/pessoas', function(data) {
-//             html += '<option value="">Selecione</option>';
-             
-//             if(idt == 'cargo') {
-//                 for(var i = 0; i < data.length; i++) {
-//                     html += '<option value="' + data[i].cargo + '">' + data[i].cargo + '</option>';       
-//                 }
-//             }
-//             $("#" + idt).html(html);  
+        $("#id").val(response.id);
 
-//         }).fail(function(xhr, status, errorThrown) {
-//             Swal.fire("Opss ", "Erro ao salvar pessoa: ", "error");
-//         });
+        for (var i = 0; i < response.length; i++) {
+            $('#tabelaprincipal-hidden > tbody')
+            .append(
+                '<tr id="'+response[i].id+'"><td>'
+                        + response[i].id
+                        + '</td><td>'
+                        + response[i].nome
+                        + '</td><td>'
+                        + response[i].email
+                        + '</td><td>'
+                        + response[i].cpf	
+                        + '</td><td>'
+                        + response[i].cidade
+                        + '</td><td>'
+                        + response[i].uf							
+                        + '</td></tr>');
+                }
+
+                    }
+    }).fail(function(xhr, status, errorThrown) {
+            Swal.fire("Opss ", "Erro ao buscar Pessoa: ", "error");
+        });
+
+} buscarPessoaPDF();
+
+
+function gerarPdf() {
+
+    var pegarDados = document.getElementById('tabelaprincipal-hidden').innerHTML;
+
+    var janela = window.open('','','width=792,height=760');
+            janela.document.write('<html><head>');
+            janela.document.write('<link rel="stylesheet" href="../css/all.css"></link>');
+            janela.document.write('<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>');
+            janela.document.write('<title>Lista Pessoas PDF</title></head>');  
+            
+            janela.document.write('<body>'); 
+            janela.document.write('<body><img src="../images/cabecalho2.png" alt="">');
+            janela.document.write('<div style="height: 500px;margin: 20px">');
+            janela.document.write('<h2>Cadastro de Pessoas</h2>');
+            janela.document.write('<br>');
+            janela.document.write('<table class="table table-hover table-striped"');
+            janela.document.write(pegarDados); 
+            
+            janela.document.write('</table>');
+            
+            janela.document.write('</div>');
+            janela.document.write('</body></html>');
+            janela.document.close();
+            janela.print();
+}
+
+function gerarUmPdf() {
+    var id = $("#id").val();
+    
+    if (id > 0 || id != "") {
+
+        //var id = $("#id").val();
+        var nome = $("#nome").val();    
+        var cpf = $("#cpf").val();
+        var rg = $("#rg").val();
+        var sexo = $("#sexo").val();
+        const dataInput = $("#dataNasci").val();
+        const data = new Date(dataInput);
+        dataFormatada = data.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+        dataNasci = dataFormatada;
+        var cep = $("#cep").val();
+        var rua = $("#rua").val();
+        var numero = $("#numero").val();
+        var bairro = $("#bairro").val();
+        var comp = $("#comp").val();
+        var cidade = $("#cidade").val();
+        var uf = $("#uf").val();
+        var email = $("#email").val();
+        // var tipo = $("#tipo").val();
+        var cargo = $("#cargo").val();
+
+        
+        var jan = window.open('','','width=792,height=760');
+        
+       
+
+        jan.document.write('<link rel="stylesheet" href="../css/all.css"></link>');
+        jan.document.write('<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"></link>');
+
+        jan.document.write('<title>Registro da Pessoa</title></head>');  
+        
+        jan.document.write('<body><img src="../images/cabecalho2.png" alt="">'); 
+
+        jan.document.write('<div style="height: 600px;margin: 20px">');
+        jan.document.write('<h2>Registro da Pessoa </h2>');
+
+        // <div style="height: 600px;overflow: scroll;" hidden>
+        // <table class="table table-hover table-striped"
+
+        jan.document.write('<br><strong> ID: </strong>' + id + '<br>');
+        jan.document.write('<strong> NOME: </strong>' + nome + '<br>');
+        jan.document.write('<strong> CARGO: </strong>' + cargo + '<br>');
+        jan.document.write('<strong> E-MAIL: </strong>' + email + '<br>');
+        jan.document.write('<strong> CPF: </strong>' + cpf + '<br>'); 
+        jan.document.write('<strong> RG: </strong>' + rg + '<br>');
+        jan.document.write('<strong> SEXO: </strong>' + sexo + '<br>');
+        jan.document.write('<strong> DT NASC: </strong>' + dataNasci + '<br>');
+        jan.document.write('<strong> CEP: </strong>' + cep + '<br>');
+        jan.document.write('<strong> RUA: </strong>' + rua + '<br>');
+        jan.document.write('<strong> NUMERO: </strong>' + numero + '<br>');
+        jan.document.write('<strong> BAIRRO: </strong>' + bairro + '<br>');
+        jan.document.write('<strong> COMPLEMENTO: </strong>' + comp + '<br>');
+        jan.document.write('<strong> CIDADE: </strong>' + cidade + '<br>');
+        jan.document.write('<strong> UF: </strong>' + uf + '<br>');                 
+        jan.document.write('_______________________________________________');
+        jan.document.write('</div>');
+        jan.document.write('</div></html>');
+        jan.document.close();
+        jan.print()
+
+    } else {
+        Swal.fire("Opss ", "Selecione uma pessoa! ", "error");
+    }
+} 
+
+// function converterImagen() {
+//     var arquivoEnviado = document.getElementById('logoGarage').files;
+//     if(arquivoEnviado.length > 0) {
+//         arquivoCarregado = arquivoEnviado[0];
+
+//         var arquivoLer = new FileReader();
+
+//         arquivoLer.onload = function(arquivoCarregado){
+//         var srcDados = arquivoCarregado.target.result;
+//             console.log(srcDados);
+
+//             var novaImagem = document.createElement('img');
+//             document.getElementById("receberImagem").innerHTML = novaImagem.outerHTML;
+
+
+//         }
+        
 //     }
-// });
 
-
-
-
+//     arquivoLer.readAsDataURL(arquivoCarregado);
+// } 
