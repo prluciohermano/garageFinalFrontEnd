@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
     <title>Gerenciar Garagem</title>
 </head>
-<body onload="buscarGaragem()">
+<body>
        <div class="flex-dashboard">
         <sidebar>
             <div class="sidebar-title">
@@ -68,21 +68,33 @@
                 <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>
                 <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </header>
-            <div class="main-content">
-                <div class="main-content-title">
-                    <h2>Relatórios</h2>
+                <div class="main-content">
+                    <div class="main-content-title">
+                        <h2>Relatórios</h2>
+                    </div>
+                    <div class="dashboard-flex-parent">
+                    <div class="main-content">
+                        <div class="dashboard-chart">
+                            <canvas id="myChart"></canvas>
+                            <br><br>
+                        </div>
+
+                        <div class="dashboard-chart">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                    <div class="dashboard-content2">
+                        <div class="dashboard-chart2">
+                            <span>RELATÓRIO NÚMERO DE CARROS VENDIDOS</span>
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="col-md-auto">
-                    <button type="button" value="IMPRIMIR" class="btn btn-success"
-                        onclick="gerarPdf()">Gerar PDF Pessoas</button>
-                </div>
-        <br/>
-           
-
-
-
-
+            </div>
+        </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
@@ -93,7 +105,6 @@
 
     <script src="../js/menu.js"></script>
     <script src="../js/relatorios.js"></script>
-    <script src="../js/listaPessoas.js"></script>
     
 </body>
 </html>
