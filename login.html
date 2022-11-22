@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Garage Control</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/fontawesome/css/all.min.css">
+</head>
+<body>
+<!-- <div class="container"> -->
+
+    <div class="login">
+        <div class="login-form">
+            <div class="login-form-wrapper">
+                <img class="carro-login" src="images/carro1.jpg">
+                <h3>Garage Control System</h3><br><br>
+                <div class="login-title">
+                    <h3>Login</h3>
+                </div>
+                <div class="msgError"></div>
+
+                <form>
+                    <div class="label-float">
+                        
+                        <input type="text" id="login" placeholder="" required>
+                        <label id="userLabel" for="login">Login</label>
+                      </div>
+                    <br>
+                    <div class="label-float">
+                                           
+                            <input type="password" id="senha" placeholder="" required>
+                            <label id="senhaLabel" for="senha">Senha</label>
+                            <i class="fa fa-eye" aria-hidden="true"></i>     
+                    </div>
+                    
+                    <a href="views/register.html" class="forgot-pass" id="forgot-pass">Esqueceu a senha?</a>
+                </form>
+                    <div class="btn justify-center">
+                        <button class="btn" onclick="entrar();">Login</button>
+                    </div>
+                
+                <br>
+                <br>
+                <div class="footer">
+                    <br>
+                    <div class="main-content2">
+                        <div class="d-flex justify-content-end">
+                            <a href="/views/termos.html" id="termos">Termos de Serviço</a>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                            <a href="views/politica.html" id="politica">Política de Privacidade</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="banner-login">
+            <img src="images/2.jpg">
+            
+        </div>
+    </div>
+<!-- </div> -->
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/plugins/fontawesome/js/all.min.js"></script>
+
+    <script>
+            let button = document.querySelector('form button.btn')
+            button.addEventListener("click", () => {
+                location.href = "/views/dashboard.html"
+                })
+    </script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

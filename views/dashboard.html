@@ -50,13 +50,13 @@
                 <i class="fa-solid fa-print"></i>
                 <a href="/views/gerenciarRelatorios.html">Relatórios</a>
             </li>
-            <li>
+            <!-- <li>
                 <i class="fa-solid fa-gears"></i>
                 <a href="/views/manutencao.html">Manutenção</a>
-            </li>
+            </li> -->
             <li class="sidebar-logout">
                 <i class="fas fa-sign-out-alt"></i>
-                <a href="/index.html">Logout</a>
+                <a href="/login.html">Logout</a>
             </li>
             </ul>
         </div>
@@ -240,7 +240,7 @@
                         <div class="box-modal">
 
                         </div>
-
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
                      <!-- <form action="get" id="formCadastroDashboard" class="formCadastroDashboard">
                         <div class="row mb-2 row-col-12">
@@ -308,16 +308,22 @@
     </main>
     </div>
        
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/jquery.validate.min.js"></script>
-    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/additional-methods.min.js"></script>
-    <script src="../plugins/jquery-validation/jquery-validation-1.19.5/dist/localization/messages_pt_BR.min.js"></script>
-    <script src="../plugins/package/dist/sweetalert2.all.min.js"></script>
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../plugins/fontawesome/js/all.min.js"></script>
-    <script src="../js/ajax.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="/plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
+    <script src="/plugins/package/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/fontawesome/js/all.min.js"></script>
+
     <script src="../js/menu.js"></script>
     <script src="../js/dashboard.js"></script>
+
+    <script>
+
+    
+
+    </script>
 </body>
 </html>

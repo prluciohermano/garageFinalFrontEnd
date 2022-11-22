@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,300);
+
+body {
+  
+    background-color: gray;
+
+  }
+
+#fa-solid {
+    color: #511aaf;
+    width: 60px;
+    height: 60px;
+}
+
+.register-title img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+#politica {
+    color: #511aaf;
+    width: 120px;
+    height: 120px;
+}

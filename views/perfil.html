@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../css/all.css">
+    <!-- <link rel="stylesheet" href="../css/styles.css"> -->
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
@@ -51,10 +52,10 @@
                     <i class="fa-solid fa-print"></i>
                     <a href="/views/gerenciarRelatorios.html">Relatórios</a>
                 </li>
-                <li>
+                <!-- <li>
                     <i class="fa-solid fa-gears"></i>
                     <a href="/views/manutencao.html">Manutenção</a>
-                </li>
+                </li> -->
                 <li class="sidebar-logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <a href="/index.html">Logout</a>
@@ -62,7 +63,8 @@
               </ul>
            </div>
         </sidebar>
-        <main id="mainContent">
+
+        <main>
             <header>
                 <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
                 <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
@@ -72,52 +74,103 @@
                     <h2>Perfil do Usuário</h2>
                 </div>
                 <div class="perfil-parent">
+                    
                     <div class="perfil">
-                        <div class="perfil-img">
+                        
+                         <div class="perfil-img">
                             <div class="img"></div>
-                        </div>
+                        </div> 
                         <div class="perfil-form">
+                            
                             <form id="form-perfil">
-                                <div class="form-floating mb-2">
-                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                                <div class="d-flex justify-content-center">
+                                    <h2>Cadastrar Usuário</h2>  
+                                </div>
+                                <br>           
+                                <div class="form-floating mb-1">
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required="true">
                                     <label for="nome">Nome Completo</label>        
                                 </div>
+                                <div class="form-floating mb-1">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required="true">
+                                    <label for="login">E-mail</label>        
+                                </div>
                                 
-                                <div class="form-floating mb-2">
-                                    <input type="login" class="form-control" name="login" id="login" placeholder="Login">
+                                <div class="form-floating mb-1">
+                                    <input type="text" class="form-control" name="login" id="login" placeholder="Login" required="true">
                                     <label for="login">Login</label>        
                                 </div>
-                                
-                                <div class="form-floating mb-2">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail">
-                                    <label for="email">E-mail</label>        
-                                </div>
                        
-                                <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="password" placeholder="Senha">
-                                    <label for="password">Senha</label>        
+                                <div class="form-floating mb-1">
+                                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="true">
+                                    <label for="senha">Senha</label>        
                                 </div>
-                                <div class="mb-2">
-                                    <label for="customFile" class="custom-file-label">Imagem Perfil</label>
-                                    <input class="custom-file-input" name="customFile" type="file" id="customFile">
+
+                                <div class="form-check">
+                                    <label class="form-check-label" for="isAdmin"></label>
+                                    <input class="form-check-input" type="checkbox" value="true" id="isAdmin">Admin</label>
                                   </div>
-                                  <button type="submit" class="btn">Salvar</button>
+                              
+                                <br>
+                                </button>
+                                <div class="mb-2">
+                                    <label for="imagemPerfil" class="custom-file-label">Imagem Perfil</label>
+                                    <input class="custom-file-input" name="imagemPerfil" type="file" id="imagemPerfil">
+                                  </div>
+                                  <input type="hidden" name="id" id="id">
+                                  <!-- <button type="submit" class="btn ">Novo</button> -->
+                                  <button type="button" class="btn" onclick="criarUsuario()">Salvar</button>
                             </form>
+                            <br>
+                            <div style="height: 240px;overflow:scroll;">
+                                <table class="table" id="form-perfil">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Usuários</th>
+                                            
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    				<!-- <main class="foto"> -->
+                        <!-- <main id="mainContent"> -->
+                            <!-- <div class="container-sm">
+                                <div class="row align-items-start">
+                                    <div class="col-md-auto">
+                                        <button class="btn-foto" id="select-image">
+                                            <input type="file" id="photo-file">Selecionar Imagem
+                                        </button>
+                        
+                                        <img src="" alt="" id="photo-preview" draggable="false">
+                        
+                                        <button class="btn-foto" id="crop-image">Cortar Imagem</button>
+                        
+                                        <button class="btn-foto" id="download">Exportar Imagem</button>
+                        
+                                        <div id="selection-tool"></div>
+                                    </div>
+                                </div>
+                            </div> -->
+                    <!-- </main> -->
                 </div>
             </div>
         </main>
+
+
+
        </div>
-       <script src="../plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-       <script src="../plugins/jquery-validation/dist/additional-methods.min.js"></script>
-       <script src="../plugins/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
        <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
        <script src="../plugins/jquery/jquery.min.js"></script>
        <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
        <script src="../plugins/fontawesome/js/all.min.js"></script>
-       <script src="../js/ajax.js"></script>
-       <script src="../js/menu.js"></script>
+       <script src="../js/menu.js"></script> 
+       
        <script src="../js/perfil.js"></script>
+
 </body>
 </html>
