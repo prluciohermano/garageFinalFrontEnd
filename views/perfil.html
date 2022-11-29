@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../plugins/sweetalert/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
 </head>
 <body>
        <div class="flex-dashboard">
@@ -62,13 +63,21 @@
                 </li>
               </ul>
            </div>
+           <br><br><br><br>
+           <div class="register-title">
+               <img src="" id="fotoPerfil" alt="Foto Perfil" width="10" height="10" class="rounded-circle"> 
+               <p id="nomePerfil" style="color:blueviolet"></p>               
+           </div>
         </sidebar>
 
         <main>
             <header>
-                <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+                
+                <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>             
                 <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            
             </header>
+                      
             <div class="main-content">
                 <div class="main-content-title">
                     <h2>Perfil do Usuário</h2>
@@ -77,8 +86,9 @@
                     
                     <div class="perfil">
                         
-                         <div class="perfil-img">
-                            <div class="img"></div>
+                         <div id="perfil-img" class="perfil-img">
+                            <!-- <img src="" alt="" id="preview-image"> -->
+                            
                         </div> 
                         <div class="perfil-form">
                             
@@ -88,21 +98,21 @@
                                 </div>
                                 <br>           
                                 <div class="form-floating mb-1">
-                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required="true">
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required>
                                     <label for="nome">Nome Completo</label>        
                                 </div>
                                 <div class="form-floating mb-1">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required="true">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
                                     <label for="login">E-mail</label>        
                                 </div>
                                 
                                 <div class="form-floating mb-1">
-                                    <input type="text" class="form-control" name="login" id="login" placeholder="Login" required="true">
+                                    <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
                                     <label for="login">Login</label>        
                                 </div>
                        
                                 <div class="form-floating mb-1">
-                                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="true">
+                                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required">
                                     <label for="senha">Senha</label>        
                                 </div>
 
@@ -119,13 +129,19 @@
                                   </div>
                                   <input type="hidden" name="id" id="id">
                                   <!-- <button type="submit" class="btn ">Novo</button> -->
-                                  <button type="button" class="btn" onclick="criarUsuario()">Salvar</button>
+                                  <div class="d-flex justify-content-end">
+                                  <button type="button" class="btn">Salvar</button>
+                                  
+                                </div>
                             </form>
-                            <br>
-                            <div style="height: 240px;overflow:scroll;">
+                            <hr>
+                            
+                            <div style="height: 280px; width: 500px;overflow:scroll;">
                                 <table class="table" id="form-perfil">
                                     <thead>
                                         <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Perfil</th>
                                             <th scope="col">Usuários</th>
                                             
                                             <th scope="col">Delete</th>
@@ -137,37 +153,16 @@
                             </div>
                         </div>
                     </div>
-                    				<!-- <main class="foto"> -->
-                        <!-- <main id="mainContent"> -->
-                            <!-- <div class="container-sm">
-                                <div class="row align-items-start">
-                                    <div class="col-md-auto">
-                                        <button class="btn-foto" id="select-image">
-                                            <input type="file" id="photo-file">Selecionar Imagem
-                                        </button>
-                        
-                                        <img src="" alt="" id="photo-preview" draggable="false">
-                        
-                                        <button class="btn-foto" id="crop-image">Cortar Imagem</button>
-                        
-                                        <button class="btn-foto" id="download">Exportar Imagem</button>
-                        
-                                        <div id="selection-tool"></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                    <!-- </main> -->
                 </div>
             </div>
         </main>
-
-
-
        </div>
+      
        <script src="../plugins/sweetalert/dist/sweetalert2.all.min.js"></script>
        <script src="../plugins/jquery/jquery.min.js"></script>
        <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
        <script src="../plugins/fontawesome/js/all.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
        <script src="../js/menu.js"></script> 
        
        <script src="../js/perfil.js"></script>

@@ -60,11 +60,20 @@
             </li>
             </ul>
         </div>
+        <br><br><br><br>
+        <div class="register-title">
+            <img src="" id="fotoPerfil" alt="Foto Perfil" width="10" height="10" class="rounded-circle"> 
+        
+            <p id="nomePerfil" style="color:rgb(43, 144, 226)"></p>               
+        </div>
     </sidebar>
     <main id="mainContent">
         <header>
+
             <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+            
             <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+
         </header>
         <div class="main-content">
             <div class="main-content-title">
@@ -240,62 +249,8 @@
                         <div class="box-modal">
 
                         </div>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    </form>
-                     <!-- <form action="get" id="formCadastroDashboard" class="formCadastroDashboard">
-                        <div class="row mb-2 row-col-12">
-                                <div class="col-6">
-                                    <label for="id" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="id" readonly="readonly">
-                                </div> 
-                                <div class="mb-2 col-6">
-                                    <label for="numeroBox" class="form-label">Box</label>
-                                    <input type="text" class="form-control" id="numeroBox" placeholder="Informe número do Box"  readonly="readonly">
-                                </div>
-                            </div>
-                            <div class="row mb-2 row-col-12">
-                                <div class="mb-2 col-6">
-                                    <label for="placaCar" class="form-label">Placa</label>
-                                    <input type="text" class="form-control" id="placaCar" placeholder="Número da Placa"  readonly="readonly">
-                                </div>
-                                
-                                <div class="mb-2 col-6">
-                                    <label for="marcaCar" class="form-label">Marca</label>
-                                    <input type="text" class="form-control" id="marcaCar" placeholder="Marca do veículo"  readonly="readonly">
-                                </div>
-                            </div>
-                            <div class="row row-col-12"> 
-                                <div class="mb-2 col-6">
-                                    <label for="entradaCar" class="form-label">Entrada</label>
-                                    <input type="text" name="entradaCar" class="form-control" id="entradaCar"  readonly="readonly">
-                                </div>
-                                    <div class="mb-2 col-6">
-                                    <label for="modeloCar" class="form-label">Modelo</label>
-                                    <input type="text" class="form-control" id="modeloCar" name="modeloCar" placeholder="Modelo do veículo"  readonly="readonly">                   
-                                </div>
-                            </div>
-                            <div class="row row-col-12">
-                                <div class="mb-2 col-6">
-                                    <label for="corCar" class="form-label">Cor</label>
-                                    <input type="text" class="form-control" id="corCar" placeholder="Cor do veículo"  readonly="readonly">                   
-                                </div>
-                                
-                                <div class="mb-2 col-6">
-                                    <label for="nomeResp" class="form-label">Responsável</label>
-                                    <input type="text" class="form-control" id="nomeResp" placeholder="Responsável pelo veículo"  readonly="readonly">                   
-                                </div>
-                            </div>
-                            <div class="row row-col-12">
-                                <div class="mb-2 col-6">
-                                    <label for="defeitoCar" class="form-label">Defeito</label>
-                                    <input type="text" class="form-control" id="defeitoCar" placeholder="Defeito encontrado"  readonly="readonly">                   
-                                </div>
-                            <div class="mb-2 col-6">
-                                    <label for="mecanicoCar" class="form-label">Mecânico</label>
-                                    <input type="text" class="form-control" id="mecanicoCar" placeholder="Nome do mecânico"  readonly="readonly">                   
-                            </div>
-                            </div>
-                    </form>  -->
+                       
+              
                 </div>       
             </div>
                 <div class="modal-footer">

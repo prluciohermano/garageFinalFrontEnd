@@ -95,12 +95,16 @@
         <h2>Me mande uma mensagem</h2>
         <p>Caso queira falar sobre o projeto, contratar o serviço para sua empresa, ou falar conosco...</p>
         <img src="images/carro2.png" alt="Perfil carro2">
-        <form action="" method="">
-            <input type="text" name="name" placeholder="Seu nome">
-            <input type="email" name="email" placeholder="Seu e-mail">
-            <textarea name="msg" placeholder="Digite uma mensagem"></textarea>
-            <input type="submit" value="Enviar">
+
+        <form method="POST" action="https://formsubmit.co/prluciohermano@gmail.com">
+            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <textarea name="message" placeholder="Digite uma mensagem" required></textarea>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="http://127.0.0.1:5500/thanks.html" target="_blank">
+            <input type="submit" value="Enviar" class="btn-enviar">
         </form>
+
         <div class="footer-social">
             <h4>Siga-nos</h4>
             <div class="social-icons">

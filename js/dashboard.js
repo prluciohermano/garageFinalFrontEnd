@@ -1,5 +1,6 @@
 const firstLog = JSON.parse(sessionStorage.getItem('token'));
 
+
 if (firstLog == undefined) {
     location.href = "/login.html"
     } else {
@@ -10,6 +11,43 @@ if (firstLog == undefined) {
     const application = 'application/json'
     method = 'Access-Control-Request-Method';
     head = 'Access-Control-Request-Headers';
+
+    function pesquisarFoto() {
+                
+        const tokenNovo = JSON.parse(sessionStorage.getItem('token'));
+        const userLogado = JSON.parse(sessionStorage.getItem('login'));
+    
+        if (userLogado != null && userLogado.trim() != '') {
+        
+            $.ajax({
+                method : "GET",
+                url : "http://localhost:8080/api/usuarios/fotoPerfil",
+                data : "userLogado=" + userLogado,
+                dataType: "json",
+                headers : { Authorization : tokenNovo, Content : application },
+                async: true,
+                crossDomain : true,
+                success : function(response) {
+    
+                    const fotoPerfil = (response.imagem)
+                    const nomePer = (response.nomeUsuario)
+                    sessionStorage.setItem('fotoPerfil', JSON.stringify(fotoPerfil));
+                    sessionStorage.setItem('nomePer', JSON.stringify(nomePer));
+                    
+                    var tipo = document.getElementById('fotoPerfil');
+                    tipo.src = fotoPerfil; 
+                    
+                    document.getElementById('nomePerfil').innerHTML = ("Usuário: " + nomePer);
+
+                    
+    
+                }
+                        }).fail(function(xhr, status, errorThrown) {
+                            Swal.fire("Opss ", "Erro ao buscar usuario: ", "error");
+                });
+        }
+        
+    } pesquisarFoto();
 
     
     function pesquisarGaragem(buscaBox) {

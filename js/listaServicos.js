@@ -5,6 +5,12 @@ if (firstLog == null) {
 
 } else {
 
+    const fotoPerfil = JSON.parse(sessionStorage.getItem('fotoPerfil'));
+    var tipo = document.getElementById('fotoPerfil');
+    tipo.src = fotoPerfil;
+    const nomePer = JSON.parse(sessionStorage.getItem('nomePer'));
+    document.getElementById('nomePerfil').innerHTML = ("Usuário: " + nomePer);
+
     const baseServidor = "http://localhost:8080";
     const tokenNovo = JSON.parse(sessionStorage.getItem('token'));
     const Content = 'Content-Type';
@@ -107,7 +113,7 @@ if (firstLog == null) {
 
                     success : function(response) {
                         
-                    $('#'+ id).remove();
+                    // $('#'+ id).remove();
                     document.getElementById('formCadastroServico').reset();
                     Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");	
                     

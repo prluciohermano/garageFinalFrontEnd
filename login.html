@@ -14,10 +14,14 @@
 
     <div class="login">
         <div class="login-form">
+            
             <div class="login-form-wrapper">
-                <img class="carro-login" src="images/carro1.jpg">
-                <h3>Garage Control System</h3><br><br>
-                <div class="login-title">
+                <br><br>
+                <div class="register-title">
+                    <img class="carro-login" src="images/carro1.jpg">
+                    <h3 style="color:blueviolet">Garage Control System</h3><br>
+                </div>
+                <div class="register-title">
                     <h3>Login</h3>
                 </div>
                 <div class="msgError"></div>
@@ -33,11 +37,12 @@
                                            
                             <input type="password" id="senha" placeholder="" required>
                             <label id="senhaLabel" for="senha">Senha</label>
-                            <i class="fa fa-eye" aria-hidden="true"></i>     
+                            <i class="fa fa-eye btn" onclick="mostrarSenha();" id="btns" aria-hidden="true"></i>     
                     </div>
-                    
+                    <br>
                     <a href="views/register.html" class="forgot-pass" id="forgot-pass">Esqueceu a senha?</a>
                 </form>
+                
                     <div class="btn justify-center">
                         <button class="btn" onclick="entrar();">Login</button>
                     </div>
@@ -69,9 +74,9 @@
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/plugins/fontawesome/js/all.min.js"></script>
 
-    <script>
-            let button = document.querySelector('form button.btn')
-            button.addEventListener("click", () => {
+    <script src="text/javascript">
+            let button = document.querySelector('form button.btn');
+            button.addEventListener('click', () => {
                 location.href = "/views/dashboard.html"
                 })
     </script>

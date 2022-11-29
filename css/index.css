@@ -14,6 +14,34 @@ h2 {
     font-size: 30px;
 }
 
+input .btn-enviar {
+    display: block;
+
+    width: 100%;
+    background-color: #fff;
+    color: #fff;
+  
+    position: relative;
+}
+
+.btn-enviar {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #087952, #073425);
+    border: none;
+    color: #fff;
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+}
+
+.btn-enviar:hover {
+    border: none;
+    color: #fff;
+    transform: scale(1.05);
+    transition: .2s;
+    font-size: 16px;
+}
+
 
 /* navbar */
 

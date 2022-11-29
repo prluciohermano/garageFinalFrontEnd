@@ -9,7 +9,7 @@ function entrar() { // usado para login
     const login = document.getElementById('login').value
     const senha = document.getElementById('senha').value
 
-    console.log(JSON.stringify({ login:login, senha:senha }));
+    sessionStorage.setItem('login', JSON.stringify(login));
 
     $.ajax({
         
@@ -22,15 +22,28 @@ function entrar() { // usado para login
         data : JSON.stringify({ login:login, senha:senha }),
         
         success : function(response) {
-            console.info(JSON.stringify(response));
-
+            
             const tokenBanco = (response.Authorization);
             sessionStorage.setItem('token', JSON.stringify(tokenBanco));
             window.location = '/views/dashboard.html';
+
     }
 
     }).fail(function(xhr, status, errorThrown) {
         Swal.fire("Opss ", "Login e/ou Senha não conferem!", "error");
     });
 } 
+
+
+function mostrarSenha() {
+
+    const password = document.querySelector('#senha');
+
+        if (password.type === 'password') {
+            password.type = 'text';
+        } else {
+            password.type = 'password';
+        }
+    
+}
 
