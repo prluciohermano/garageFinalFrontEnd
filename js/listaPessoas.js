@@ -65,8 +65,7 @@ if (firstLog == null) {
         var id = $('#id').val();
         
         if(id != null && id.trim() != ''){
-        deleteUser(id);
-        document.getElementById("formCadastroPessoa").reset();
+            deletePessoa(id);
         }
 
     }
@@ -79,45 +78,60 @@ if (firstLog == null) {
         document.getElementById("formCadastroPessoa").reset();
     }
 
-
     function deletePessoa(id){
-        
-        Swal.fire({
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+          })
+          
+          swalWithBootstrapButtons.fire({
             title: 'Você tem certeza?',
             text: "Essa ação não poderá ser revertida!",
             icon: 'warning',
-            confirmButtonColor: '#a777e3',
-            confirmButtonText: 'Sim, pode deletar!',
             showCancelButton: true,
-            cancelButtonColor: 'gray'
-            
-        }).then((result) => {
-            if (result.isConfirmed) {
-        
-            $.ajax({
-                    method : "DELETE",
-                    url : "http://localhost:8080/api/pessoas/" + id,
-                    data : "id=" + id,
-                    dataType: "json",
-                    headers : { Authorization : tokenNovo, Content : application },
-                    async: true,
-                    crossDomain : true,
+            confirmButtonText: 'Sim, pode deletar!',
+            cancelButtonText: 'Não, não tenho certeza',
+            reverseButtons: true
+          }).then((result) => {
 
-                    success : function(response) {
-                        
-                        //$('#'+ id).remove();
-                    document.getElementById('formCadastroPessoa').reset();
-                    Swal.fire("Pronto", "Registro Excluído com sucesso!", "success");	
-                        
-                        apagaFormPessoa();
+            if (result.isConfirmed) {
+                
+                  $.ajax({
+                          method : "DELETE",
+                          url : "http://localhost:8080/api/pessoas/" + id,
+                          data : "id=" + id,
+                          dataType: "json",
+                          headers : { Authorization : tokenNovo, Content : application },
+                          async: true,
+                          crossDomain : true,
+                        })
+
                         buscarPessoa();
-                    }
-                }).fail(function(xhr, status, errorThrown) {
-                    Swal.fire("Opss ", "Erro ao deletar pessoa por id: ", "error");
-                });
-            }	
-        })
+
+                swalWithBootstrapButtons.fire(
+                    'Deletado!',
+                    'Seu arquivo foi deletado com sucesso.',
+                    'success'
+                    )
+                buscarPessoa();
+
+            } else if (
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'Seu arquivo não foi excluído!',
+                'error'
+              )
+            }
+          })
+
     }
+
 
     function pesquisarPessoa() {
                 

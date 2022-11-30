@@ -48,7 +48,9 @@ if (firstLog == null) {
                             + '</td><td>'
                             + precoTotal  
                             + '</td><td>'
-                            + response[i].pessoa.nome                                           						
+                            + response[i].veiculo.descricao  
+                            + '</td><td>'
+                            + response[i].nomePessoa                                           						
                             + '</td><td><button type="button" onclick="colocarEmEdicaoServico('
                             + response[i].id
                             + ')" class="btn btn-primary" data-bs-dismiss="modal">Ver</button></td><td><button type="button" class="btn btn-danger" onclick="deleteServico('
@@ -187,7 +189,7 @@ if (firstLog == null) {
         document.getElementById('observacoes').value = "";
         document.getElementById('total').value = "";
         document.getElementById('precoServico').value = "";
-        document.getElementById('pessoa').value = "";
+        document.getElementById('nomePessoa').value = "";
         document.getElementById('dataInicialServico').value = "";
         document.getElementById('dataFinalServico').value = "";
     }
@@ -213,6 +215,8 @@ if (firstLog == null) {
                 $("#descricao").val(response.descricao);
                 $("#garantia").val(response.garantia);
                 $("#defeito").val(response.defeito);
+                $("#nomePessoa").val(response.nomePessoa);
+                $("#descVeiculo").val(response.veiculo.id);
                 $("#observacoes").val(response.observacoes);
 
                 var totalService = 0;
@@ -371,7 +375,7 @@ if (firstLog == null) {
 
         $.ajax({
             method : "GET",
-            url : "http://localhost:8080/api/pessoas",
+            url : "http://localhost:8080/api/veiculos/",
             dataType: "json",
             headers : { Authorization : tokenNovo, Content : application },
             async: true,
@@ -379,9 +383,11 @@ if (firstLog == null) {
             success : function(response) {
                 
             for (var i = 0; i < response.length; i++) {
-                var idPes = response[i].id;
-                var value = response[i].nome;
-                $("#pessoa").append("<option value='" + idPes + "'>" + value + "</option>");
+                var idVei = response[i].id;
+                var value = response[i].descricao;
+                var placaCarro = response[i].placaCar;
+                $("#descVeiculo").append("<option value='" + idVei + "'>" + value + "</option>");
+                $("#placa").append("<value='" + placaCarro + "</value=>");
             }
 
         }
@@ -391,6 +397,31 @@ if (firstLog == null) {
         });
 
     } carregaProprietario();
+
+    // function carregaProprietario() {
+
+    //     $.ajax({
+    //         method : "GET",
+    //         url : "http://localhost:8080/api/pessoas",
+    //         dataType: "json",
+    //         headers : { Authorization : tokenNovo, Content : application },
+    //         async: true,
+    //         crossDomain : true,
+    //         success : function(response) {
+                
+    //         for (var i = 0; i < response.length; i++) {
+    //             var idPes = response[i].id;
+    //             var value = response[i].nome;
+    //             $("#pessoa").append("<option value='" + idPes + "'>" + value + "</option>");
+    //         }
+
+    //     }
+
+    //     }).fail(function(xhr, status, errorThrown) {
+    //         Swal.fire("Erro ao carregar Proprietário " + xhr.responseText, "", "error");
+    //     });
+
+    // } carregaProprietario();
 
 
     function pesquisarProdutoServico() { /// Vem do acrescentar Produto
@@ -594,14 +625,15 @@ if (firstLog == null) {
     function abrirOrdemServico() { // Salvar Ordem de Serviço (Botão verde)
 
         var id = $("#id").val();
-        var pessoa = $("#pessoa").val();
+        var nomePessoa = $("#nomePessoa").val();
+        var descVeiculo = $("#descVeiculo").val();
         var garantia = $("#garantia").val();
         var total = $("#total").val();
         total = parseFloat(total.replace(/[.]/g, "").replace(/[,]/g, "."));
 
-        if (pessoa == null || pessoa != null && pessoa.trim() == '') {
-            $("#pessoa").focus();
-            Swal.fire("Opss!", "Escolha uma pessoa", "info");
+        if (descVeiculo == null || descVeiculo != null && descVeiculo.trim() == '') {
+            $("#descVeiculo").focus();
+            Swal.fire("Opss!", "Escolha um veículo", "info");
             return;
         }
 
@@ -611,7 +643,8 @@ if (firstLog == null) {
             return;
         }
         
-        var pessoa = document.getElementById('pessoa').value;
+        var nomePessoa = document.getElementById('nomePessoa').value;
+        var descVeiculo = document.getElementById('descVeiculo').value;
         var descricao = document.getElementById('descricao').value;
         var garantia = document.getElementById('garantia').value;
         var observacoes = document.getElementById('observacoes').value;
@@ -627,6 +660,22 @@ if (firstLog == null) {
         var dataFinal = document.getElementById('dataFinalServico').value;
         var dataFinalServico = moment(dataFinal, "DD/MM/YYYY");
         dataFinalServico.format("YYYY-MM-DD HH:mm:ss")
+
+        console.log(JSON.stringify({
+            id: id,
+            descricao: descricao, 
+            garantia:garantia, 
+            observacoes: observacoes, 
+            defeito: defeito, 
+            dataInicialServico: dataInicialServico, 
+            dataFinalServico: dataFinalServico, 
+            precoServico: precoServico,
+            total: precoServico,
+            nomePessoa : nomePessoa,
+            veiculo: {
+                id: descVeiculo,
+            }
+        }));
         
             $.ajax({
                 method : "POST",
@@ -647,8 +696,9 @@ if (firstLog == null) {
                     dataFinalServico: dataFinalServico, 
                     precoServico: precoServico,
                     total: precoServico,
-                    pessoa: {
-                        id: pessoa,
+                    nomePessoa : nomePessoa,
+                    veiculo: {
+                        id: descVeiculo,
                     }
                 }),
                 contentType : "application/json; charset=utf-8",

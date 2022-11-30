@@ -73,9 +73,6 @@
         <main>
             <header>
                 <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
-                <div class="dropdown">
-                    <img src="" id="fotoPerfil" alt="Foto Perfil" width="30" height="30" class="rounded-circle">                  
-                </div>
                 <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </header>
                 <div class="main-content">
@@ -92,6 +89,7 @@
                                         <th scope="col">ID</th>
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Total</th>
+                                        <th scope="col">Veículo</th>
                                         <th scope="col">Responsável</th>
 
                                         <th scope="col">Editar</th>
@@ -143,12 +141,21 @@
                                                 readonly="readonly" disabled>
                                         </div>
                                         <div class="col-sm"> <!-- SELECT -->
-                                            <label for="pessoa"
-                                                class="form-label">Proprietário</label>
+                                            <label for="descVeiculo"
+                                                class="form-label">Carro</label>
                                             <select class="form-control"
-                                                id="pessoa" nome="pessoa">
+                                                id="descVeiculo" nome="descVeiculo">
                                                 <option value="">Selecione</option>
                                             </select>
+                                        </div>
+                                      
+                                        <div class="col-sm"> 
+                                            <label for="nomePessoa"
+                                                class="form-label">Responsável</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="nomePessoa"
+                                                placeholder="Reponsável" required="required">
                                         </div>
                                         <div class="col-sm">
                                             <label for="descricao"
@@ -166,13 +173,7 @@
                                                 id="defeito"
                                                 placeholder="Informe o defeito" required="required">
                                         </div>
-                                        <div class="col-sm">
-                                            <label for="garantia"
-                                                class="form-label">Garantia</label>
-                                            <input type="text"
-                                                class="form-control"
-                                                id="garantia" placeholder="informar garantia" required="required">
-                                        </div>
+                                       
                                     </div>
                                 <div class="row">
                                     <div class="col-md-auto">
@@ -200,7 +201,13 @@
                                                 id="observacoes"
                                                 placeholder="Inclua observações" required="required">
                                         </div>
-                                       
+                                        <div class="col-sm">
+                                            <label for="garantia"
+                                                class="form-label">Garantia</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="garantia" placeholder="informar garantia" required="required">
+                                        </div>
                                         
                                         <div class="col-md-auto">
                                             <label for="precoServico"
