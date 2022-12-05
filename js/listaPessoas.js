@@ -112,21 +112,14 @@ if (firstLog == null) {
 
                         buscarPessoa();
 
-                swalWithBootstrapButtons.fire(
-                    'Deletado!',
-                    'Seu arquivo foi deletado com sucesso.',
-                    'success'
-                    )
+                swalWithBootstrapButtons.fire('Deletado!', 'Seu arquivo foi deletado com sucesso.', 'success')
+                
                 buscarPessoa();
 
             } else if (
               result.dismiss === Swal.DismissReason.cancel
             ) {
-              swalWithBootstrapButtons.fire(
-                'Cancelado',
-                'Seu arquivo não foi excluído!',
-                'error'
-              )
+              swalWithBootstrapButtons.fire('Cancelado', 'Seu arquivo não foi excluído!', 'error')
             }
           })
 

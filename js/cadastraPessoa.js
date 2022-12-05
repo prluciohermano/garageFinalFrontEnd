@@ -1,51 +1,51 @@
-$(function() {
+// $(function() {
 
-    $("#pessoa-form").submit(function (e) {
-        e.preventDefault();
-    }).validate({
-        rules: {
-            nome: {
+//     $("#pessoa-form").submit(function (e) {
+//         e.preventDefault();
+//     }).validate({
+//         rules: {
+//             nome: {
                 
-            },
-            cpf: {
+//             },
+//             cpf: {
                 
-            },
-            rg: {
+//             },
+//             rg: {
                 
-            },
-            genero: {
+//             },
+//             genero: {
                 
-            },
-            cep: {
+//             },
+//             cep: {
                 
-            },
-            rua: {
+//             },
+//             rua: {
                 
-            },
-            bairro: {
+//             },
+//             bairro: {
                 
-            },
-            comp: {
+//             },
+//             comp: {
                 
-            },
-            cidade: {
+//             },
+//             cidade: {
                 
-            },
-            uf: {
+//             },
+//             uf: {
                 
-            },
-            email: {
+//             },
+//             email: {
                 
-            },
-        },
-        submitHandler: function (form) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Os dados foram salvos com sucesso!',
-                showConfirmButton: false,
-                timer: 1500
-            })           
-        }
-    });
-})
+//             },
+//         },
+//         submitHandler: function (form) {
+//             Swal.fire({
+//                 position: 'center',
+//                 icon: 'success',
+//                 title: 'Os dados foram salvos com sucesso!',
+//                 showConfirmButton: false,
+//                 timer: 1500
+//             })           
+//         }
+//     });
+// })

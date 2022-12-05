@@ -114,23 +114,21 @@ if (firstLog == null) {
                     async: true,
                     crossDomain : true,
 
-                    success : function(response) {
-                        
-                    $('#'+ id).remove();
-                    document.getElementById('formCadastroVeiculo').reset();
+                    success : buscarVeiculo()
+                }),
                     Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");	
-                    
-                        apagaFormCadastro();
-                        buscarVeiculo();
+                    function umSegundo(){
+                        window.location.href = "gerenciarVeiculos.html"
                     }
-                }), Swal.fire(
-                'Deletado!',
-                'Seu arquivo foi deletado com sucesso.',
-                'success'
-            )
+                    setTimeout(umSegundo, 1000*1);
+                        
             }
-        })	
-    }
+
+        }).fail(function(xhr, status, errorThrown) {
+                     Swal.fire('Deletado!', 'Seu arquivo foi deletado com sucesso.', 'success')
+                })
+            
+    } // função delete
 
     function pesquisarVeiculo() {
                 

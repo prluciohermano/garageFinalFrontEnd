@@ -182,6 +182,7 @@ if (firstLog == null) {
     }
 
     function apagaFormServico() {
+        document.getElementById('descVeiculo').value = "";
         document.getElementById('id').value = "";
         document.getElementById('descricao').value = "";
         document.getElementById('garantia').value = "";
@@ -192,6 +193,7 @@ if (firstLog == null) {
         document.getElementById('nomePessoa').value = "";
         document.getElementById('dataInicialServico').value = "";
         document.getElementById('dataFinalServico').value = "";
+        
     }
 
 
@@ -723,13 +725,13 @@ if (firstLog == null) {
     function validarProduto() { // Salvar Ordem de Serviço
 
         var id = $("#id").val();
-        var pessoa = $("#pessoa").val();
+        var nomePessoa = $("#nomePessoa").val();
         var garantia = $("#garantia").val();
         
 
-        if (pessoa == null || pessoa != null && pessoa.trim() == '') {
-            $("#pessoa").focus();
-            Swal.fire("Opss!", "Escolha uma pessoa", "info");
+        if (nomePessoa == null || nomePessoa != null && nomePessoa.trim() == '') {
+            $("#nomePessoa").focus();
+            Swal.fire("Opss!", "Escolha uma pessoa responsável", "info");
             return;
         }
 
@@ -739,7 +741,8 @@ if (firstLog == null) {
             return;
         }
         
-        var pessoa = document.getElementById('pessoa').value;
+        var descVeiculo = document.getElementById('descVeiculo').value;
+        var nomePessoa = document.getElementById('nomePessoa').value;
         var descricao = document.getElementById('descricao').value;
         var garantia = document.getElementById('garantia').value;
         var observacoes = document.getElementById('observacoes').value;
@@ -778,9 +781,11 @@ if (firstLog == null) {
                     dataFinalServico: dataFinalServico, 
                     precoServico: precoServico,
                     total: total,
-                    pessoa: {
-                        id: pessoa,
+                    nomePessoa : nomePessoa,
+                    veiculo: {
+                        id: descVeiculo,
                     }
+                    
                 }),
                 contentType : "application/json; charset=utf-8",
                 success : function(response) {

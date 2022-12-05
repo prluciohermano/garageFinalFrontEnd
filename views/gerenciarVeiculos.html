@@ -25,7 +25,7 @@
                             <i class="fa-solid fa-house-chimney"></i>
                             <a href="/views/dashboard.html"> Dashboard</a>
                         </li>
-                        <li>
+                        <li id="perfil">
                             <i class="fa-solid fa-user"></i>
                             <a href="/views/perfil.html"> Perfil</a>
                         </li>
@@ -72,7 +72,7 @@
             </sidebar>
             <main>
                 <header>
-                    <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+                    <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>             
                     <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </header>
                 <div class="main-content">
@@ -142,6 +142,7 @@
                                             <label for="id" class="form-label">ID</label>
                                             <input type="text"
                                                 class="form-control" id="id"
+                                                placeholder="Id"
                                                 readonly="readonly" disabled>
                                         </div>
                                         <div class="col-sm">
@@ -185,7 +186,9 @@
                                                 class="form-control"
                                                 id="dataEntrada"
                                                 name="dataEntrada"
-                                                readonly="true">
+                                                placeholder="data automática"
+                                                readonly="true"
+                                                disabled>
                                         </div>
                                         <div class="col-sm">
                                             <label for="precoEntrada"

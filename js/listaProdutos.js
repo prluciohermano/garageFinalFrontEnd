@@ -94,33 +94,32 @@ if (firstLog == null) {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                $.ajax({
-                    method : "DELETE",
-                    url : "http://localhost:8080/api/produtos/" + id,
-                    data : "id=" + id ,
-                    dataType: "json",
-                    headers : { Authorization : tokenNovo, Content : application },
-                    async: true,
-                    crossDomain : true,
+                    $.ajax({
+                        method : "DELETE",
+                        url : "http://localhost:8080/api/produtos/" + id,
+                        data : "id=" + id ,
+                        dataType: "json",
+                        headers : { Authorization : tokenNovo, Content : application },
+                        async: true,
+                        crossDomain : true,
 
-                    success : function(response) {
-                        
-                    $('#'+ id).remove();
-                    document.getElementById('formCadastroProduto').reset();
-                    Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");	
-                    
-                        apagaFormCadastro();
-                        buscarProduto();
-                    }
-                }), Swal.fire(
-                'Deletado!',
-                'Seu arquivo foi deletado com sucesso.',
-                'success'
-            )
-            }
-        })	
-    }
+                        success : buscarProduto()
+                    }),   
+                        Swal.fire("Pronto!", "Registro excluído com sucesso!", "success");
+                        function umSegundo(){
+                            window.location.href = "gerenciarProdutos.html"
+                        }
+                        setTimeout(umSegundo, 1000*1);	                        
+                }
 
+            }).fail(function(xhr, status, errorThrown) {
+                Swal.fire('Deletado!', 'Seu arquivo foi deletado com sucesso.', 'success')
+
+            })
+            buscarProduto();
+    } // função
+        
+    
     function pesquisarProduto() {
                 
         var nome = $('#nameBusca').val();

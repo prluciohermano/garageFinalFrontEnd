@@ -24,7 +24,7 @@
                     <i class="fa-solid fa-house-chimney"></i>
                     <a href="/views/dashboard.html"> Dashboard</a>
                 </li>
-                <li>
+                <li id="perfil">
                     <i class="fa-solid fa-user"></i>
                     <a href="/views/perfil.html"> Perfil</a>
                 </li>
@@ -52,10 +52,6 @@
                     <i class="fa-solid fa-print"></i>
                     <a href="/views/gerenciarRelatorios.html">Relatórios</a>
                 </li>
-                <!-- <li>
-                    <i class="fa-solid fa-gears"></i>
-                    <a href="/views/manutencao.html">Manutenção</a>
-                </li> -->
                 <li class="sidebar-logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <a href="/index.html">Logout</a>
@@ -71,23 +67,14 @@
         </sidebar>
         <main>
             <header>
-                <i id="iconMenu" onclick="responsiveSidebar()" class="fas fa-bars"></i>
+                <a href="/views/dashboard.html"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>             
                 <a href="../index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </header>
             <div class="main-content">
                 <div class="main-content-title">
                     <h2>Gerenciar Garagem</h2>
                 </div>
-                
-                <!-- <div class="panel-row">
-                    <button id="btn-cadastrar" class="panel panel-50">Cadastrar Produto</button>  
-                    <button id="btn-listar" class="panel panel-50" onclick="buscarProduto()"> Listar Produtos</button>      
-                </div> -->
         <br/>
-           
-                   
-                <!-- aaaaaaaaaaaaaaaaaaaa  Tabela principal de pessoas   aaaaaaaaaaaaaaaaaaaaaaaa -->
-
                 <div style="height: 300px;overflow: scroll;">
 					<table class="table table-hover table-striped" id="tabelaprincipalGar">
 						<thead>
@@ -100,22 +87,15 @@
                                 <th scope="col">Proprietário</th>
                                 <th scope="col">Defeito</th>
                                 <th scope="col">Mecânico</th>
-								
-								<!-- <th scope="col">Editar</th> -->
+
 								<th scope="col">Delete</th>
 							</tr>
 						</thead>
 						<tbody>
 						</tbody>
 					</table>
-				</div>
-               
-                <!-- ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg -->
-                                      
+				</div>  
                     <div class="row">
-                    
-                        <!-- <div class="shadow-sm p-3 mb-3 bg-body rounded"></div> -->
-                        
                         <div id="preencheBoxes" class="row preencheBoxes">
                             <h4>Boxes: </h4>
                             <div id="title-div box-01" onclick="pesquisarBox('box-01')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-01</div>
@@ -130,19 +110,14 @@
                             <div id="title-div box-10" onclick="pesquisarBox('box-10')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-10</div>
                             <div id="title-div box-11" onclick="pesquisarBox('box-11')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-11</div>
                             <div id="title-div box-12" onclick="pesquisarBox('box-12')" style="cursor: pointer" class="box-icons box box-01"><i class="fa-solid fa-car"></i>box-12</div>
-                        </div>
-                        
-                    
-                    
-                <!-- bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb -->
-        
+                        </div>    
              <div class="row">
                 <div action="" id="formCadastroGaragem" class="formCadastroGaragem">
                     
                     <div class="row row-col-6">
                       <div class="col-1">
                           <label for="id" class="form-label">ID</label>
-                          <input type="text" class="form-control" id="id" readonly="readonly">
+                          <input type="text" class="form-control" id="id" readonly="readonly" disabled>
                       </div>
                       
                       <div class="col-3">
@@ -153,23 +128,27 @@
                     
                       <div class="col-2">
                           <label for="placaCar" class="form-label">Placa Carro</label>
-                          <input type="text" class="form-control" id="placaCar" readonly="readonly" placeholder="" required="required">
+                          <input type="text" class="form-control" id="placaCar"
+                           readonly="readonly" placeholder="" required="required" disabled>
                       </div>
                               
                       <div class="col-3">
                           <label for="descricao" class="form-label">Carro</label>
-                          <input type="text" class="form-control" id="descricao" readonly="readonly" placeholder="" required="required">
+                          <input type="text" class="form-control" id="descricao" readonly="readonly"
+                           placeholder="" required="required" disabled>
                       </div>
  
                        <div class="col-2">
                             <label for="corVeiculo" class="form-label">Cor</label>
-                            <input type="text" class="form-control" id="corVeiculo" readonly="readonly" placeholder="" required="required">                   
+                            <input type="text" class="form-control" id="corVeiculo" readonly="readonly"
+                             placeholder="" required="required" disabled>                   
                         </div> 
                     </div>
                     <div class="row row-col-6">
                         <div class="col-3">
                             <label for="nomeResp" class="form-label">Responsável</label>
-                            <input type="text" class="form-control" id="nomeResp" readonly="readonly" placeholder="" required="required">                   
+                            <input type="text" class="form-control" id="nomeResp" readonly="readonly"
+                             placeholder="" required="required" disabled>                   
                         </div>
                     
                         <div class="col-3">
@@ -191,15 +170,9 @@
                         <div class="col-md-auto">
                             <button type="button" class="btn btn-secondary" onclick="apagaFormGaragem();">Recomeçar</button>
                         </div>
-                        <!-- <div class="col-md-auto">
-                            <button type="button" class="btn btn-warning" onclick="botaoDeletarDaTela();">Deletar</button>
-                        </div> -->
                     </div> 
                 </form>
             </div>
-            
-                <!-- hhhhhhhhhhhhhh    Modal Pesquisar   hhhhhhhhhhhhhhh -->
-
                 <div class="modal fade" id="modalPesquisarGaragem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -215,33 +188,29 @@
                             </div>
                             <button type="button" class="btn btn-success" onclick="pesquisarGaragem()">Buscar</button>
                           </form>
-                  
-                                  <div style="height: 200px;overflow: scroll;">
-                                      <table class="table" id="tabelaresultadosGar">
-                                          <thead>
-                                              <tr>
-                                                  <th scope="col">ID</th>
-                                                  <th scope="col">Número Box</th>
-                                                  <th scope="col">Placa Carro</th>
-                                                  
-                                                  <th scope="col">Editar</th>
-                                                  <th scope="col">Delete</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody>
-                                          </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
+                        <div style="height: 200px;overflow: scroll;">
+                            <table class="table" id="tabelaresultadosGar">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Número Box</th>
+                                        <th scope="col">Placa Carro</th>
+                                        
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         </div>
                       </div>
                     </div>
-                  </div>
-    <!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-     <!-- hhhhhhhhhhhhhh    Modal busca Carro   hhhhhhhhhhhhhhh -->
-
+                </div>
      <div class="modal fade" id="modalPesquisarCarro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -283,8 +252,7 @@
           </div>
         </div>
       </div>
-<!-- ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-                </div>
+        </div>
             </div>
         </main>
        </div>

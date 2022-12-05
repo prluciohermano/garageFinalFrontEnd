@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 main {
     display: block;
     height: 100%;
@@ -10,6 +15,7 @@ main .main-content {
     width: 100%;
     height: calc(100% - 90px);
     overflow-y: auto;
+    
 }
 
 .main-content::-webkit-scrollbar-track
@@ -44,6 +50,7 @@ main .main-content {
     padding: 20px;
     border: 1px solid #ccc;
     margin: 10px 0;
+    
 }
 
 .rounded-circle {
@@ -58,6 +65,7 @@ main .main-content {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    
 }
 
 .panel-50 {
@@ -130,6 +138,7 @@ div .dashboard-content {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    
 }
 
 .dashboard-box {

@@ -37,14 +37,13 @@ if (firstLog == null) {
             $("#id").val(response.id);
 
             for (var i = 0; i < response.length; i++) {
-                // console.log(response[i].imagem);
+                
                 $('#form-perfil> tbody')
                 .append(
                     '<tr id="'+response[i].id+'"><td>'
                             + response[i].id
                             + '</td><td>'
                             + '<img src="'+ response[i].imagem +'" style="width: 40px">'
-                            // + '<img src="'+ response[i].imagem +'"'
                             + '</td><td>'
                             + response[i].nomeUsuario                        						
                             + '</td><td><button type="button" class="btn btn-danger" onclick="deleteUsuario('
@@ -66,16 +65,16 @@ if (firstLog == null) {
             var login = $("#login").val();
             var senha = $("#senha").val();
             var admin = $("#isAdmin").val();
+            var email = $("#email").val();
 
             var imgPerfil = JSON.parse(localStorage.getItem('imgPerfil'));
-            console.log("imgPerfil: " + imgPerfil);
 
-            if (nome || login || senha) {
+            if (nome && login && senha && email) {
             
                     $.ajax({
                         method : "POST",
                         url : baseServidor + "/api/usuarios",
-            
+                        dataType: "json",
                         headers : { Authorization : tokenNovo, Content : application },
                         async: true,
                         crossDomain : true,
@@ -91,23 +90,29 @@ if (firstLog == null) {
                         contentType : "application/json; charset=utf-8",
                         success : function(response) {
                             $("#id").val(response.id);
-            
                             Swal.fire("Pronto!", "Usuário criado com sucesso!", "success");
-                            buscarUsuario();
-                        }
+                            
+                            function DezSegundos(){
+                                window.location.href = "perfil.html"
+                            }
+                            setTimeout(DezSegundos, 1000*2);
+                            
+
+                            
+                        }  
             
                         }).fail(function(xhr, status, errorThrown) {
+                        
                             Swal.fire("Opss ", "Erro ao salvar usuário! " + xhr.responseText, "error");
+                        
                         });
-                        apagaFormPerfil();
-                    buscarUsuario();
-                    
+                                            
                 } else {
 
                    Swal.fire("Opss ", "Tu não acha que falta nada não?", "error");
                 }
                 
-                window.location.href = "perfil.html"
+                
             }
         
             
@@ -165,14 +170,17 @@ if (firstLog == null) {
         enableOrientation: true,
 
         viewport: {
-            width: 350,
-            height: 450,
-            type: 'square'
+            width: 340,
+            height: 340,
+            type: 'square',
+            justifyContent: 'center'
+            
         },
 
         boundary: {
-            width: 450,
-            height: 550
+            width: 380,
+            height: 380,
+            orientation: "center",
         }
     })
 

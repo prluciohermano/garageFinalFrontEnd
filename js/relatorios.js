@@ -17,7 +17,7 @@ if (firstLog == null) {
 
         linhas();
         barras();
-        grafico3();
+        //grafico3();
     
     function barras() {
 
@@ -35,9 +35,10 @@ if (firstLog == null) {
                 for (var i = 0; i < data.length; i++) {
 
                 const dataInput = (data[i].dataInicialServico);
-                const dataFormatada = new Date(dataInput).toLocaleString();
-                                
-
+                
+                const date = new Date(dataInput);
+                const dataFormatada = ((date.getDate() )) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear(); ;
+                
                 datas.push(dataFormatada);
                 totais.push(data[i].total);
 
@@ -61,7 +62,7 @@ if (firstLog == null) {
                 
                 
                 datasets: [{
-                    label: 'RELATÓRIO VALOR DE SERVIÇO POR DIA',
+                    label: 'VALOR DO SERVIÇO POR DIA',
                     backgroundColor: ['green'],
                     borderColor: 'rgb(255, 99, 132)',
                     data: totais
@@ -116,7 +117,7 @@ if (firstLog == null) {
                 
                 
                 datasets: [{
-                    label: 'RELATÓRIO DE VALOR DOS VEÍCULOS',
+                    label: 'VALOR DO VEÍCULO',
                     backgroundColor: ['gray', 'green'],
                     borderColor: 'rgb(200, 199, 60)',
                     data: precos,
@@ -133,9 +134,49 @@ if (firstLog == null) {
         });
     };
 
+    function pesquisarVeiculo() {
+
+        var veiculoEntrada = [];
+        var dias = [];
+
+        $.ajax({
+        
+            method : "GET",
+            url : baseServidor + "/api/veiculos/",
+            dataType: "json",
+            headers : { Authorization : tokenNovo, Content : application },
+            async: true,
+            crossDomain : true,
+            success : function(response) {
+            
+                for (var key in response) {
+                    
+                    const dataInput = (response[key].dataEntrada);
+                    veiculoEntrada.push(response[key].descricao);
+        
+                    const datehoje = new Date();
+        
+                    const d1 = dataInput;
+                    const d2 = datehoje;
+                    const diffInMs   = new Date(d2) - new Date(d1)
+                    dias.push(Math.trunc(diffInMs / (1000 * 60 * 60 * 24)));      
+                    
+                }
+              
+                grafico3(veiculoEntrada, dias);
+                
+            }
+            
+                }).fail(function(xhr, status, errorThrown) {
+                alert("Erro ao pesquisar um Produto: " + xhr.responseText);
+            });
+
+           
+            
+        }   pesquisarVeiculo();
     
 
-    function grafico3() {
+    function grafico3(veiculoEntrada, dias) {
 
         var ctx = document.getElementById('myChart3').getContext('2d');
 
@@ -143,14 +184,14 @@ if (firstLog == null) {
             
             type: 'pie',
             data: {
-                labels: ['Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro'],
-                
+                labels: veiculoEntrada,
                 
                 datasets: [{
-                    label: 'RELATÓRIO NÚMERO DE CARROS VENDIDOS',
+                    label: '',
                     backgroundColor: ['#20B2AA', '#F4A460', '#6495ED', '#DB7093', '#F0E68C', '#C71585', '#808080', '#C0C0C0'],
                     borderColor: ['green', 'orange', 'blue', 'red', 'yellow', 'purple', 'gray', 'silver'],
-                    data: [3, 2, 1, 3, 5, 4, 1, 6]
+                    data: dias
+
                 }]
             },
 

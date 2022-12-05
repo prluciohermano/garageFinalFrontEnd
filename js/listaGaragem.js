@@ -89,11 +89,12 @@ if (firstLog == null) {
             text: "Essa ação não poderá ser revertida!",
             icon: 'warning',
             confirmButtonColor: '#a777e3',
-            confirmButtonText: 'Sim, pode deletar!',
+            confirmButtonText: 'Sim, pode liberar o BOX!',
             showCancelButton: true,
             cancelButtonColor: 'gray'
 
         }).then((result) => {
+
             if (result.isConfirmed) {
         
             $.ajax({
@@ -105,22 +106,18 @@ if (firstLog == null) {
                     async: true,
                     crossDomain : true,
 
-                    success : function(response) {
-                        
-                    $('#'+ id).remove();
+                    success : buscarGaragem()
+                }),
                     
-                    Swal.fire("Pronto!", "Box desocupado com sucesso!", "success");	
-                    
-                        apagaFormGaragem();
-                        buscarGaragem();
-                        
-                    }
-                }).fail(function(xhr, status, errorThrown) {
-                    Swal.fire("Opss ", "Erro ao desocupar a garagem: " + xhr.responseText, "error");
-                });
-            }	
+                    Swal.fire("Pronto!", "Box desocupado com sucesso!", "success");
+                    apagaFormGaragem();
+            }
+
+        }).fail(function(xhr, status, errorThrown) {
+                Swal.fire("Opss ", "Erro ao desocupar a garagem: " + xhr.responseText, "error");
         })
-    }
+    
+    }   
 
     function salvarGaragem() {  // Último Ajax
 
@@ -160,8 +157,7 @@ if (firstLog == null) {
                 defeitoCar : defeitoCar,
                 mecanicoCar : mecanicoCar
 
-            }),
-            
+            }), 
             contentType : "application/json; charset=utf-8",
             success : function(response) {
                 $("#id").val(response.id);

@@ -1,6 +1,5 @@
 const firstLog = JSON.parse(sessionStorage.getItem('token'));
 
-
 if (firstLog == undefined) {
     location.href = "/login.html"
     } else {
@@ -16,9 +15,9 @@ if (firstLog == undefined) {
                 
         const tokenNovo = JSON.parse(sessionStorage.getItem('token'));
         const userLogado = JSON.parse(sessionStorage.getItem('login'));
-    
+            
         if (userLogado != null && userLogado.trim() != '') {
-        
+      
             $.ajax({
                 method : "GET",
                 url : "http://localhost:8080/api/usuarios/fotoPerfil",
@@ -29,24 +28,27 @@ if (firstLog == undefined) {
                 crossDomain : true,
                 success : function(response) {
     
-                    const fotoPerfil = (response.imagem)
-                    const nomePer = (response.nomeUsuario)
+                    const fotoPerfil = response.imagem
+                    const nomePer = response.nomeUsuario
+                    const perfilUser = response.perfil
                     sessionStorage.setItem('fotoPerfil', JSON.stringify(fotoPerfil));
                     sessionStorage.setItem('nomePer', JSON.stringify(nomePer));
+                    sessionStorage.setItem('perfilUser', JSON.stringify(perfilUser));
                     
                     var tipo = document.getElementById('fotoPerfil');
                     tipo.src = fotoPerfil; 
                     
                     document.getElementById('nomePerfil').innerHTML = ("Usuário: " + nomePer);
-
-                    
-    
+                    if (perfilUser) {
+                        const perfilUsual = document.querySelector('#perfil');
+                        console.log(perfilUsual);
+                        perfilUsual.removeAttribute('hidden');
+                    }
                 }
-                        }).fail(function(xhr, status, errorThrown) {
-                            Swal.fire("Opss ", "Erro ao buscar usuario: ", "error");
-                });
+                    }).fail(function(xhr, status, errorThrown) {
+                        Swal.fire("Opss ", "Erro ao buscar usuario: ", "error");
+            });
         }
-        
     } pesquisarFoto();
 
     
@@ -64,8 +66,6 @@ if (firstLog == undefined) {
         async: true,
         crossDomain : true,
         success : function(response) {
-
-            console.log(response);
         
             if (!response[0] == "") {
                 
@@ -74,7 +74,14 @@ if (firstLog == undefined) {
                 
                 const precoPuro = (response[0].veiculo.precoEntrada);
                 const precoTop = (precoPuro.toLocaleString('pt-br', {minimumFractionDigits: 2}));
-                
+
+                const datehoje = new Date();
+
+                const d1 = dataInput;
+                const d2 = datehoje;
+                const diffInMs   = new Date(d2) - new Date(d1)
+                const dias = Math.trunc(diffInMs / (1000 * 60 * 60 * 24));
+                              
                 
                 html += '<div class="input-group mb-3">'
                 html += '<span class="input-group-text" id="inputGroup-sizing-default">Box:</span>'
@@ -125,7 +132,13 @@ if (firstLog == undefined) {
                 html += '<span class="input-group-text" id="inputGroup-sizing-default">Valor:</span>'
                 html += '<input type="text" class="form-control" readonly="readonly" id="'+ precoTop +'" value="' + precoTop + '" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
                 html += '</div>'
+
+                html += '<div class="input-group mb-3">'
+                html += '<span class="input-group-text" id="inputGroup-sizing-default">Tempo permanência:</span>'
+                html += '<input type="text" class="form-control" readonly="readonly" id="'+ dias +'" value="' + dias + ' dias" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">'
+                html += '</div>'
             } else {
+                    html += '<div class="input-group mb-3">'
                     html += '<div class="input-group mb-3">'
                     html += '<span>Esse Box está vazio</span>'
                     html += '</div>'
@@ -164,6 +177,8 @@ if (firstLog == undefined) {
                     heading.style.color = "#ef5350";
 
                     document.getElementById('title-text '+ value).innerHTML = "Ocupado";
+                    var texting = document.getElementById('title-text ' + value);
+                    texting.style.color = "#ef5350";
                 }
             }
 
@@ -176,4 +191,5 @@ if (firstLog == undefined) {
     } carregaBox();
     
 } // do if
+
 
